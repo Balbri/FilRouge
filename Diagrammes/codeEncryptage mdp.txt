@@ -1,0 +1,24 @@
+public String hashPassword(String mdp) {
+        String password = SALT_START + mdp + SALT_END;
+
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        md.update(password.getBytes());
+
+        byte byteData[] = md.digest();
+
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < byteData.length; i++) {
+            sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+        }
+
+        return sb.toString();
+    }
+private final String SALT_START = "eodkaodkeosk2535";
+
+    private final String SALT_END = "pdsoenzER645tf";
