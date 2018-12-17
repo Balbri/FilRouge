@@ -1,5 +1,6 @@
 package livrocaz.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,29 +22,45 @@ public class Client {
 	
 	@Id
 	@GeneratedValue
-	private int numeroClient;
+	@Column(name ="idClient")
+	private int idClient;
+	@Column (name = "nomClient")
 	private String nomClient;
+	@Column (name = "prenomClient")
 	private String prenomClient;
+	@Column (name = "numeroL")
 	private int numeroL;
+	@Column (name = "rueL")
 	private String rueL;
+	@Column (name = "complementL")
 	private String complementL;
+	@Column (name = "cpL")
 	private int cpL;
+	@Column (name = "villeL")
 	private String villeL;
+	@Column (name = "numeroF")
 	private int numeroF;
+	@Column (name = "rueF")
 	private String rueF;
+	@Column (name = "complementF")
 	private String complementF;
+	@Column (name = "cpF")
 	private int cpF;
+	@Column (name = "villeF")
 	private String villeF;
+	@Column (name = "mdpClient")
 	private String mdpClient;
+	@Column (name = "emailClient")
 	private String emailClient;
+	@Column (name = "loginClient")
 	private String loginClient;
 	
 	// getters and setters
 	public int getNumeroClient() {
-		return numeroClient;
+		return idClient;
 	}
 	public void setNumeroClient(int numeroClient) {
-		this.numeroClient = numeroClient;
+		this.idClient = numeroClient;
 	}
 	public String getNomClient() {
 		return nomClient;
@@ -147,7 +164,7 @@ public class Client {
 		result = prime * result + ((loginClient == null) ? 0 : loginClient.hashCode());
 		result = prime * result + ((mdpClient == null) ? 0 : mdpClient.hashCode());
 		result = prime * result + ((nomClient == null) ? 0 : nomClient.hashCode());
-		result = prime * result + numeroClient;
+		result = prime * result + idClient;
 		result = prime * result + numeroF;
 		result = prime * result + numeroL;
 		result = prime * result + ((prenomClient == null) ? 0 : prenomClient.hashCode());
@@ -200,7 +217,7 @@ public class Client {
 				return false;
 		} else if (!nomClient.equals(other.nomClient))
 			return false;
-		if (numeroClient != other.numeroClient)
+		if (idClient != other.idClient)
 			return false;
 		if (numeroF != other.numeroF)
 			return false;
@@ -235,7 +252,7 @@ public class Client {
 	}
 	@Override
 	public String toString() {
-		return "Client [numeroClient=" + numeroClient + ", nomClient=" + nomClient + ", prenomClient=" + prenomClient
+		return "Client [numeroClient=" + idClient + ", nomClient=" + nomClient + ", prenomClient=" + prenomClient
 				+ ", numeroL=" + numeroL + ", rueL=" + rueL + ", complementL=" + complementL + ", cpL=" + cpL
 				+ ", villeL=" + villeL + ", numeroF=" + numeroF + ", rueF=" + rueF + ", complementF=" + complementF
 				+ ", cpF=" + cpF + ", villeF=" + villeF + ", mdpClient=" + mdpClient + ", emailClient=" + emailClient
