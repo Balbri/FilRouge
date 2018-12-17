@@ -3,9 +3,9 @@ package livrocaz.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import livrocaz.model.GenreLivre;
+import livrocaz.model.Genre;
 
 @Repository
-public interface GenreLivreRepository extends JpaRepository<GenreLivre, Integer>{
+public interface GenreRepository extends JpaRepository<Genre, Integer>{
 
 }
