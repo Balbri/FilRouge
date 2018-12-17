@@ -4,6 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import livrocaz.model.Client;
 import livrocaz.repository.ClientRepository;
 import livrocaz.repository.LivreRepository;
 
@@ -34,6 +35,9 @@ public class App implements CommandLineRunner {
         
         //.....etc........//
        
+        Client c1 = new Client("toto", "tata", 21, "rue honor", "bat A", 65423, "Lanion", "azerty", "toto@tata.fr", "totothebest");
+        clientRepo.save(c1);
+        
     }
 }
 

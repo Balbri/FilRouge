@@ -1,5 +1,6 @@
 package livrocaz.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Entity;
@@ -18,7 +19,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Livre")
-public class Livre {
+public class Livre implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -381338116273852813L;
 	@Id
 	private String isbn;
 	private String titre;
