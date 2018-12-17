@@ -1,0 +1,380 @@
+Dictionnaire de données 
+
+Nom : rechercheLivre
+Code : RECHERCHELIVRE
+Type : REAL
+Taille : ,
+Commentaire : 
+
+Nom : titreLivre
+Code : TITRELIVRE
+Type : TEXT
+Taille : ,
+Commentaire : 
+
+Nom : ISBN
+Code : ISBN
+Type : INT
+Taille : ,
+Commentaire : 
+
+Nom : listeAuteurs
+Code : LISTEAUTEURS
+Type : TEXT
+Taille : ,
+Commentaire : 
+
+Nom : imageCouverture
+Code : IMAGECOUVERTURE
+Type : REAL
+Taille : ,
+Commentaire : 
+
+Nom : editeurLivre
+Code : EDITEURLIVRE
+Type : TEXT
+Taille : ,
+Commentaire : 
+
+Nom : genreLivre
+Code : GENRELIVRE
+Type : TEXT
+Taille : ,
+Commentaire : 
+
+Nom : sujetLivre
+Code : SUJETLIVRE
+Type : TEXT
+Taille : ,
+Commentaire : 
+
+Nom : descriptionLivre
+Code : DESCRIPTIONLIVRE
+Type : TEXT
+Taille : ,
+Commentaire : 
+
+Nom : anneeParution
+Code : ANNEEPARUTION
+Type : DATE
+Taille : ,
+Commentaire : 
+
+Nom : prixVenteNeuf
+Code : PRIXVENTENEUF
+Type : INT
+Taille : ,
+Commentaire : 
+
+Nom : prixVenteOccasion
+Code : PRIXVENTEOCCASION
+Type : INT
+Taille : ,
+Commentaire : 
+
+Nom : qttStockLivre
+Code : QTTSTOCKLIVRE
+Type : INT
+Taille : ,
+Commentaire : 
+
+Nom : langueLivre
+Code : LANGUELIVRE
+Type : INT
+Taille : ,
+Commentaire : 
+
+Nom : listeLivres
+Code : LISTELIVRES
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : listeLivres
+Code : LISTELIVRES
+Type : INTEGER
+Taille : 50,
+Commentaire : 
+
+Nom : listeLivres
+Code : LISTELIVRES
+Type : INT
+Taille : 50,
+Commentaire : 
+
+Nom : nomEditeur
+Code : NOMEDITEUR
+Type : TEXT
+Taille : ,
+Commentaire : 
+
+Nom : nomAuteur
+Code : NOMAUTEUR
+Type : TEXT
+Taille : ,
+Commentaire : 
+
+Nom : genre
+Code : GENRE
+Type : TEXT
+Taille : ,
+Commentaire : 
+
+Nom : nomGenre
+Code : GENRE
+Type : TEXT
+Taille : ,
+Commentaire : 
+
+Nom : nomLangue
+Code : NOMLANGUE
+Type : TEXT
+Taille : ,
+Commentaire : 
+
+Nom : imageCouverture
+Code : IMAGECOUVERTURE
+Type : BLOB
+Taille : ,
+Commentaire : 
+
+Nom : imageCouverture
+Code : IMAGECOUVERTURE
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : nomClient
+Code : NOMCLIENT
+Type : TEXT
+Taille : ,
+Commentaire : 
+
+Nom : date
+Code : DATE
+Type : DATE
+Taille : ,
+Commentaire : 
+
+Nom : Contenu
+Code : CONTENU
+Type : AUTO_INCREMENT
+Taille : ,
+Commentaire : 
+
+Nom : Contenu
+Code : CONTENU
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : numeroCommande
+Code : NUMEROCOMMANDE
+Type : INT
+Taille : ,
+Commentaire : 
+
+Nom : nomGestionnaire
+Code : NOMGESTIONNAIRE
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : nomAdmin
+Code : NOMADMIN
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : Ajoute/Supprime
+Code : AJOUTE/SUPPRIME
+Type : BOOL
+Taille : ,
+Commentaire : 
+
+Nom : MAJ Stock
+Code : MAJ STOCK
+Type : INT
+Taille : 50,
+Commentaire : 
+
+Nom : caMensuel
+Code : CAMENSUEL
+Type : DOUBLE
+Taille : ,
+Commentaire : 
+
+Nom : modifie
+Code : MODIFIE
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : supprime
+Code : SUPPRIME
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : numeroClient
+Code : NUMEROCLIENT
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : isRegistered()
+Code : ISREGISTERED()
+Type : BOOL
+Taille : ,
+Commentaire : 
+
+Nom : idTemporaire
+Code : NUMEROCLIENT
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : nomAuteur
+Code : NOMAUTEUR
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : prenomAuteur
+Code : PRENOMAUTEUR
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : numeroClient
+Code : NUMEROCLIENT
+Type : AUTO_INCREMENT
+Taille : 50,
+Commentaire : 
+
+Nom : adresseClient
+Code : ADRESSECLIENT
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : mdpClient
+Code : MDPCLIENT
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : idEditeur
+Code : IDEDITEUR
+Type : INT
+Taille : ,
+Commentaire : 
+
+Nom : idAuteur
+Code : IDAUTEUR
+Type : INT
+Taille : ,
+Commentaire : 
+
+Nom : idGenre
+Code : IDGENRE
+Type : INT
+Taille : ,
+Commentaire : 
+
+Nom : idLangue
+Code : IDLANGUE
+Type : INT
+Taille : ,
+Commentaire : 
+
+Nom : idCaMensuel
+Code : IDCAMENSUEL
+Type : INT
+Taille : ,
+Commentaire : 
+
+Nom : moisCaMensuel
+Code : MOISCAMENSUEL
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : idGestionnaire
+Code : IDGESTIONNAIRE
+Type : INT
+Taille : ,
+Commentaire : 
+
+Nom : mdpGestionnaire
+Code : MDPGESTIONNAIRE
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : idAdmin
+Code : IDADMIN
+Type : INT
+Taille : ,
+Commentaire : 
+
+Nom : mdpAdmin
+Code : MDPADMIN
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : prenomClient
+Code : PRENOMCLIENT
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : emailClient
+Code : EMAILCLIENT
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : loginClient
+Code : LOGINCLIENT
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : emailAdmin
+Code : EMAILADMIN
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : loginAdmin
+Code : LOGINADMIN
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : emailGestionnaire
+Code : EMAILGESTIONNAIRE
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : loginGestionnaire
+Code : LOGINGESTIONNAIRE
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
+Nom : cpClient
+Code : CPCLIENT
+Type : INT
+Taille : ,
+Commentaire : 
+
+Nom : villeClient
+Code : VILLECLIENT
+Type : VARCHAR
+Taille : 50,
+Commentaire : 
+
