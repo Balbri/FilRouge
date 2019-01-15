@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.TableGenerator;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
  
 @Entity
 public class Livre {
@@ -36,6 +38,7 @@ public class Livre {
 	@ManyToMany(cascade={CascadeType.ALL})
 	@JoinTable(name = "livre_auteur", 
 	joinColumns = @JoinColumn(name = "idLivre"), inverseJoinColumns = @JoinColumn(name = "idAuteur"))
+	@JsonIgnore
 	private Collection<Auteur> auteurs;
 
 	public String getIsbn() {
