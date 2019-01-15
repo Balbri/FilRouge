@@ -5,7 +5,6 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
-import org.springframework.http.HttpMethod;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -36,10 +35,8 @@ public class JDBCWebSecurity extends WebSecurityConfigurerAdapter{
     
     @Override
 	protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-    	
-        .antMatchers("/").permitAll()
-    	.antMatchers("/auth").permitAll()
+        http.authorizeRequests() 
+    	.antMatchers("/").permitAll()
     	.antMatchers(
                 "/",
                 "/favicon.ico",
@@ -51,25 +48,25 @@ public class JDBCWebSecurity extends WebSecurityConfigurerAdapter{
                 "/**/*.css",
                 "/**/*.js"
         ).permitAll()
+    	.antMatchers("/auth").hasAnyAuthority("GESTIONNAIRE", "ADMIN", "INSCRIT")
+    	.antMatchers("/auth.html").hasAnyAuthority("GESTIONNAIRE", "ADMIN", "INSCRIT")
     	.antMatchers("/manager").hasAnyAuthority("GESTIONNAIRE", "ADMIN")
     	.antMatchers("/manager.html").hasAnyAuthority("GESTIONNAIRE", "ADMIN")
     	.antMatchers("/admin").hasAnyAuthority("ADMIN")
     	.antMatchers("/admin.html").hasAnyAuthority("ADMIN")
-    	.antMatchers("/api/**").permitAll()
-    	.antMatchers(HttpMethod.POST, "/api/**").permitAll()
+    	.antMatchers("/api/*").permitAll()
     	.anyRequest().authenticated()
     	.and()
     	.formLogin().permitAll()
     	.and()
         .formLogin()
-        .loginPage("/login")//page login perso
-        .loginProcessingUrl("/login") 
-    	.defaultSuccessUrl("/auth", true)
+        .loginPage("/login") //page login perso
+        .loginProcessingUrl("/login") //page traitement login
+    	.defaultSuccessUrl("/auth", true) //page suivante apres login
     	.and()
     	.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
     	.and()
-        .exceptionHandling().accessDeniedPage("/accessDenied")//page perso accés refusé
-        .and().csrf()
-        .ignoringAntMatchers("/api/livres");
+        .exceptionHandling().accessDeniedPage("/accessDenied") //page perso accés refusé
+        .and().csrf().ignoringAntMatchers("/api/**"); //pour que l'écriture fonctionne sous postman
 	}
 }

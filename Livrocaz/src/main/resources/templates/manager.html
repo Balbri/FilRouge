@@ -22,7 +22,7 @@
 							<div class="row justify-content-center">
 				                <div class="col-sm-4">
 				                    <button type="button" class="btn btn-block btn-outline-dark" onclick="location.href='/index.html';">Accueil</button>
-				                    <button type="button" class="btn btn-block btn-outline-secondary" data-toggle="modal" data-target="#popup">Déconnexion</button>
+				                    <button sec:authorize="isAuthenticated()" type="button" class="btn btn-block btn-outline-secondary" data-toggle="modal" data-target="#popup">Déconnexion</button>
 				                </div>
 			                </div>
 							
