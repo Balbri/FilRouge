@@ -3,7 +3,7 @@ package livrocaz.model;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@Entity
+@Entity(name = "admin")
 @Table(name = "Administrateur")
 public class Administrateur extends Gestionnaire{
 

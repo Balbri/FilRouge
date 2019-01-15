@@ -1,6 +1,5 @@
 package livrocaz.model;
 
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,7 +15,7 @@ import javax.persistence.Table;
  *
  */
 
-@Entity
+@Entity (name = "editeur")
 @Table(name = "Editeur")
 public class Editeur {
 

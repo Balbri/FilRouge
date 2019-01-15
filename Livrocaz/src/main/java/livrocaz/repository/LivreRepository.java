@@ -8,4 +8,6 @@ import livrocaz.model.Livre;
 @Repository
 public interface LivreRepository extends JpaRepository<Livre, Integer>{
 
+	
+
 }

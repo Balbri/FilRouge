@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
+@Entity (name = "commande")
 @Table(name = "Commande")
 public class Commande {
 
