@@ -6,6 +6,10 @@ import org.springframework.stereotype.Repository;
 import livrocaz.model.Livre;
 
 @Repository
-public interface LivreRepository extends JpaRepository<Livre, Integer>{	
+public interface LivreRepository extends JpaRepository<Livre, Integer>{
+
+	
+
+		
 
 }

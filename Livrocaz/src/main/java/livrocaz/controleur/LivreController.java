@@ -4,6 +4,7 @@ package livrocaz.controleur;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,11 +14,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import javafx.scene.media.Media;
 import livrocaz.model.Livre;
@@ -32,14 +35,37 @@ public class LivreController {
 
 	@Autowired
 	private LivreRepository livreRepo;
-
+/*
+ * Methode Get All
+ */
 	@RequestMapping(method = {RequestMethod.GET}, value = "/livres", produces = "application/json")
 	public ResponseEntity<Collection<Livre>> getAllLivres(){
 		return new ResponseEntity<Collection<Livre>>(livreRepo.findAll(), HttpStatus.OK);
 	}
 
-
-
+/*
+ * Methode get par ID
+ */
+	@RequestMapping(value = "/livres/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getLivre(@PathVariable Integer id){
+		Optional<Livre> livre = null;
+				
+		try {
+			livre =(livreRepo.findById(id));
+			
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+		}
+		
+		if(livre == null)
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+		
+		return ResponseEntity.status(HttpStatus.OK).body(livre);
+	}
+	
+/*
+ * Methode POST
+ */
 	 @RequestMapping(value = "/livres", method = RequestMethod.POST, produces= "application/json", consumes = MediaType.APPLICATION_JSON_VALUE )
 	public ResponseEntity<?> addLivre(@RequestBody Livre livre){
 		Livre resultLivre = null;				
@@ -52,7 +78,9 @@ public class LivreController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(resultLivre);
 	}
 	
-
+/*
+ * Methode PUT
+ */
 
 
 }
