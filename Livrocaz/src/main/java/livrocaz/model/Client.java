@@ -56,6 +56,11 @@ public class Client {
 		this.emailClient = emailClient;
 		this.loginClient = loginClient;
 	}
+	
+	public Client() {
+		super();
+	}
+
 	// getters and setters
 	@Column(name="idClient")
 	public int getNumeroClient() {
