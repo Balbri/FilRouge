@@ -107,7 +107,7 @@
 	    <version>2.1.1.RELEASE</version>
 	</dependency>
 	
-	<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools -->
+	<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools (pour relancer le serveur automatiquement)-->
 	<dependency>
 	    <groupId>org.springframework.boot</groupId>
 	    <artifactId>spring-boot-devtools</artifactId>
@@ -121,7 +121,7 @@
 	    <version>2.1.2.RELEASE</version>
 	</dependency>
 
-	<!-- https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5 -->
+	<!-- https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5 (pour les taglib "sec:authorize")-->
 	<dependency>
 	    <groupId>org.thymeleaf.extras</groupId>
 	    <artifactId>thymeleaf-extras-springsecurity5</artifactId>
