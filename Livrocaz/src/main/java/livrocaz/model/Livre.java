@@ -31,9 +31,10 @@ public class Livre {
 	private double prixOccas;
 	private int stock;
  
-	@ManyToMany(cascade={CascadeType.ALL})
+	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(name = "livre_auteur", 
 	joinColumns = @JoinColumn(name = "idLivre"), inverseJoinColumns = @JoinColumn(name = "idAuteur"))
+	
 	@JsonIgnore
 	private Collection<Auteur> auteurs;
 
