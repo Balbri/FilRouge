@@ -60,7 +60,7 @@ public class JDBCWebSecurity extends WebSecurityConfigurerAdapter{
     	.and()
         .formLogin()
         .loginPage("/login")//page login perso
-        .loginProcessingUrl("/login")
+        .loginProcessingUrl("/login") 
     	.defaultSuccessUrl("/auth", true)
     	.and()
     	.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
