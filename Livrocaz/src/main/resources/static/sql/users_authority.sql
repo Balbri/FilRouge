@@ -10,12 +10,10 @@ create table authorities (
 
 create unique index ix_auth_username on authorities (username,authority);
 
-insert into users(username,password,enabled) values ('dbuser','{noop}simplon', true);
-insert into users(username,password,enabled) values ('dbdevelopper','{noop}simplon', true);
-insert into users(username,password,enabled) values ('dbmanager','{noop}simplon', true);
-insert into users(username,password,enabled) values ('dbadmin','{bcrypt}$2a$10$OhwFVfhBW0Rv2TUtS4UFSOtvMFbGnPPEFkFcKnXif9bBAfWFnKm16', true);
+insert into users(username,password,enabled) values ('dbinscrit','{bcrypt}$2a$04$3oa5XGzGArd2DnRv3.ax7OxGxnvCisSuWWGxYM2xNE99UFLCgQXYS', true);
+insert into users(username,password,enabled) values ('dbgestionnaire','{bcrypt}$2a$04$CZsnHi2Jg/Z0dmBWEE3BKehk9MkLQsQAMtVgsepayT1WdIEx5GTIq', true);
+insert into users(username,password,enabled) values ('dbadmin','{bcrypt}$2a$04$L81ltvjTKE57lMNPMC3TQeDAPtTBmoxcclRsfDVt.u7uUCHHLSmMO', true);
 
-INSERT INTO authorities (username, authority)VALUES ('dbuser', 'USER');
-INSERT INTO authorities (username, authority)VALUES ('dbdevelopper', 'DEVELOPPER');
-INSERT INTO authorities (username, authority)VALUES ('dbmanager', 'MANAGER');
+INSERT INTO authorities (username, authority)VALUES ('dbinscrit', 'INSCRIT');
+INSERT INTO authorities (username, authority)VALUES ('dbgestionnaire', 'GESTIONNAIRE');
 INSERT INTO authorities (username, authority)VALUES ('dbadmin', 'ADMIN');
