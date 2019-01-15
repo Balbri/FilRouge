@@ -50,6 +50,8 @@ public class App implements CommandLineRunner {
        Livre fondation = new Livre();
        Livre robots = new Livre();
        Auteur azimov = new Auteur();
+       Collection<Auteur>hashAuteurs = new HashSet<Auteur>();
+       Collection<Livre>hashLivres = new ArrayList<Livre>();
        livreRepo.save(robots);
        livreRepo.save(fondation);
        auteurRepo.save(azimov);
@@ -63,8 +65,8 @@ public class App implements CommandLineRunner {
        fondation.setStock(20);
        fondation.setSujetLivre("Sujet de Fondation");
        fondation.setTitreLivre("Fondation");
-      
        fondation =livreRepo.save(fondation);
+      
        robots.setAnneeParution("1975");
        robots.setDescriptionLivre("desc robots");
        robots.setImageCouverture("robots couv");
@@ -76,27 +78,25 @@ public class App implements CommandLineRunner {
        robots.setTitreLivre("robots");
        robots=livreRepo.save(robots);
        
-//       azimov.setIdAuteur(1);
+
        azimov.setNameAuteur("Azimov");
        azimov.setSurnameAuteur("Isaac");
        azimov= auteurRepo.save(azimov);
        
-       Collection<Auteur>hashAuteurs = new HashSet<Auteur>();
        hashAuteurs.add(azimov);
-      
-       Collection<Livre>hashLivres = new ArrayList<Livre>();
-       hashLivres.add(robots);
-       hashLivres.add(fondation);
        fondation.setAuteurs(hashAuteurs);
        robots.setAuteurs(hashAuteurs);
+       hashLivres.add(robots);
+       hashLivres.add(fondation);
        azimov.setLivres(hashLivres);
+      
       auteurRepo.save(azimov);
       livreRepo.save(fondation);
       livreRepo.save(robots);
        
        Client c1 = new Client("toto", "tata", 1, "Rue Hoche", "Bat A", 75000, "Paris", "1234", "toto@toto", "tototata");
-       
        clientRepo.save(c1);
+       
 ;
     }
 }

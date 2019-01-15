@@ -36,7 +36,6 @@ public class Livre {
 	@ManyToMany(cascade={CascadeType.ALL})
 	@JoinTable(name = "livre_auteur", 
 	joinColumns = @JoinColumn(name = "idLivre"), inverseJoinColumns = @JoinColumn(name = "idAuteur"))
-	
 	private Collection<Auteur> auteurs;
 
 	public String getIsbn() {
