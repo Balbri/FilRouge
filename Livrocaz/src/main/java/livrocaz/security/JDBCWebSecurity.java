@@ -5,6 +5,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpMethod;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -36,7 +37,8 @@ public class JDBCWebSecurity extends WebSecurityConfigurerAdapter{
     @Override
 	protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-    	.antMatchers("/").permitAll()
+    	
+        .antMatchers("/").permitAll()
     	.antMatchers("/auth").permitAll()
     	.antMatchers(
                 "/",
@@ -53,18 +55,21 @@ public class JDBCWebSecurity extends WebSecurityConfigurerAdapter{
     	.antMatchers("/manager.html").hasAnyAuthority("GESTIONNAIRE", "ADMIN")
     	.antMatchers("/admin").hasAnyAuthority("ADMIN")
     	.antMatchers("/admin.html").hasAnyAuthority("ADMIN")
-    	.antMatchers("/api/*").permitAll()
+    	.antMatchers("/api/**").permitAll()
+    	.antMatchers(HttpMethod.POST, "/api/**").permitAll()
     	.anyRequest().authenticated()
     	.and()
     	.formLogin().permitAll()
     	.and()
         .formLogin()
         .loginPage("/login")//page login perso
-        .loginProcessingUrl("/login")
+        .loginProcessingUrl("/login") 
     	.defaultSuccessUrl("/auth", true)
     	.and()
     	.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
     	.and()
-        .exceptionHandling().accessDeniedPage("/accessDenied");//page perso accés refusé
+        .exceptionHandling().accessDeniedPage("/accessDenied")//page perso accés refusé
+        .and().csrf()
+        .ignoringAntMatchers("/api/livres");
 	}
 }

@@ -1,13 +1,9 @@
 package livrocaz.model;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,9 +31,10 @@ public class Livre {
 	private double prixOccas;
 	private int stock;
  
-	@ManyToMany(cascade={CascadeType.ALL})
+	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(name = "livre_auteur", 
 	joinColumns = @JoinColumn(name = "idLivre"), inverseJoinColumns = @JoinColumn(name = "idAuteur"))
+	
 	@JsonIgnore
 	private Collection<Auteur> auteurs;
 
