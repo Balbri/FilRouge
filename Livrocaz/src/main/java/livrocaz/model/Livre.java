@@ -43,6 +43,10 @@ public class Livre {
 	@JoinColumn(name="idLangue")
 	private Langue langue; 
 	
+	@ManyToOne
+	@JoinColumn(name="idEditeur")
+	private Editeur editeur; 
+	
 	
 	
 	public Livre() {
@@ -151,6 +155,13 @@ public class Livre {
 	public void setLangue(Langue langue) {
 		this.langue = langue;
 	}
-	
+
+	public Editeur getEditeur() {
+		return editeur;
+	}
+
+	public void setEditeur(Editeur editeur) {
+		this.editeur = editeur;
+	}
 		
 }

@@ -10,11 +10,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import livrocaz.model.Auteur;
 import livrocaz.model.Client;
+import livrocaz.model.Editeur;
 import livrocaz.model.Livre;
 import livrocaz.model.Genre;
 import livrocaz.model.Langue;
 import livrocaz.repository.AuteurRepository;
 import livrocaz.repository.ClientRepository;
+import livrocaz.repository.EditeurRepository;
 import livrocaz.repository.GenreRepository;
 import livrocaz.repository.LangueRepository;
 import livrocaz.repository.LivreRepository;
@@ -38,6 +40,9 @@ public class App implements CommandLineRunner {
 
     @Autowired
     private LangueRepository langueRepo;
+    
+    @Autowired
+    private EditeurRepository editeurRepo;
 
     //.....etc......//
 
@@ -52,6 +57,7 @@ public class App implements CommandLineRunner {
         auteurRepo.deleteAll();
         genreRepo.deleteAll();
         langueRepo.deleteAll();
+        editeurRepo.deleteAll();
 
         //.....etc........//
 
@@ -115,6 +121,12 @@ public class App implements CommandLineRunner {
       fr = langueRepo.save(fr);
       fondation.setLangue(fr);
       robots.setLangue(fr);
+      
+      Editeur gp = new Editeur();
+      gp.setNomEditeur("Gnome Press");
+      gp = editeurRepo.save(gp);
+      fondation.setEditeur(gp);
+      robots.setEditeur(gp);
 
       langueRepo.save(fr);
       genreRepo.save(roman);
@@ -122,6 +134,7 @@ public class App implements CommandLineRunner {
       livreRepo.save(fondation);
       livreRepo.save(robots);
       auteurRepo.save(azimov);
+      
       Client c1 = new Client("toto", "tata", 1, "Rue Hoche", "Bat A", 75000, "Paris", "1234", "toto@toto", "tototata");
       clientRepo.save(c1);
     }

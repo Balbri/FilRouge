@@ -7,8 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 
-
-
 @Entity (name="langue")
 @Table(name = "Langue")
 public class Langue {
@@ -17,9 +15,11 @@ public class Langue {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idLangue;
     private String nomLangue;
-
-
-    public int getIdLangue() {
+    
+    public Langue() {
+	}
+    
+	public int getIdLangue() {
         return idLangue;
     }
     public void setIdLangue(int idLangue) {
