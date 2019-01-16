@@ -2,6 +2,7 @@ package livrocaz.model;
 
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,24 +11,18 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
-/**
- * 
- * @author Nico
- * TODO: @annotations de relation
- * Forçage des colonnes pour éviter qu'Hibernate crée de lui même des colonnes qui feraient doublon
-
- */
 
 @Entity (name="langue")
 @Table(name = "Langue")
 public class Langue {
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idLangue;
 	private String nomLangue;
 	
-	@OneToMany(mappedBy = "langue")
+	@OneToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, mappedBy = "langue")
 	private Collection<Livre> livres;
 	
 	

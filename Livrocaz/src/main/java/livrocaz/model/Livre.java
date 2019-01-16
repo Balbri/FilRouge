@@ -29,17 +29,17 @@ public class Livre {
 	private double prixOccas;
 	private int stock;
  
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
 	@JoinTable(name = "livre_auteur", joinColumns = @JoinColumn(name = "idLivre"), inverseJoinColumns = @JoinColumn(name = "idAuteur"))
 	@JsonIgnore
 	private Collection<Auteur> auteurs;
 	
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
 	@JoinTable(name = "livre_genre", joinColumns = @JoinColumn(name = "idLivre"), inverseJoinColumns = @JoinColumn(name = "idGenre"))
 	@JsonIgnore
 	private Collection<Genre> genres;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
 	@JoinColumn(name="idLangue")
 	private Langue langue; 
 	

@@ -1,6 +1,7 @@
 package livrocaz.model;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +17,7 @@ public class Auteur {
 	private String nameAuteur;
 	private String surnameAuteur;
  
-	@ManyToMany(mappedBy = "auteurs")
+	@ManyToMany(cascade = CascadeType.REMOVE, mappedBy = "auteurs")
 	private Collection<Livre> livres; 
 	
 	public Auteur() {

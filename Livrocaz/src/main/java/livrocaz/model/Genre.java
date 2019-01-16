@@ -2,6 +2,7 @@ package livrocaz.model;
 
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +26,7 @@ public class Genre {
 	private int idGenre;
 	private String nomGenre;
 	
-	@ManyToMany(mappedBy = "genres")
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, mappedBy = "genres")
 	private Collection<Livre> livres; 
 	
 	
