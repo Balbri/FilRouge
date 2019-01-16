@@ -10,9 +10,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -74,5 +76,29 @@ public class LivreController {
  * Methode PUT
  */
 
-
+	 @PutMapping(value = "/livres/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	    @ResponseBody
+	    public ResponseEntity<?> modifyBook(@RequestBody Livre livre) {
+	        Livre livreamodifier = null;
+	        try {
+	           livreamodifier = livreRepo.saveAndFlush(livre);
+	        } catch (Exception e) {
+	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+	        }
+	        return ResponseEntity.status(HttpStatus.CREATED).body(livreamodifier);
+	    }
+	 
+	 /*
+	  * Methode DELETE
+	  */
+	 @RequestMapping(value = "/livres/{id}", method = RequestMethod.DELETE)
+		public ResponseEntity<?> deleteLivre(@PathVariable Integer id){
+			try {
+			livreRepo.deleteById(id);
+			} catch (Exception e) {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+			}
+			
+			return ResponseEntity.status(HttpStatus.OK).body(null);
+		}
 }
