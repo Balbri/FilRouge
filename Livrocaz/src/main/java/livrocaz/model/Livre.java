@@ -39,7 +39,7 @@ public class Livre {
 	@JsonIgnore
 	private Collection<Genre> genres;
 	
-	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+	@ManyToOne
 	@JoinColumn(name="idLangue")
 	private Langue langue; 
 	
