@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,17 +30,19 @@ public class LivreController {
 
 	@Autowired
 	private LivreRepository livreRepo;
-/*
- * Methode Get All
- */
+	
+	
+	/*
+	 * Methode Get All
+	 */
 	@RequestMapping(method = {RequestMethod.GET}, value = "/livres", produces = "application/json")
 	public ResponseEntity<Collection<Livre>> getAllLivres(){
 		return new ResponseEntity<Collection<Livre>>(livreRepo.findAll(), HttpStatus.OK);
 	}
 
-/*
- * Methode get par ID
- */
+	/*
+	 * Methode get par ID
+	 */
 	@RequestMapping(value = "/livres/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> getLivre(@PathVariable Integer id){
 		Optional<Livre> livre = null;
@@ -57,9 +60,9 @@ public class LivreController {
 		return ResponseEntity.status(HttpStatus.OK).body(livre);
 	}
 	
-/*
- * Methode POST
- */
+	/*
+	 * Methode POST
+	 */
 	 @RequestMapping(value = "/livres", method = RequestMethod.POST, produces= "application/json", consumes = MediaType.APPLICATION_JSON_VALUE )
 	public ResponseEntity<?> addLivre(@RequestBody Livre livre){
 		Livre resultLivre = null;				
@@ -72,10 +75,9 @@ public class LivreController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(resultLivre);
 	}
 	
-/*
- * Methode PUT
- */
-
+	/*
+	 * Methode PUT
+	 */
 	 @PutMapping(value = "/livres/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	    @ResponseBody
 	    public ResponseEntity<?> modifyBook(@RequestBody Livre livre) {
@@ -91,7 +93,7 @@ public class LivreController {
 	 /*
 	  * Methode DELETE
 	  */
-	 @RequestMapping(value = "/livres/{id}", method = RequestMethod.DELETE)
+	 @DeleteMapping("/livres/{id}")
 		public ResponseEntity<?> deleteLivre(@PathVariable Integer id){
 			try {
 			livreRepo.deleteById(id);

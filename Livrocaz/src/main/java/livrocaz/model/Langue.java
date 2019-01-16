@@ -27,8 +27,8 @@ public class Langue {
 	private int idLangue;
 	private String nomLangue;
 	
-	@OneToMany(mappedBy = "langue")
-	private Collection<Livre> livres;
+//	@OneToMany(mappedBy = "langue")
+//	private Collection<Livre> livres;
 	
 	
 	
@@ -44,11 +44,11 @@ public class Langue {
 	public void setNomLangue(String nomLangue) {
 		this.nomLangue = nomLangue;
 	}
-	public Collection<Livre> getLivres() {
-		return livres;
-	}
-	public void setLivres(Collection<Livre> livres) {
-		this.livres = livres;
-	}
+//	public Collection<Livre> getLivres() {
+//		return livres;
+//	}
+//	public void setLivres(Collection<Livre> livres) {
+//		this.livres = livres;
+//	}
 		
 }

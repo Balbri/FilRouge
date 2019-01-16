@@ -116,7 +116,8 @@ public class App implements CommandLineRunner {
       Langue fr = new Langue();
       fr.setNomLangue("Francais");
       fr = langueRepo.save(fr);
-      fr.setLivres(hashLivres);
+      fondation.setLangue(fr);
+      robots.setLangue(fr);
       
       langueRepo.save(fr);
       genreRepo.save(roman);
@@ -130,7 +131,6 @@ public class App implements CommandLineRunner {
        Client c1 = new Client("toto", "tata", 1, "Rue Hoche", "Bat A", 75000, "Paris", "1234", "toto@toto", "tototata");
        clientRepo.save(c1);
        
-;
     }
 }
 
