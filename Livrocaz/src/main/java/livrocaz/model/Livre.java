@@ -10,16 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.TableGenerator;
-
+import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
  
 @Entity
 public class Livre {
  
-	@TableGenerator(name = "livre_gen", table = "id_gen", pkColumnName = "gen_name", valueColumnName = "gen_val", allocationSize = 100)
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "livre_gen")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idLivre;
 	private String isbn;
 	private String titreLivre;
@@ -32,11 +30,31 @@ public class Livre {
 	private int stock;
  
 	@ManyToMany(cascade=CascadeType.ALL)
-	@JoinTable(name = "livre_auteur", 
-	joinColumns = @JoinColumn(name = "idLivre"), inverseJoinColumns = @JoinColumn(name = "idAuteur"))
-	
+	@JoinTable(name = "livre_auteur", joinColumns = @JoinColumn(name = "idLivre"), inverseJoinColumns = @JoinColumn(name = "idAuteur"))
 	@JsonIgnore
 	private Collection<Auteur> auteurs;
+	
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name = "livre_genre", joinColumns = @JoinColumn(name = "idLivre"), inverseJoinColumns = @JoinColumn(name = "idGenre"))
+	@JsonIgnore
+	private Collection<Genre> genres;
+	
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="idLangue")
+	private Langue langue; 
+	
+	
+	
+	public Livre() {
+	}
+
+	public int getIdLivre() {
+		return idLivre;
+	}
+
+	public void setIdLivre(int idLivre) {
+		this.idLivre = idLivre;
+	}
 
 	public String getIsbn() {
 		return isbn;
@@ -117,6 +135,22 @@ public class Livre {
 	public void setAuteurs(Collection<Auteur> auteurs) {
 		this.auteurs = auteurs;
 	}
- 
+
+	public Collection<Genre> getGenres() {
+		return genres;
+	}
+
+	public void setGenres(Collection<Genre> genres) {
+		this.genres = genres;
+	}
+
+	public Langue getLangue() {
+		return langue;
+	}
+
+	public void setLangue(Langue langue) {
+		this.langue = langue;
+	}
 	
+		
 }

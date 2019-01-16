@@ -1,7 +1,12 @@
 package livrocaz.model;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -18,8 +23,12 @@ import javax.persistence.Table;
 public class Langue {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idLangue;
 	private String nomLangue;
+	
+	@OneToMany(mappedBy = "langue")
+	private Collection<Livre> livres;
 	
 	
 	
@@ -35,36 +44,11 @@ public class Langue {
 	public void setNomLangue(String nomLangue) {
 		this.nomLangue = nomLangue;
 	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + idLangue;
-		result = prime * result + ((nomLangue == null) ? 0 : nomLangue.hashCode());
-		return result;
+	public Collection<Livre> getLivres() {
+		return livres;
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Langue other = (Langue) obj;
-		if (idLangue != other.idLangue)
-			return false;
-		if (nomLangue == null) {
-			if (other.nomLangue != null)
-				return false;
-		} else if (!nomLangue.equals(other.nomLangue))
-			return false;
-		return true;
+	public void setLivres(Collection<Livre> livres) {
+		this.livres = livres;
 	}
-	@Override
-	public String toString() {
-		return "Langue [idLangue=" + idLangue + ", nomLangue=" + nomLangue + "]";
-	}
-	
-	
+		
 }

@@ -10,20 +10,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import livrocaz.model.Auteur;
-import livrocaz.repository.AuteurRepository;
+import livrocaz.model.Genre;
+import livrocaz.repository.GenreRepository;
 
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
-public class AuteurController {
+public class GenreController {
 
-	    @Autowired
-	    private AuteurRepository auteurRepo;
+    @Autowired
+    private GenreRepository genreRepo;
 
-	    @RequestMapping(method = RequestMethod.GET, value = "/auteurs")
-	    public ResponseEntity<Collection<Auteur>> getAllAuteurs(){
-	        return new ResponseEntity<Collection<Auteur>>(auteurRepo.findAll(), HttpStatus.OK);
-	    }
+    @RequestMapping(method = RequestMethod.GET, value = "/genres")
+    public ResponseEntity<Collection<Genre>> getAllGenres(){
+        return new ResponseEntity<Collection<Genre>>(genreRepo.findAll(), HttpStatus.OK);
+    }
 }
 

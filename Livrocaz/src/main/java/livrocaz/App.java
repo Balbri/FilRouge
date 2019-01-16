@@ -10,9 +10,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import livrocaz.model.Auteur;
 import livrocaz.model.Client;
+import livrocaz.model.Genre;
+import livrocaz.model.Langue;
 import livrocaz.model.Livre;
 import livrocaz.repository.AuteurRepository;
 import livrocaz.repository.ClientRepository;
+import livrocaz.repository.GenreRepository;
+import livrocaz.repository.LangueRepository;
 import livrocaz.repository.LivreRepository;
 
 
@@ -30,6 +34,12 @@ public class App implements CommandLineRunner {
     @Autowired
     private AuteurRepository auteurRepo;
     
+    @Autowired
+    private GenreRepository genreRepo;
+    
+    @Autowired
+    private LangueRepository langueRepo;
+    
     //.....etc......//
 
     public static void main(String[] args)  {
@@ -41,16 +51,18 @@ public class App implements CommandLineRunner {
         livreRepo.deleteAll();;
         clientRepo.deleteAll();
         auteurRepo.deleteAll();
+        genreRepo.deleteAll();
+        langueRepo.deleteAll();
         
         //.....etc........//
+        
+        
        Livre fondation = new Livre();
        Livre robots = new Livre();
        Auteur azimov = new Auteur();
        Collection<Auteur>hashAuteurs = new HashSet<Auteur>();
        Collection<Livre>hashLivres = new ArrayList<Livre>();
-       livreRepo.save(robots);
-       livreRepo.save(fondation);
-       auteurRepo.save(azimov);
+
        
        fondation.setAnneeParution("1986");
        fondation.setDescriptionLivre("desc fondation");
@@ -86,9 +98,34 @@ public class App implements CommandLineRunner {
        hashLivres.add(fondation);
        azimov.setLivres(hashLivres);
       
-      auteurRepo.save(azimov);
+      
+      Genre roman = new Genre();
+      Genre sf = new Genre();
+      Collection<Genre> genres = new HashSet<Genre>();
+      roman.setNomGenre("Roman");
+      sf.setNomGenre("Science-fiction");
+      roman = genreRepo.save(roman);
+      sf = genreRepo.save(sf);
+      genres.add(roman);
+      genres.add(sf);
+      fondation.setGenres(genres);
+      robots.setGenres(genres);
+      roman.setLivres(hashLivres);
+      sf.setLivres(hashLivres);
+      
+      Langue fr = new Langue();
+      fr.setNomLangue("Francais");
+      fr = langueRepo.save(fr);
+      fr.setLivres(hashLivres);
+      
+      langueRepo.save(fr);
+      genreRepo.save(roman);
+      genreRepo.save(sf);
       livreRepo.save(fondation);
       livreRepo.save(robots);
+      auteurRepo.save(azimov);
+      
+      
        
        Client c1 = new Client("toto", "tata", 1, "Rue Hoche", "Bat A", 75000, "Paris", "1234", "toto@toto", "tototata");
        clientRepo.save(c1);

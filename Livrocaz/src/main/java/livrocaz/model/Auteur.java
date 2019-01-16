@@ -6,20 +6,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.TableGenerator;
  
 @Entity
 public class Auteur {
  
-	@TableGenerator(name = "auteur_gen", allocationSize = 1, pkColumnName = "gen_name", valueColumnName = "gen_val", table = "id_gen")
 	@Id
-	@GeneratedValue(generator = "auteur_gen", strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idAuteur;
 	private String nameAuteur;
 	private String surnameAuteur;
  
 	@ManyToMany(mappedBy = "auteurs")
 	private Collection<Livre> livres; 
+	
+	public Auteur() {
+	}
 
 	public int getIdAuteur() {
 		return idAuteur;

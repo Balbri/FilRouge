@@ -35,10 +35,10 @@ public class JDBCWebSecurity extends WebSecurityConfigurerAdapter{
     
     @Override
 	protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests() 
-    	.antMatchers("/").permitAll()
+        http.authorizeRequests()
     	.antMatchers(
                 "/",
+                "/api/**",
                 "/favicon.ico",
                 "/**/*.png",
                 "/**/*.gif",
@@ -48,18 +48,13 @@ public class JDBCWebSecurity extends WebSecurityConfigurerAdapter{
                 "/**/*.css",
                 "/**/*.js"
         ).permitAll()
-    	.antMatchers("/auth").hasAnyAuthority("GESTIONNAIRE", "ADMIN", "INSCRIT")
-    	.antMatchers("/auth.html").hasAnyAuthority("GESTIONNAIRE", "ADMIN", "INSCRIT")
-    	.antMatchers("/manager").hasAnyAuthority("GESTIONNAIRE", "ADMIN")
-    	.antMatchers("/manager.html").hasAnyAuthority("GESTIONNAIRE", "ADMIN")
-    	.antMatchers("/admin").hasAnyAuthority("ADMIN")
-    	.antMatchers("/admin.html").hasAnyAuthority("ADMIN")
-    	.antMatchers("/api/*").permitAll()
+    	.antMatchers("/auth", "/auth.html").hasAnyAuthority("GESTIONNAIRE", "ADMIN", "INSCRIT")
+    	.antMatchers("/manager", "/manager.html").hasAnyAuthority("GESTIONNAIRE", "ADMIN")
+    	.antMatchers("/admin", "/admin.html").hasAnyAuthority("ADMIN")
     	.anyRequest().authenticated()
     	.and()
-    	.formLogin().permitAll()
-    	.and()
         .formLogin()
+        .permitAll()
         .loginPage("/login") //page login perso
         .loginProcessingUrl("/login") //page traitement login
     	.defaultSuccessUrl("/auth", true) //page suivante apres login

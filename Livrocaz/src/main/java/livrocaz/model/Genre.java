@@ -1,13 +1,17 @@
 package livrocaz.model;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
  * 
- * @author Nico
- * TODO: @annotations de relation
+ * @author Nico et Ced
  * Forçage des colonnes pour éviter qu'Hibernate crée de lui même des colonnes qui feraient doublon
  *
  */
@@ -17,8 +21,16 @@ import javax.persistence.Table;
 public class Genre {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idGenre;
 	private String nomGenre;
+	
+	@ManyToMany(mappedBy = "genres")
+	private Collection<Livre> livres; 
+	
+	
+	public Genre() {
+	}
 	
 	public int getIdGenre() {
 		return idGenre;
@@ -32,36 +44,12 @@ public class Genre {
 	public void setNomGenre(String nomGenre) {
 		this.nomGenre = nomGenre;
 	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + idGenre;
-		result = prime * result + ((nomGenre == null) ? 0 : nomGenre.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Genre other = (Genre) obj;
-		if (idGenre != other.idGenre)
-			return false;
-		if (nomGenre == null) {
-			if (other.nomGenre != null)
-				return false;
-		} else if (!nomGenre.equals(other.nomGenre))
-			return false;
-		return true;
-	}
-	@Override
-	public String toString() {
-		return "Genre [idGenre=" + idGenre + ", nomGenre=" + nomGenre + "]";
-	}
 	
-	
+	public Collection<Livre> getLivres() {
+		return livres;
+	}
+	public void setLivres(Collection<Livre> livres) {
+		this.livres = livres;
+	}
+		
 }
