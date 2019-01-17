@@ -37,4 +37,4 @@ vente de livres d’occasion par un envoi physique (courrier postal) aux clients
 ![UC](Diagrammes/UsesCase.JPG)
 
 ## MLD
-![MLD](Diagrammes/MLD_Livrokaz2.PNG)
+![MLD](Diagrammes/MLD.jpg)
