@@ -17,83 +17,83 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import livrocaz.model.Genre;
-import livrocaz.repository.GenreRepository;
+import livrocaz.model.Langue;
+import livrocaz.repository.LangueRepository;
 
 
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
-public class GenreController {
+public class LangueController {
 
 	@Autowired
-	private GenreRepository genreRepo;
+	private LangueRepository langueRepo;
 /*
  * Methode Get All
  */
-	@RequestMapping(method = {RequestMethod.GET}, value = "/genres", produces = "application/json")
-	public ResponseEntity<Collection<Genre>> getAllGenres(){
-		return new ResponseEntity<Collection<Genre>>(genreRepo.findAll(), HttpStatus.OK);
+	@RequestMapping(method = {RequestMethod.GET}, value = "/langues", produces = "application/json")
+	public ResponseEntity<Collection<Langue>> getAllLangues(){
+		return new ResponseEntity<Collection<Langue>>(langueRepo.findAll(), HttpStatus.OK);
 	}
 
 /*
  * Methode get par ID
  */
-	@RequestMapping(value = "/genres/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> getGenre(@PathVariable Integer id){
-		Optional<Genre> genre = null;
+	@RequestMapping(value = "/langues/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getLangue(@PathVariable Integer id){
+		Optional<Langue> langue = null;
 				
 		try {
-			genre =(genreRepo.findById(id));
+			langue =(langueRepo.findById(id));
 			
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
 		
-		if(genre == null)
+		if(langue == null)
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		
-		return ResponseEntity.status(HttpStatus.OK).body(genre);
+		return ResponseEntity.status(HttpStatus.OK).body(langue);
 	}
 	
 /*
  * Methode POST
  */
-	 @RequestMapping(value = "/genres", method = RequestMethod.POST, produces= "application/json", consumes = MediaType.APPLICATION_JSON_VALUE )
-	public ResponseEntity<?> addgenre(@RequestBody Genre genre){
-		Genre resultGenre = null;				
+	 @RequestMapping(value = "/langues", method = RequestMethod.POST, produces= "application/json", consumes = MediaType.APPLICATION_JSON_VALUE )
+	public ResponseEntity<?> addLangue(@RequestBody Langue langue){
+		Langue resultLangue = null;				
 		try {
-			resultGenre = genreRepo.saveAndFlush(genre);
+			resultLangue = langueRepo.saveAndFlush(langue);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
 
-		return ResponseEntity.status(HttpStatus.CREATED).body(resultGenre);
+		return ResponseEntity.status(HttpStatus.CREATED).body(resultLangue);
 	}
 	
 /*
  * Methode PUT
  */
 
-	 @PutMapping(value = "/genres/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 @PutMapping(value = "/langues/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	    @ResponseBody
-	    public ResponseEntity<?> modifyGenre(@RequestBody Genre genre) {
-	        Genre genreamodifier = null;
+	    public ResponseEntity<?> modifyLangue(@RequestBody Langue langue) {
+	        Langue langueamodifier = null;
 	        try {
-	        	genreamodifier = genreRepo.saveAndFlush(genre);
+	           langueamodifier = langueRepo.saveAndFlush(langue);
 	        } catch (Exception e) {
 	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 	        }
-	        return ResponseEntity.status(HttpStatus.CREATED).body(genreamodifier);
+	        return ResponseEntity.status(HttpStatus.CREATED).body(langueamodifier);
 	    }
 	 
 	 /*
 	  * Methode DELETE
 	  */
-	 @RequestMapping(value = "/genres/{id}", method = RequestMethod.DELETE)
-		public ResponseEntity<?> deleteGenre(@PathVariable Integer id){
+	 @RequestMapping(value = "/langues/{id}", method = RequestMethod.DELETE)
+		public ResponseEntity<?> deleteLangue(@PathVariable Integer id){
 			try {
-				genreRepo.deleteById(id);
+			langueRepo.deleteById(id);
 			} catch (Exception e) {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 			}
