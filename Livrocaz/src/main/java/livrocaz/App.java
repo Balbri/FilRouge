@@ -9,17 +9,25 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import livrocaz.model.Auteur;
+import livrocaz.model.Authorities;
 import livrocaz.model.Client;
+import livrocaz.model.Commande;
 import livrocaz.model.Editeur;
 import livrocaz.model.Livre;
+import livrocaz.model.Users;
 import livrocaz.model.Genre;
 import livrocaz.model.Langue;
+import livrocaz.model.LigneDeCommande;
 import livrocaz.repository.AuteurRepository;
+import livrocaz.repository.AuthoritiesRepository;
 import livrocaz.repository.ClientRepository;
+import livrocaz.repository.CommandeRepository;
 import livrocaz.repository.EditeurRepository;
 import livrocaz.repository.GenreRepository;
 import livrocaz.repository.LangueRepository;
+import livrocaz.repository.LigneDeCommandeRepository;
 import livrocaz.repository.LivreRepository;
+import livrocaz.repository.UserRepository;
 
 @SpringBootApplication
 public class App implements CommandLineRunner {
@@ -43,6 +51,18 @@ public class App implements CommandLineRunner {
     
     @Autowired
     private EditeurRepository editeurRepo;
+    
+    @Autowired
+    private LigneDeCommandeRepository ligneCommandeRepo;
+    
+    @Autowired
+    private CommandeRepository commandeRepo;
+    
+    @Autowired
+    private UserRepository userRepo;
+    
+    @Autowired
+    private AuthoritiesRepository AuthRepo;
 
     //.....etc......//
 
@@ -52,12 +72,18 @@ public class App implements CommandLineRunner {
 
     public void run(String... args) throws Exception {
 
+    	
+    	ligneCommandeRepo.deleteAll();
+    	commandeRepo.deleteAll();
         livreRepo.deleteAll();;
         clientRepo.deleteAll();
         auteurRepo.deleteAll();
         genreRepo.deleteAll();
         langueRepo.deleteAll();
         editeurRepo.deleteAll();
+        AuthRepo.deleteAll();
+        userRepo.deleteAll();
+        AuthRepo.deleteAll();        
 
         //.....etc........//
 
@@ -127,6 +153,11 @@ public class App implements CommandLineRunner {
       gp = editeurRepo.save(gp);
       fondation.setEditeur(gp);
       robots.setEditeur(gp);
+      
+      LigneDeCommande lc = new LigneDeCommande();
+      lc.setQuantite(1);
+      lc.setLivre(robots);
+      lc = ligneCommandeRepo.save(lc);
 
       langueRepo.save(fr);
       genreRepo.save(roman);
@@ -135,7 +166,54 @@ public class App implements CommandLineRunner {
       livreRepo.save(robots);
       auteurRepo.save(azimov);
       
-      Client c1 = new Client("toto", "tata", 1, "Rue Hoche", "Bat A", 75000, "Paris", "1234", "toto@toto", "tototata");
+      Users us1 = new Users();
+      us1.setUsername("toto33");
+      us1.setPassword("{bcrypt}$2a$04$3oa5XGzGArd2DnRv3.ax7OxGxnvCisSuWWGxYM2xNE99UFLCgQXYS");
+      us1.setEnabled(1);
+      userRepo.save(us1);
+      
+      Users us2 = new Users();
+      us2.setUsername("Riri77");
+      us2.setPassword("{bcrypt}$2a$04$CZsnHi2Jg/Z0dmBWEE3BKehk9MkLQsQAMtVgsepayT1WdIEx5GTIq");
+      us2.setEnabled(1);
+      userRepo.save(us2);
+      
+      Users us3 = new Users();
+      us3.setUsername("Loulou88");
+      us3.setPassword("{bcrypt}$2a$04$L81ltvjTKE57lMNPMC3TQeDAPtTBmoxcclRsfDVt.u7uUCHHLSmMO");
+      us3.setEnabled(1);
+      userRepo.save(us3);
+      
+      Authorities rol = new Authorities();
+      rol.setUsers(us1);
+      rol.setAuthority("INSCRIT");
+      AuthRepo.save(rol);
+      
+      Authorities rol2 = new Authorities();
+      rol2.setUsers(us2);
+      rol2.setAuthority("GESTIONNAIRE");
+      AuthRepo.save(rol2);
+      
+      Authorities rol3 = new Authorities();
+      rol3.setUsers(us3);
+      rol3.setAuthority("ADMIN");
+      AuthRepo.save(rol3);
+      
+      Client c1 = new Client("toto", "tata", 1, "Rue Hoche", "Bat A", 75000, "Paris", "toto@toto", us1);
       clientRepo.save(c1);
+      
+      Commande cmd = new Commande();
+      cmd.setClient(c1);
+      cmd.setDate("12/12/2019");
+      cmd.setFraisDePort(20.2);
+      cmd.setTva(5.5);
+      commandeRepo.save(cmd);
+      lc.setCommande(cmd);
+      ligneCommandeRepo.save(lc);
+      
+      
+      
+      
+      
     }
 }
