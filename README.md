@@ -35,3 +35,6 @@ vente de livres d’occasion par un envoi physique (courrier postal) aux clients
 ## Uses Cases
 
 ![UC](Diagrammes/UsesCase.JPG)
+
+## MLD
+![MLD](Diagrammes/MLD_Livrokaz2.PNG)
