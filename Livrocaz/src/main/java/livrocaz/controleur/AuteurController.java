@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import livrocaz.model.Auteur;
-import livrocaz.model.Livre;
 import livrocaz.repository.AuteurRepository;
 
 @RestController
@@ -74,15 +73,15 @@ public class AuteurController {
 	    /*
 		  * Methode DELETE : ATTENTION, cette méthode si active, supprime les livres associés à l'auteur.
 		  */
-//		 @RequestMapping(value = "/auteurs/{id}", method = RequestMethod.DELETE)
-//			public ResponseEntity<?> deleteLivre(@PathVariable Integer id){
-//				try {
-//				auteurRepo.deleteById(id);
-//				} catch (Exception e) {
-//					return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-//				}
-//				
-//				return ResponseEntity.status(HttpStatus.OK).body(null);
-//			}
+		 @RequestMapping(value = "/auteurs/{id}", method = RequestMethod.DELETE)
+			public ResponseEntity<?> deleteLivre(@PathVariable Integer id){
+				try {
+				auteurRepo.deleteById(id);
+				} catch (Exception e) {
+					return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+				}
+				
+				return ResponseEntity.status(HttpStatus.OK).body(null);
+			}
 }
 

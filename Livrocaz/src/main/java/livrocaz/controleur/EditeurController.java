@@ -17,83 +17,83 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import livrocaz.model.Genre;
-import livrocaz.repository.GenreRepository;
+import livrocaz.model.Editeur;
+import livrocaz.repository.EditeurRepository;
 
 
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
-public class GenreController {
+public class EditeurController {
 
 	@Autowired
-	private GenreRepository genreRepo;
+	private EditeurRepository editeurRepo;
 /*
  * Methode Get All
  */
-	@RequestMapping(method = {RequestMethod.GET}, value = "/genres", produces = "application/json")
-	public ResponseEntity<Collection<Genre>> getAllGenres(){
-		return new ResponseEntity<Collection<Genre>>(genreRepo.findAll(), HttpStatus.OK);
+	@RequestMapping(method = {RequestMethod.GET}, value = "/editeurs", produces = "application/json")
+	public ResponseEntity<Collection<Editeur>> getAllEditeurs(){
+		return new ResponseEntity<Collection<Editeur>>(editeurRepo.findAll(), HttpStatus.OK);
 	}
 
 /*
  * Methode get par ID
  */
-	@RequestMapping(value = "/genres/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> getGenre(@PathVariable Integer id){
-		Optional<Genre> genre = null;
+	@RequestMapping(value = "/editeurs/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getLivre(@PathVariable Integer id){
+		Optional<Editeur> editeur = null;
 				
 		try {
-			genre =(genreRepo.findById(id));
+			editeur =(editeurRepo.findById(id));
 			
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
 		
-		if(genre == null)
+		if(editeur == null)
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		
-		return ResponseEntity.status(HttpStatus.OK).body(genre);
+		return ResponseEntity.status(HttpStatus.OK).body(editeur);
 	}
 	
 /*
  * Methode POST
  */
-	 @RequestMapping(value = "/genres", method = RequestMethod.POST, produces= "application/json", consumes = MediaType.APPLICATION_JSON_VALUE )
-	public ResponseEntity<?> addgenre(@RequestBody Genre genre){
-		Genre resultGenre = null;				
+	 @RequestMapping(value = "/editeurs", method = RequestMethod.POST, produces= "application/json", consumes = MediaType.APPLICATION_JSON_VALUE )
+	public ResponseEntity<?> addLivre(@RequestBody Editeur editeur){
+		Editeur resultEditeur = null;				
 		try {
-			resultGenre = genreRepo.saveAndFlush(genre);
+			resultEditeur = editeurRepo.saveAndFlush(editeur);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
 
-		return ResponseEntity.status(HttpStatus.CREATED).body(resultGenre);
+		return ResponseEntity.status(HttpStatus.CREATED).body(resultEditeur);
 	}
 	
 /*
  * Methode PUT
  */
 
-	 @PutMapping(value = "/genres/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 @PutMapping(value = "/editeurs/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	    @ResponseBody
-	    public ResponseEntity<?> modifyGenre(@RequestBody Genre genre) {
-	        Genre genreamodifier = null;
+	    public ResponseEntity<?> modifyEditeur(@RequestBody Editeur editeur) {
+	        Editeur editeuramodifier = null;
 	        try {
-	        	genreamodifier = genreRepo.saveAndFlush(genre);
+	           editeuramodifier = editeurRepo.saveAndFlush(editeur);
 	        } catch (Exception e) {
 	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 	        }
-	        return ResponseEntity.status(HttpStatus.CREATED).body(genreamodifier);
+	        return ResponseEntity.status(HttpStatus.CREATED).body(editeuramodifier);
 	    }
 	 
 	 /*
 	  * Methode DELETE
 	  */
-	 @RequestMapping(value = "/genres/{id}", method = RequestMethod.DELETE)
-		public ResponseEntity<?> deleteGenre(@PathVariable Integer id){
+	 @RequestMapping(value = "/editeurs/{id}", method = RequestMethod.DELETE)
+		public ResponseEntity<?> deleteEditeur(@PathVariable Integer id){
 			try {
-				genreRepo.deleteById(id);
+				editeurRepo.deleteById(id);
 			} catch (Exception e) {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 			}
