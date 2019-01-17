@@ -4,39 +4,18 @@
 
 
 #------------------------------------------------------------
-# Table Editeur
+# Table: Editeur
 #------------------------------------------------------------
 
 CREATE TABLE Editeur(
         idEditeur  Int NOT NULL ,
-        nomEditeur Text NOT NULL
+        nomEditeur Varchar (255) NOT NULL
 	,CONSTRAINT Editeur_PK PRIMARY KEY (idEditeur)
 )ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
-# Table livre
-#------------------------------------------------------------
-
-CREATE TABLE livre(
-        ISBN              Int NOT NULL ,
-        titreLivre        Text NOT NULL ,
-        imageCouverture   Varchar (50) NOT NULL ,
-        sujetLivre        Text NOT NULL ,
-        descriptionLivre  Text NOT NULL ,
-        anneeParution     Date NOT NULL ,
-        prixVenteNeuf     Int NOT NULL ,
-        prixVenteOccasion Int NOT NULL ,
-        qttStockLivre     Int NOT NULL ,
-        idEditeur         Int NOT NULL
-	,CONSTRAINT livre_PK PRIMARY KEY (ISBN)
-
-	,CONSTRAINT livre_Editeur_FK FOREIGN KEY (idEditeur) REFERENCES Editeur(idEditeur)
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
-# Table Auteur
+# Table: Auteur
 #------------------------------------------------------------
 
 CREATE TABLE Auteur(
@@ -48,121 +27,159 @@ CREATE TABLE Auteur(
 
 
 #------------------------------------------------------------
-# Table genreLivre
+# Table: Genre
 #------------------------------------------------------------
 
-CREATE TABLE genreLivre(
+CREATE TABLE Genre(
         idGenre  Int NOT NULL ,
-        nomGenre Text NOT NULL
-	,CONSTRAINT genreLivre_PK PRIMARY KEY (idGenre)
+        nomGenre Varchar (255) NOT NULL
+	,CONSTRAINT Genre_PK PRIMARY KEY (idGenre)
 )ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
-# Table langueLivre
+# Table: langue
 #------------------------------------------------------------
 
-CREATE TABLE langueLivre(
+CREATE TABLE langue(
         idLangue  Int NOT NULL ,
-        nomLangue Text NOT NULL
-	,CONSTRAINT langueLivre_PK PRIMARY KEY (idLangue)
+        nomLangue Varchar (255) NOT NULL
+	,CONSTRAINT langue_PK PRIMARY KEY (idLangue)
 )ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
-# Table client
+# Table: livre
 #------------------------------------------------------------
 
-CREATE TABLE client(
-        numeroClient  Int  Auto_increment  NOT NULL ,
-        nomClient     Text NOT NULL ,
-        prenomClient  Varchar (50) NOT NULL ,
-        adresseClient Varchar (50) NOT NULL ,
-        cpClient      Int NOT NULL ,
-        villeClient   Varchar (50) NOT NULL ,
-        mdpClient     Varchar (50) NOT NULL ,
-        emailClient   Varchar (50) NOT NULL ,
-        loginClient   Varchar (50) NOT NULL
-	,CONSTRAINT client_PK PRIMARY KEY (numeroClient)
+CREATE TABLE livre(
+        ISBN              Int NOT NULL ,
+        titreLivre        Varchar (100) NOT NULL ,
+        imageCouverture   Varchar (100) NOT NULL ,
+        sujetLivre        Varchar (100) NOT NULL ,
+        descriptionLivre  Varchar (255) NOT NULL ,
+        anneeParution     Date NOT NULL ,
+        prixVenteNeuf     Float NOT NULL ,
+        prixVenteOccasion Float NOT NULL ,
+        qttStockLivre     Float NOT NULL ,
+        idEditeur         Int NOT NULL ,
+        idLangue          Int NOT NULL
+	,CONSTRAINT livre_PK PRIMARY KEY (ISBN)
+
+	,CONSTRAINT livre_Editeur_FK FOREIGN KEY (idEditeur) REFERENCES Editeur(idEditeur)
+	,CONSTRAINT livre_langue0_FK FOREIGN KEY (idLangue) REFERENCES langue(idLangue)
 )ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
-# Table Commande
+# Table: authorities
+#------------------------------------------------------------
+
+CREATE TABLE authorities(
+        username    Varchar (50) NOT NULL ,
+        authorities Varchar (50) NOT NULL
+	,CONSTRAINT authorities_PK PRIMARY KEY (username)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Users
+#------------------------------------------------------------
+
+CREATE TABLE Users(
+        username             Varchar (50) NOT NULL ,
+        password             Varchar (50) NOT NULL ,
+        enabled              TinyINT NOT NULL ,
+        username_authorities Varchar (50) NOT NULL
+	,CONSTRAINT Users_PK PRIMARY KEY (username)
+
+	,CONSTRAINT Users_authorities_FK FOREIGN KEY (username_authorities) REFERENCES authorities(username)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Client
+#------------------------------------------------------------
+
+CREATE TABLE Client(
+        userID         Int  Auto_increment  NOT NULL ,
+        nom            Varchar (255) NOT NULL ,
+        prenom         Varchar (50) NOT NULL ,
+        numeroL        Int NOT NULL ,
+        rueL           Varchar (255) NOT NULL ,
+        complementL    Varchar (255) NOT NULL ,
+        CPL            Int NOT NULL ,
+        VilleL         Varchar (255) NOT NULL ,
+        numeroF        Int NOT NULL ,
+        rueF           Varchar (255) NOT NULL ,
+        complementF    Varchar (255) NOT NULL ,
+        CPF            Int NOT NULL ,
+        VilleF         Varchar (255) NOT NULL ,
+        email          Varchar (50) NOT NULL ,
+        username       Varchar (50) NOT NULL ,
+        username_Users Varchar (50) NOT NULL
+	,CONSTRAINT Client_PK PRIMARY KEY (userID)
+
+	,CONSTRAINT Client_Users_FK FOREIGN KEY (username_Users) REFERENCES Users(username)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Commande
 #------------------------------------------------------------
 
 CREATE TABLE Commande(
         numeroCommande Int NOT NULL ,
-        numeroClient   Int NOT NULL
+        date           Varchar (50) NOT NULL ,
+        fraisdeport    Double NOT NULL ,
+        montantTVA55   Double NOT NULL ,
+        TTC            Double NOT NULL ,
+        userID         Int NOT NULL
 	,CONSTRAINT Commande_PK PRIMARY KEY (numeroCommande)
 
-	,CONSTRAINT Commande_client_FK FOREIGN KEY (numeroClient) REFERENCES client(numeroClient)
+	,CONSTRAINT Commande_Client_FK FOREIGN KEY (userID) REFERENCES Client(userID)
 )ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
-# Table CA Mensuel
+# Table: auteur_Livre
 #------------------------------------------------------------
 
-CREATE TABLE CA_Mensuel(
-        idCaMensuel   Int NOT NULL ,
-        moisCaMensuel Varchar (50) NOT NULL ,
-        caMensuel     Double NOT NULL
-	,CONSTRAINT CA_Mensuel_PK PRIMARY KEY (idCaMensuel)
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
-# Table Gestionnaire
-#------------------------------------------------------------
-
-CREATE TABLE Gestionnaire(
-        idGestionnaire    Int NOT NULL ,
-        nomGestionnaire   Varchar (50) NOT NULL ,
-        mdpGestionnaire   Varchar (50) NOT NULL ,
-        emailGestionnaire Varchar (50) NOT NULL ,
-        loginGestionnaire Varchar (50) NOT NULL ,
-        ISBN              Int NOT NULL ,
-        idCaMensuel       Int NOT NULL
-	,CONSTRAINT Gestionnaire_PK PRIMARY KEY (idGestionnaire)
-
-	,CONSTRAINT Gestionnaire_livre_FK FOREIGN KEY (ISBN) REFERENCES livre(ISBN)
-	,CONSTRAINT Gestionnaire_CA_Mensuel0_FK FOREIGN KEY (idCaMensuel) REFERENCES CA_Mensuel(idCaMensuel)
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
-# Table Admin
-#------------------------------------------------------------
-
-CREATE TABLE Admin(
-        idGestionnaire    Int NOT NULL ,
-        nomGestionnaire   Varchar (50) NOT NULL ,
-        mdpGestionnaire   Varchar (50) NOT NULL ,
-        emailGestionnaire Varchar (50) NOT NULL ,
-        loginGestionnaire Varchar (50) NOT NULL ,
-        ISBN              Int NOT NULL ,
-        idCaMensuel       Int NOT NULL
-	,CONSTRAINT Admin_PK PRIMARY KEY (idGestionnaire)
-
-	,CONSTRAINT Admin_Gestionnaire_FK FOREIGN KEY (idGestionnaire) REFERENCES Gestionnaire(idGestionnaire)
-	,CONSTRAINT Admin_livre0_FK FOREIGN KEY (ISBN) REFERENCES livre(ISBN)
-	,CONSTRAINT Admin_CA_Mensuel1_FK FOREIGN KEY (idCaMensuel) REFERENCES CA_Mensuel(idCaMensuel)
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
-# Table Ecrit
-#------------------------------------------------------------
-
-CREATE TABLE Ecrit(
+CREATE TABLE auteur_Livre(
         ISBN     Int NOT NULL ,
         idAuteur Int NOT NULL
-	,CONSTRAINT Ecrit_PK PRIMARY KEY (ISBN,idAuteur)
+	,CONSTRAINT auteur_Livre_PK PRIMARY KEY (ISBN,idAuteur)
+
+	,CONSTRAINT auteur_Livre_livre_FK FOREIGN KEY (ISBN) REFERENCES livre(ISBN)
+	,CONSTRAINT auteur_Livre_Auteur0_FK FOREIGN KEY (idAuteur) REFERENCES Auteur(idAuteur)
+)ENGINE=InnoDB;
 
 
+#------------------------------------------------------------
+# Table: genre_livre
+#------------------------------------------------------------
+
+CREATE TABLE genre_livre(
+        ISBN    Int NOT NULL ,
+        idGenre Int NOT NULL
+	,CONSTRAINT genre_livre_PK PRIMARY KEY (ISBN,idGenre)
+
+	,CONSTRAINT genre_livre_livre_FK FOREIGN KEY (ISBN) REFERENCES livre(ISBN)
+	,CONSTRAINT genre_livre_Genre0_FK FOREIGN KEY (idGenre) REFERENCES Genre(idGenre)
+)ENGINE=InnoDB;
 
 
-	=======================================================================
-	   Désolé, il faut activer cette version pour voir la suite du script ! 
-	=======================================================================
+#------------------------------------------------------------
+# Table: Lignes de commande
+#------------------------------------------------------------
+
+CREATE TABLE Lignes_de_commande(
+        ISBN           Int NOT NULL ,
+        numeroCommande Int NOT NULL ,
+        qte            Int NOT NULL
+	,CONSTRAINT Lignes_de_commande_PK PRIMARY KEY (ISBN,numeroCommande)
+
+	,CONSTRAINT Lignes_de_commande_livre_FK FOREIGN KEY (ISBN) REFERENCES livre(ISBN)
+	,CONSTRAINT Lignes_de_commande_Commande0_FK FOREIGN KEY (numeroCommande) REFERENCES Commande(numeroCommande)
+)ENGINE=InnoDB;
+
