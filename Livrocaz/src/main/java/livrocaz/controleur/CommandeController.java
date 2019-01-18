@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import livrocaz.model.Client;
 import livrocaz.model.Commande;
-import livrocaz.repository.ClientRepository;
 import livrocaz.repository.CommandeRepository;
 
 
@@ -95,7 +93,6 @@ public class CommandeController {
 	 @RequestMapping(value = "/commandes/{id}", method = RequestMethod.DELETE)
 		public ResponseEntity<?> deleteCommande(@PathVariable Integer id){
 			try {
-			commandeRepo.deleteById(id);
 			} catch (Exception e) {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 			}
