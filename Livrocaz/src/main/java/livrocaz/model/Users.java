@@ -1,5 +1,6 @@
 package livrocaz.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -11,6 +12,7 @@ import javax.persistence.Table;
 public class Users {
 
 	@Id
+	@Column(unique=true)
 	private String username;
 	
 	private String password;

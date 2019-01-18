@@ -207,6 +207,8 @@ public class App implements CommandLineRunner {
       cmd.setDate("12/12/2019");
       cmd.setFraisDePort(20.2);
       cmd.setTva(5.5);
+      cmd.setValide(0);
+      cmd.setTtc(0.0);
       commandeRepo.save(cmd);
       lc.setCommande(cmd);
       ligneCommandeRepo.save(lc);

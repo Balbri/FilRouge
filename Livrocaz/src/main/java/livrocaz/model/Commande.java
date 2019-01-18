@@ -24,11 +24,20 @@ public class Commande {
 	private Double fraisDePort;
 	private Double tva;
 	private Double ttc;
+	private int valide;
 	
 	
 	public Commande() {
 	}
 
+	public Commande(Client client, String date, Double fraisDePort, Double tva, Double ttc, int valide) {
+		this.client = client;
+		this.date = date;
+		this.fraisDePort = fraisDePort;
+		this.tva = tva;
+		this.ttc = ttc;
+		this.valide = valide;
+	}
 
 	public int getIdCommande() {
 		return idCommande;
@@ -88,5 +97,14 @@ public class Commande {
 	public void setTtc(Double ttc) {
 		this.ttc = ttc;
 	}
+
+	public int getValide() {
+		return valide;
+	}
+
+	public void setValide(int valide) {
+		this.valide = valide;
+	}
+	
 	
 }
