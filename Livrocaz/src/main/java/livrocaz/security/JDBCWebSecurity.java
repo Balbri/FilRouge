@@ -49,8 +49,8 @@ public class JDBCWebSecurity extends WebSecurityConfigurerAdapter{
                 "/**/*.js"
         ).permitAll()
     	.antMatchers("/auth", "/auth.html").hasAnyAuthority("GESTIONNAIRE", "ADMIN", "INSCRIT")
-    	.antMatchers("/manager", "/manager.html").hasAnyAuthority("GESTIONNAIRE", "ADMIN")
-    	.antMatchers("/admin", "/admin.html").hasAnyAuthority("ADMIN")
+    	.antMatchers("/manager", "/manager/**", "/manager.html").hasAnyAuthority("GESTIONNAIRE", "ADMIN")
+    	.antMatchers("/admin", "/admin/**", "/admin.html").hasAnyAuthority("ADMIN")
     	.anyRequest().authenticated()
     	.and()
         .formLogin()

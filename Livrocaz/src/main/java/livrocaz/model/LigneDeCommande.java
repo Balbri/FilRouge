@@ -31,6 +31,16 @@ public class LigneDeCommande {
 	}
 
 
+	public LigneDeCommande(int quantite, Livre livre, Commande commande) {
+		super();
+		this.quantite = quantite;
+		this.livre = livre;
+		this.commande = commande;
+	}
+
+
+
+
 	public int getIdLigneCommande() {
 		return idLigneCommande;
 	}
