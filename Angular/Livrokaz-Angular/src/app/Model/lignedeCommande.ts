@@ -1,5 +1,5 @@
-export class lignedeCommande{
+export class LigneDeCommande {
     constructor(
     private idLigneDeCommande: number,
-    private quantite:number){}
-    }
+    private quantite: number ) {}
+}

@@ -8,10 +8,10 @@ import { Livre } from '../Model/livre';
   providedIn: 'root'
 })
 export class DatasService {
-  
+
   // La liste des livres de l'application
   private availableLivres: Livre[];
-  
+
   // La liste observable que l'on rend visible partout dans l'application
   availableLivres$: BehaviorSubject<Livre[]> = new BehaviorSubject(this.availableLivres);
 

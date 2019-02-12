@@ -1,4 +1,4 @@
-export class Client{
+export class Client {
     constructor(
         private idClient: number,
         private nomClient: string,
@@ -13,5 +13,5 @@ export class Client{
         private complementF: string,
         private cpF: string,
         private villeF: string,
-        private emailClient: string){}
-    }
+        private emailClient: string) {}
+}
