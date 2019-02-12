@@ -1,0 +1,36 @@
+.mat-card {
+    font-family: Montserrat !important;
+    width: 200px;
+    height: 300px;
+    margin: 10px;
+    padding: 20px;
+    flex-direction: column;
+}
+
+.prix {
+    position: absolute !important;
+    bottom: 0;
+    right: 0;
+    padding: 10px;
+    margin: 10px;
+    margin-bottom: 10px !important;
+    border-radius: 2rem;
+    background-color: grey;    
+}
+
+.titreLivre {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    margin: 10px;
+}
+
+.prixOccas {
+    text-decoration: line-through;
+    color: #CCC;
+}
+
+a:hover {
+    background-color: #333;
+}

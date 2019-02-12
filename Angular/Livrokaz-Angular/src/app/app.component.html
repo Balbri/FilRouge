@@ -1,17 +1,5 @@
-<mat-sidenav-container class="contenu" >
-    <mat-sidenav mode="side" opened>Menu</mat-sidenav>
-    <mat-sidenav-content>
-        <mat-toolbar>
-            <span>{{title}}</span>
-          </mat-toolbar>
-
-      <router-outlet></router-outlet>
-
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-  
-  
-    
-    
-
-
+<div class="container">
+  <app-header [title]="title"></app-header>
+  <app-pub></app-pub>
+  <router-outlet></router-outlet>
+</div>

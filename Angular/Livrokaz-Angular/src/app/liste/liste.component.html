@@ -1,0 +1,45 @@
+<mat-tab-group mat-align-tabs="center">
+  <mat-tab label="Genre 1"> 
+    <div class="center wrap">
+      <mat-card *ngFor="let livre of livresList | async">
+        <a href="">
+            <h4 class="titreLivre">{{ livre.titreLivre }}</h4>
+            <div class="prix">
+              <div>{{ livre.prixOccas }} €</div>
+              <div class="prixOccas">{{ livre.prixNeuf }} €</div>
+            </div>
+        </a>
+      </mat-card>
+    </div> 
+  </mat-tab>
+
+  <mat-tab label="Genre 2">
+      <div class="center wrap">
+        <mat-card *ngFor="let livre of livresList | async">
+          <a href="">
+              <h4 class="titreLivre">{{ livre.titreLivre }}</h4>
+              <div class="prix">
+                <div>{{ livre.prixOccas }} €</div>
+                <div class="prixOccas">{{ livre.prixNeuf }} €</div>
+              </div>
+          </a>
+        </mat-card>
+      </div> 
+  </mat-tab>
+
+  <mat-tab label="Genre 3">
+      <div class="center wrap">
+        <mat-card *ngFor="let livre of livresList | async">
+          <a href="">
+              <h4 class="titreLivre">{{ livre.titreLivre }}</h4>
+              <div class="prix">
+                <div>{{ livre.prixOccas }} €</div>
+                <div class="prixOccas">{{ livre.prixNeuf }} €</div>
+              </div>
+          </a>
+        </mat-card>
+      </div> 
+  </mat-tab>
+</mat-tab-group>
+
+
