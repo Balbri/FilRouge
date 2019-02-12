@@ -1,13 +1,13 @@
 export class Livre {
 	constructor(
-		private idLivre: number,
-		private isbn: number,
-		private titreLivre: string,
-		private imageCouverture: string,
-		private sujetLivre: string,
-		private descriptionLivre: string,
-		private anneeParution: number,
-		private prixNeuf: number,
-		private prixOccas: number,
-		private stock: number ) {}
+		public idLivre: number,
+		public isbn: number,
+		public titreLivre: string,
+		public imageCouverture: string,
+		public sujetLivre: string,
+		public descriptionLivre: string,
+		public anneeParution: number,
+		public prixNeuf: number,
+		public prixOccas: number,
+		public stock: number ) {}
 }

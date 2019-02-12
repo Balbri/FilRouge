@@ -1,17 +1,17 @@
 export class Client {
     constructor(
-        private idClient: number,
-        private nomClient: string,
-        private prenomClient: string,
-        private numeroL: string,
-        private rueL: string,
-        private complementL: string,
-        private cpL: string,
-        private villeL: string,
-        private numeroF: number,
-        private rueF: string,
-        private complementF: string,
-        private cpF: string,
-        private villeF: string,
-        private emailClient: string) {}
+        public idClient: number,
+        public nomClient: string,
+        public prenomClient: string,
+        public numeroL: string,
+        public rueL: string,
+        public complementL: string,
+        public cpL: string,
+        public villeL: string,
+        public numeroF: number,
+        public rueF: string,
+        public complementF: string,
+        public cpF: string,
+        public villeF: string,
+        public emailClient: string) {}
 }

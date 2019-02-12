@@ -1,6 +1,6 @@
 export class Langue {
     constructor(
-    private idLangue: number,
-    private nomLangue: string,
+    public idLangue: number,
+    public nomLangue: string,
     ) {}
 }

@@ -1,11 +1,11 @@
 export class Commande {
 
     constructor(
-    private idCommande: number,
-    private date: string,
-    private fraisDePort: number,
-    private tva: number,
-    private ttc: number,
-    private valide: number
+        public idCommande: number,
+        public date: string,
+        public fraisDePort: number,
+        public tva: number,
+        public ttc: number,
+        public valide: number
     ) {}
 }

@@ -1,5 +1,5 @@
 export class Authority {
     constructor(
-    private idAuthority: number,
-    private authority: string) {}
+        public idAuthority: number,
+        public authority: string) {}
 }

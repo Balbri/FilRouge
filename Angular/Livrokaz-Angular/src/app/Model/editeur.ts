@@ -1,6 +1,6 @@
 export class Editeur {
     constructor(
-    private idEditeur: number,
-    private nomAuteur: string
+        public idEditeur: number,
+        public nomAuteur: string
     ) {}
 }

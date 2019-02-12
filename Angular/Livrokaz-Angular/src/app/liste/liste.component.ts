@@ -10,6 +10,8 @@ import { Livre } from '../Model/livre';
 })
 export class ListeComponent implements OnInit {
 
+  livre: Livre;
+
   livresList: BehaviorSubject<Livre[]>;
 
   constructor(private datasService: DatasService) { }
@@ -17,6 +19,18 @@ export class ListeComponent implements OnInit {
   ngOnInit() {
     this.livresList = this.datasService.availableLivres$;
     console.log(this.livresList);
+  }
+
+  onSave() {
+    this.livre = new Livre(1, 666, 'Germinal', 'image',
+                      'sujet', 'description', 2000,
+                      38, 56, 21);
+    this.datasService.createLivre(this.livre);
+  }
+
+  onDelete() {
+    const idLivre: number = this.livresList.getValue()[this.livresList.getValue().length - 1].idLivre;
+    this.datasService.deleteLivre(idLivre);
   }
 
 }
