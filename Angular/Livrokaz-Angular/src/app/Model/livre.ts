@@ -1,3 +1,6 @@
+import { Langue } from './langue';
+import { Editeur } from './editeur';
+
 export class Livre {
 	constructor(
 		public idLivre: number,
@@ -9,5 +12,7 @@ export class Livre {
 		public anneeParution: number,
 		public prixOccas: number,
 		public prixNeuf: number,
+		public langue: Langue,
+		public editeur: Editeur,
 		public stock: number ) {}
 }

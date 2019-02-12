@@ -3,6 +3,8 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Livre } from '../Model/livre';
 import { map } from 'rxjs/operators';
+import { Langue } from '../Model/langue';
+import { Editeur } from '../Model/editeur';
 
 
 @Injectable({
@@ -17,6 +19,14 @@ export class DatasService {
   availableLivres$: BehaviorSubject<Livre[]> = new BehaviorSubject(this.availableLivres);
 
   constructor(private httpClient: HttpClient) {}
+
+  getLangues(): Observable<Langue[]> {
+    return this.httpClient.get<Langue[]>('http://localhost:8080/api/langues');
+  }
+
+  getEditeurs(): Observable<Editeur[]> {
+    return this.httpClient.get<Editeur[]>('http://localhost:8080/api/editeurs');
+  }
 
   /**
    * La fonction getLivres() est privée car elle n'a besoin d'être appellée que dans le service.
