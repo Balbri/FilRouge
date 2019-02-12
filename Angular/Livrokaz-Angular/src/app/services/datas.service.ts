@@ -34,6 +34,9 @@ export class DatasService {
     return this.httpClient.get<Genre[]>('http://localhost:8080/api/genres');
   }
 
+
+  /////////////// CRUD LIVRE ///////////////////
+
   /**
    * La fonction getLivres() est privée car elle n'a besoin d'être appellée que dans le service.
    */

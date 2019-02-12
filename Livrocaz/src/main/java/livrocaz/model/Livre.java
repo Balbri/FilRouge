@@ -36,7 +36,6 @@ public class Livre {
 	
 	@ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
 	@JoinTable(name = "livre_genre", joinColumns = @JoinColumn(name = "idLivre"), inverseJoinColumns = @JoinColumn(name = "idGenre"))
-	@JsonIgnore
 	private Collection<Genre> genres;
 	
 	@ManyToOne

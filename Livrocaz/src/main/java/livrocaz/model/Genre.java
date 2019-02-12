@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * 
  * @author Nico et Ced
@@ -27,6 +29,7 @@ public class Genre {
 	private String nomGenre;
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, mappedBy = "genres")
+	@JsonIgnore
 	private Collection<Livre> livres; 
 	
 	

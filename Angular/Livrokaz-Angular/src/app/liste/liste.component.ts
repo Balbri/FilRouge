@@ -39,7 +39,9 @@ export class ListeComponent implements OnInit {
   }
 
   getGenres() {
-    this.datasService.getGenres().subscribe(genres => this.genres = genres);
+    this.datasService.getGenres().subscribe(genres => {
+      this.genres = genres;
+    });
   }
 
   onSave() {
