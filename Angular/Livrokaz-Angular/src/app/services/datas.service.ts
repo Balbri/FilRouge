@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { Langue } from '../Model/langue';
 import { Editeur } from '../Model/editeur';
 import { Genre } from '../Model/genre';
+import { Auteur } from '../Model/auteur';
 
 
 @Injectable({
@@ -31,6 +32,10 @@ export class DatasService {
 
   getGenres(): Observable<Genre[]> {
     return this.httpClient.get<Genre[]>('http://localhost:8080/api/genres');
+  }
+
+  getAuteurs(): Observable<Auteur[]> {
+    return this.httpClient.get<Auteur[]>('http://localhost:8080/api/auteurs');
   }
 
 
@@ -68,7 +73,7 @@ export class DatasService {
       }
       return of(this.availableLivres.find(livre => livre.idLivre === livreId));
     } else {
-      return of(new Livre(0, 0, '', '', '', '', 0, 0, 0, null, null, 0, null));
+      return of(new Livre(0, 0, '', '', '', '', 0, 0, 0, null, null, 0, null, null));
     }
   }
 

@@ -1,6 +1,7 @@
 import { Langue } from './langue';
 import { Editeur } from './editeur';
 import { Genre } from './genre';
+import { Auteur } from './auteur';
 
 export class Livre {
 	constructor(
@@ -16,5 +17,6 @@ export class Livre {
 		public langue: Langue,
 		public editeur: Editeur,
 		public stock: number,
-		public genres: Genre[]) {}
+		public genres: Genre[],
+		public auteurs: Auteur[]) {}
 }

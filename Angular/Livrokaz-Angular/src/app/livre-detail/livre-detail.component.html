@@ -1,4 +1,4 @@
-<div class="center" *ngIf="displayedLivre">
+<div class="center animated lightSpeedIn" *ngIf="displayedLivre">
     <mat-card class="center">
         <img class = "couverture" src= {{displayedLivre.imageCouverture}} alt= '"Couverture de" {{displayedLivre.titreLivre}}'>
         <h4 class="titreLivre">{{ displayedLivre.titreLivre }}</h4>
@@ -13,10 +13,12 @@
         <p><strong>Langue : </strong>{{displayedLivre.langue.nomLangue}}</p>
         <p><strong>Produits en stock : </strong>{{displayedLivre.stock}}</p>
         <p><strong>Genres : </strong><span *ngFor="let genre of displayedLivre.genres">{{genre.nomGenre}}</span></p>
+        <p><strong>Auteurs : </strong><span *ngFor="let auteur of displayedLivre.auteurs">{{auteur.surnameAuteur}} {{auteur.nameAuteur}}</span></p>
         <p><strong>Sujet du livre : </strong>{{displayedLivre.sujetLivre}}</p>
         <p><strong>Description : </strong>{{displayedLivre.descriptionLivre}}</p>
     </div>
 </div>
+
 <div class="center">
     <button mat-raised-button (click)="onBack()">Retour</button>
 </div>

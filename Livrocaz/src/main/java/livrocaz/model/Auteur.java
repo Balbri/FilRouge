@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
  
 @Entity
 public class Auteur {
@@ -18,6 +20,7 @@ public class Auteur {
 	private String surnameAuteur;
  
 	@ManyToMany(cascade = CascadeType.REMOVE, mappedBy = "auteurs")
+	@JsonIgnore
 	private Collection<Livre> livres; 
 	
 	public Auteur() {

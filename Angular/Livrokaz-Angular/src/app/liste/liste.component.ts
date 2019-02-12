@@ -5,6 +5,7 @@ import { Livre } from '../Model/livre';
 import { Langue } from '../Model/langue';
 import { Editeur } from '../Model/editeur';
 import { Genre } from '../Model/genre';
+import { Auteur } from '../Model/auteur';
 
 @Component({
   selector: 'app-liste',
@@ -17,6 +18,7 @@ export class ListeComponent implements OnInit {
   langues: Langue[] = [];
   editeurs: Editeur[] = [];
   genres: Genre[] = [];
+  auteurs: Auteur[] = [];
 
   livresList: BehaviorSubject<Livre[]>;
 
@@ -27,6 +29,7 @@ export class ListeComponent implements OnInit {
     this.getLangues();
     this.getEditeurs();
     this.getGenres();
+    this.getAuteurs();
     console.log(this.livresList);
   }
 
@@ -39,17 +42,18 @@ export class ListeComponent implements OnInit {
   }
 
   getGenres() {
-    this.datasService.getGenres().subscribe(genres => {
-      this.genres = genres;
-    });
+    this.datasService.getGenres().subscribe(genres => this.genres = genres);
+  }
+
+  getAuteurs() {
+    this.datasService.getAuteurs().subscribe(auteurs => this.auteurs = auteurs);
   }
 
   onSave() {
     this.livre = new Livre(1, 666, 'Germinal', 'https://images-na.ssl-images-amazon.com/images/I/51V6YDH84BL.jpg',
                       'sujet', 'description', 2000,
-                      11, 15.59, this.langues[0], this.editeurs[0], 21, [this.genres[0], this.genres[1]]);
+                      11, 15.59, this.langues[0], this.editeurs[0], 21, [this.genres[0], this.genres[1]], [this.auteurs[0]]);
     this.datasService.createLivre(this.livre);
-    console.log('genre : ' + this.genres[0].nomGenre);
   }
 
   onDelete() {
@@ -62,7 +66,7 @@ export class ListeComponent implements OnInit {
     this.livre = new Livre(idLivre, 666, 'Toto',
           'https://ec56229aec51f1baff1d-185c3068e22352c56024573e929788ff.ssl.cf1.rackcdn.com/attachments/large/3/8/9/003758389.jpg',
           'sujet', 'description', 2000,
-                      8, 10, this.langues[0], this.editeurs[0], 21, [this.genres[0]]);
+                      8, 10, this.langues[0], this.editeurs[0], 21, [this.genres[0]], [this.auteurs[0]]);
     this.datasService.updateLivre(this.livre);
   }
 
