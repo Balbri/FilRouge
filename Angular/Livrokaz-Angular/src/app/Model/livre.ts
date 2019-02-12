@@ -7,7 +7,7 @@ export class Livre {
 		public sujetLivre: string,
 		public descriptionLivre: string,
 		public anneeParution: number,
-		public prixNeuf: number,
 		public prixOccas: number,
+		public prixNeuf: number,
 		public stock: number ) {}
 }

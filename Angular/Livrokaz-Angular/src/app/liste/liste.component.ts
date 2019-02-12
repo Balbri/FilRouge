@@ -22,9 +22,9 @@ export class ListeComponent implements OnInit {
   }
 
   onSave() {
-    this.livre = new Livre(1, 666, 'Germinal', 'image',
+    this.livre = new Livre(1, 666, 'Germinal', 'https://images-na.ssl-images-amazon.com/images/I/51V6YDH84BL.jpg',
                       'sujet', 'description', 2000,
-                      38, 56, 21);
+                      11, 15.59, 21);
     this.datasService.createLivre(this.livre);
   }
 

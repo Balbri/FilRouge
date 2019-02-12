@@ -15,7 +15,8 @@
     margin: 10px;
     margin-bottom: 10px !important;
     border-radius: 2rem;
-    background-color: grey;    
+    background-color: grey;
+    text-align: center; 
 }
 
 .titreLivre {

@@ -87,6 +87,7 @@ export class DatasService {
   public deleteLivre(id: number) {
     this.httpClient.delete<Livre>('http://localhost:8080/api/livres/' + id).subscribe(
       deleteLivre => {
+        this.availableLivres.splice(this.availableLivres.indexOf(this.availableLivres.find(livre => livre.idLivre === id)), 1);
         this.availableLivres$.next(this.availableLivres);
       }
     );
