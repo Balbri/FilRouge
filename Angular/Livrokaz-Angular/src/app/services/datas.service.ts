@@ -93,4 +93,9 @@ export class DatasService {
       }
     );
   }
+
+  getLivresById(id: number): Observable<Livre> {
+    return of(this.availableLivres.find(livre => livre.idLivre === id));
+  }
+
 }

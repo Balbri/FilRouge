@@ -8,13 +8,15 @@ import { HeaderComponent } from './header/header.component';
 import { PubComponent } from './pub/pub.component';
 import { ListeComponent } from './liste/liste.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LivreDetailComponent } from './livre-detail/livre-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     PubComponent,
-    ListeComponent
+    ListeComponent,
+    LivreDetailComponent
   ],
   imports: [
     BrowserModule,
