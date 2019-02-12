@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { Langue } from '../Model/langue';
 import { Editeur } from '../Model/editeur';
 import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
+import { Genre } from '../Model/genre';
 
 
 @Injectable({
@@ -27,6 +28,10 @@ export class DatasService {
 
   getEditeurs(): Observable<Editeur[]> {
     return this.httpClient.get<Editeur[]>('http://localhost:8080/api/editeurs');
+  }
+
+  getGenres(): Observable<Genre[]> {
+    return this.httpClient.get<Genre[]>('http://localhost:8080/api/genres');
   }
 
   /**
@@ -61,7 +66,7 @@ export class DatasService {
       }
       return of(this.availableLivres.find(livre => livre.idLivre === livreId));
     } else {
-      return of(new Livre(0, 0, '', '', '', '', 0, 0, 0, null, null, 0));
+      return of(new Livre(0, 0, '', '', '', '', 0, 0, 0, null, null, 0, null));
     }
   }
 
@@ -104,9 +109,4 @@ export class DatasService {
       }
     );
   }
-
-  getLivresById(id: number): Observable<Livre> {
-    return of(this.availableLivres.find(livre => livre.idLivre === id));
-  }
-
 }

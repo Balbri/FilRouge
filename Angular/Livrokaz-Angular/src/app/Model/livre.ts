@@ -1,5 +1,6 @@
 import { Langue } from './langue';
 import { Editeur } from './editeur';
+import { Genre } from './genre';
 
 export class Livre {
 	constructor(
@@ -14,5 +15,6 @@ export class Livre {
 		public prixNeuf: number,
 		public langue: Langue,
 		public editeur: Editeur,
-		public stock: number ) {}
+		public stock: number,
+		public genres: Genre[]) {}
 }

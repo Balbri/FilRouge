@@ -2,7 +2,7 @@
   <mat-tab label="Genre 1"> 
     <div class="center wrap">
       <mat-card *ngFor="let livre of livresList | async">
-        <a href="">
+          <a routerLink="/detail/{{livre.idLivre}}">
             <img class = "couverture" src= {{livre.imageCouverture}} alt= '"Couverture de" {{livre.titreLivre}}' title= {{livre.titreLivre}} >
             <h4 class="titreLivre">{{ livre.titreLivre }}</h4>
             <div class="prix">
@@ -17,7 +17,7 @@
   <mat-tab label="Genre 2">
       <div class="center wrap">
         <mat-card *ngFor="let livre of livresList | async">
-          <a href="">
+          <a routerLink="/detail/{{livre.idLivre}}">
               <img class = "couverture" src= {{livre.imageCouverture}} alt= '"Couverture de" {{livre.titreLivre}}' title= {{livre.titreLivre}} >
               <h4 class="titreLivre">{{ livre.titreLivre }}</h4>
               <div class="prix">
@@ -32,7 +32,7 @@
   <mat-tab label="Genre 3">
       <div class="center wrap">
         <mat-card *ngFor="let livre of livresList | async">
-          <a href="">
+            <a routerLink="/detail/{{livre.idLivre}}">
               <img class = "couverture" src= {{livre.imageCouverture}} alt= '"Couverture de" {{livre.titreLivre}}' title= {{livre.titreLivre}} >
               <h4 class="titreLivre">{{ livre.titreLivre }}</h4>
               <div class="prix">

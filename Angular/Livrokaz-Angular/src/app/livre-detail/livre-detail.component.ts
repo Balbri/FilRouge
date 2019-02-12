@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Livre } from '../Model/livre';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { DatasService } from '../services/datas.service';
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-livre-detail',
   templateUrl: './livre-detail.component.html',
@@ -9,24 +11,27 @@ import { DatasService } from '../services/datas.service';
 })
 export class LivreDetailComponent implements OnInit {
 
-  id : number;
+  id: number;
   titre = '"Détails de "+{{Livre.titreLivre}}';
-  displayedLivre : Livre;
+  displayedLivre: Livre;
 
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private dataService: DatasService,
-    private location: Location) { }
+    private location: Location) {}
 
   ngOnInit() {
-    this.id = Number(this.route.snapshot.params.id);
-    
+    this.id = +this.route.snapshot.params.id;
+    this.getLivreById(this.id);
   }
 
   getLivreById(id: number): void {
-    this.dataService.getLivresById(id).subscribe(livre => this.displayedLivre = livre);
+    this.dataService.findLivre(id).subscribe(livre => this.displayedLivre = livre);
+  }
+
+  onBack() {
+    this.location.back();
   }
 
 }
