@@ -102,6 +102,7 @@ public class App implements CommandLineRunner {
        fondation.setStock(20);
        fondation.setSujetLivre("Sujet de Fondation");
        fondation.setTitreLivre("Fondation");
+       fondation.setImageCouverture("https://images-na.ssl-images-amazon.com/images/I/81o5-cz-KOL.jpg");
        fondation =livreRepo.save(fondation);
 
        robots.setAnneeParution("1975");
@@ -113,6 +114,7 @@ public class App implements CommandLineRunner {
        robots.setStock(10);
        robots.setSujetLivre("Sujet de robots");
        robots.setTitreLivre("robots");
+       robots.setImageCouverture("https://media.senscritique.com/media/000000171713/source_big/Les_Robots_Le_Cycle_des_robots_tome_1.jpg");
        robots=livreRepo.save(robots);
 
 
