@@ -73,8 +73,9 @@ export class DatasService {
    * @param livre le livre à mettre à jour
    */
   public updateLivre(livre: Livre) {
-    this.httpClient.put<Livre>('http://localhost:8080/api/livres', livre).subscribe(
+    this.httpClient.put<Livre>('http://localhost:8080/api/livres/' + livre.idLivre, livre).subscribe(
       updatedLivre => {
+        this.availableLivres.splice(this.availableLivres.indexOf(livre), 1, livre);
         this.availableLivres$.next(this.availableLivres);
       }
     );

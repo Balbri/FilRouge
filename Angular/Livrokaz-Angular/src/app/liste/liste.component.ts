@@ -33,4 +33,13 @@ export class ListeComponent implements OnInit {
     this.datasService.deleteLivre(idLivre);
   }
 
+  onUpdate() {
+    const idLivre: number = this.livresList.getValue()[this.livresList.getValue().length - 1].idLivre;
+    this.livre = new Livre(idLivre, 666, 'Toto',
+          'https://ec56229aec51f1baff1d-185c3068e22352c56024573e929788ff.ssl.cf1.rackcdn.com/attachments/large/3/8/9/003758389.jpg',
+          'sujet', 'description', 2000,
+                      8, 10, 21);
+    this.datasService.updateLivre(this.livre);
+  }
+
 }
