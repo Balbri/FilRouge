@@ -1,20 +1,17 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Livre } from '../Model/livre';
 
-
-export class Livre { //////////// à jarter !
-  constructor() {}
-}
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatasService {
-
+  
   // La liste des livres de l'application
   private availableLivres: Livre[];
-
+  
   // La liste observable que l'on rend visible partout dans l'application
   availableLivres$: BehaviorSubject<Livre[]> = new BehaviorSubject(this.availableLivres);
 

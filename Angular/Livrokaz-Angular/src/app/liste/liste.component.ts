@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DatasService, Livre } from '../services/datas.service';
+import { DatasService } from '../services/datas.service';
 import { BehaviorSubject } from 'rxjs';
+import { Livre } from '../Model/livre';
 
 @Component({
   selector: 'app-liste',
