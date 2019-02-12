@@ -5,6 +5,7 @@ import { Livre } from '../Model/livre';
 import { map } from 'rxjs/operators';
 import { Langue } from '../Model/langue';
 import { Editeur } from '../Model/editeur';
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 
 
 @Injectable({
@@ -60,7 +61,7 @@ export class DatasService {
       }
       return of(this.availableLivres.find(livre => livre.idLivre === livreId));
     } else {
-      return of(new Livre(0, 0, '', '', '', '', 0, 0, 0, 0));
+      return of(new Livre(0, 0, '', '', '', '', 0, 0, 0, null, null, 0));
     }
   }
 
