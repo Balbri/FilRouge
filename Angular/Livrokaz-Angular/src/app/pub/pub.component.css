@@ -11,9 +11,10 @@ h1 {
 }
 
 .boutton {
-    width: 100px;
-    height: 30px;
+    width: 150px;
+    height: 25px;
     padding: 10px;
+    margin-right: 5px;
 }
 
 a {

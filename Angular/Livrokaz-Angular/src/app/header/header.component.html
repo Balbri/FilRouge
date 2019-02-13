@@ -1,25 +1,25 @@
-<mat-toolbar>
+<mat-toolbar class = "header">
   <mat-toolbar-row>
-    <span class="item">
-      <mat-icon>local_library</mat-icon>
-      <span class="montserrat pad-side"><a href = '/liste'>{{ title | uppercase}}</a></span>
+    <span class="item titre">
+      <span class="montserrat pad-side"><a href = '/liste'>{{ title }}</a></span>
     </span>
 
+    <span class = "item-large">
     <form>
       <mat-icon class="search-icon">search</mat-icon>
       <input type="text" id="search" name="search" placeholder="Rechercher un livre par nom, par auteur, par genre...">
+      <button type="submit" id="valider" form="search" value="Submit">Go !</button>
     </form>
+  </span>
   
-    <span class="montserrat item center">
-      <a routerLink="" title="Accueil"><span class="pad-side">Accueil</span></a>
-      <a href="" title="Catalogue"><span class="pad-side">Catalogue</span></a>
-    </span>
 
     <span class="item right">
-      <a routerLink="gestion/livres" title="Admin" class="pad-side montserrat">A</a>
-      <a href="" title="S'identifier"><mat-icon class="pad-side">perm_identity</mat-icon></a>
+      
+      <a class="button" href="/moncompte">Mon Compte</a>
+
+      <a href="" title="Favoris"><mat-icon class="pad-side">favorite_border</mat-icon></a>
       <a href="" title="Panier"><mat-icon class="pad-side">shopping_cart</mat-icon></a>
-      <a href="" title="Langue-FR"><mat-icon class="pad-side">public</mat-icon></a>
+      
     </span>
   </mat-toolbar-row>
 </mat-toolbar>

@@ -25,8 +25,16 @@ mat-toolbar-row {
     display: flex;
     justify-content: space-between;
     padding-right: 0 !important;
+	margin-top: 40px;
+	
 }
 
+.header {
+	
+	
+	height: 150px; 
+}
+	
 span {
     display: flex;
     align-items: center;
@@ -43,9 +51,13 @@ span {
 }
 
 .item {
-    width: 200px;
+    width: 400px;
 }
 
+ .item-large { 
+ width: 1000px
+ }
+ 
 .center {
     display: flex;
     justify-content: center;
@@ -58,6 +70,7 @@ span {
 .right {
     display: flex;
     justify-content: flex-end;
+	padding-right: 70px;
 }
 
 a {
