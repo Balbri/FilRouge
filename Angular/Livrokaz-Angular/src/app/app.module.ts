@@ -10,6 +10,7 @@ import { ListeComponent } from './liste/liste.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LivreDetailComponent } from './livre-detail/livre-detail.component';
 import { GestionLivresComponent } from './gestion-livres/gestion-livres.component';
+import { GestionDetailLivreComponent } from './gestion-detail-livre/gestion-detail-livre.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { GestionLivresComponent } from './gestion-livres/gestion-livres.componen
     PubComponent,
     ListeComponent,
     LivreDetailComponent,
-    GestionLivresComponent
+    GestionLivresComponent,
+    GestionDetailLivreComponent
   ],
   imports: [
     BrowserModule,

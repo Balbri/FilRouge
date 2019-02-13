@@ -1,0 +1,17 @@
+mat-card {
+    width: 50%;
+}
+
+mat-form-field {
+    width: 50%;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.moyen {
+    width: 50%;
+}
+
+.petit {
+    width: 25%;
+}
