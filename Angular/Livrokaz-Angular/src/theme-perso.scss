@@ -1,0 +1,11 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$theme-perso-primary: mat-palette($mat-light-blue);
+$theme-perso-accent:  mat-palette($mat-orange, A200, A100, A400);
+$theme-perso-warn:    mat-palette($mat-red);
+
+$theme-perso: mat-dark-theme($theme-perso-primary, $theme-perso-accent, $theme-perso-warn);
+
+@include angular-material-theme($theme-perso);

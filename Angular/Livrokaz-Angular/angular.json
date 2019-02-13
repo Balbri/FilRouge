@@ -23,6 +23,9 @@
               "src/assets"
             ],
             "styles": [
+              {
+                "input": "src/theme-perso.scss"
+              },
               "node_modules/animate.css/animate.min.css",
               "src/styles.css"
             ],

@@ -1,80 +1,93 @@
 <div class="center pad animated bounceInUp">
   <mat-card class="center">
-    <div class="moyen">
-      <form class="center column">
+    <form  class="center" [formGroup]="livreForm">
+      <div class="moyen center pad column">
         <mat-form-field>
-          <input matInput type="number" placeholder="ISBN" value=""  onkeyup="this.value=this.value.replace(/[^\d]/,'')">
+          <input matInput type="number" placeholder="ISBN" formControlName="isbn" onkeyup="this.value=this.value.replace(/[^\d]/,'')">
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Titre" value="">
+          <input matInput placeholder="Titre" formControlName="titreLivre">
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Url de l'image" [value]="imageUrl" (input)="imageUrl = $event.target.value">
+          <input matInput placeholder="Url de l'image" [value]="imageUrl" (input)="imageUrl = $event.target.value" formControlName="imageCouverture">
         </mat-form-field>
 
-        <div class="center">
+        <div class="center cent">
           <mat-form-field>
-            <input matInput placeholder="Année de parution" value="" maxlength="4">
+            <input matInput placeholder="Année de parution" formControlName="anneeParution" maxlength="4">
           </mat-form-field>
           <mat-form-field class="margin-left">
-            <input matInput placeholder="Stock" value="" maxlength="3">
+            <input matInput placeholder="Stock" formControlName="stock" maxlength="3">
           </mat-form-field>
         </div>
 
-        <div class="center">
+        <div class="center cent">
           <mat-form-field>
-            <input matInput placeholder="Prix neuf" value="">
+            <input matInput placeholder="Prix neuf" formControlName="prixNeuf">
           </mat-form-field>
           <mat-form-field class="margin-left">
-            <input matInput placeholder="Prix occasion" value="">
+            <input matInput placeholder="Prix occasion" formControlName="prixOccas">
           </mat-form-field>
         </div>
 
-        <div class="center">
+        <div class="center cent">
           <mat-form-field>
-            <mat-select placeholder="Langue">
-              <mat-option *ngFor="let langue of langues" [value]="langue.idLangue">
+            <mat-select placeholder="Langue" formControlName="langue">
+              <mat-option *ngFor="let langue of langues" [value]="langue">
                 {{langue.nomLangue}}
               </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field class="margin-left">
-              <mat-select placeholder="Editeur">
-                <mat-option *ngFor="let editeur of editeurs" [value]="editeur.idEditeur">
+              <mat-select placeholder="Editeur" formControlName="editeur">
+                <mat-option *ngFor="let editeur of editeurs" [value]="editeur">
                   {{editeur.nomEditeur}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
         </div>
 
-        <div class="center">
-          <mat-form-field>
-            <mat-select placeholder="Auteurs">
-              <mat-option *ngFor="let auteur of auteurs" [value]="auteur.idAuteur">
-                {{auteur.surnameAuteur}} {{auteur.nameAuteur}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field class="margin-left">
-              <mat-select placeholder="Genres">
-                <mat-option *ngFor="let genre of genres" [value]="genre.idGenre">
+        <div class="center cent">
+          <div formArrayName="auteurs">
+            <mat-form-field *ngFor="let auteurControl of getAuteursControl().controls; let i = index">
+              <mat-select placeholder="Auteurs" [formControlName]="i">
+                <mat-option *ngFor="let auteur of auteurs" [value]="auteur">
+                  {{auteur.surnameAuteur}} {{auteur.nameAuteur}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button mat-raised-button type="button" (click)="onAddAuteur()">Ajouter un auteur</button>
+          </div>
+          <div formArrayName="genres">
+            <mat-form-field class="margin-left" *ngFor="let genreControl of getGenresControl().controls; let i = index">
+              <mat-select placeholder="Genres" [formControlName]="i">
+                <mat-option *ngFor="let genre of genres" [value]="genre">
                   {{genre.nomGenre}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
+            <button mat-raised-button type="button" (click)="onAddGenre()">Ajouter un genre</button>
+          </div>
         </div>
-      </form>
-    </div>
+      </div>
 
-    <div class="center moyen">
-      <img class ="couverture mat-elevation-z8" src= {{imageUrl}} *ngIf="imageUrl">
-    </div>
+      <div class="center moyen up column pad">
+        <div class="couverture-off mat-elevation-z8" *ngIf="!imageUrl"></div>
+        <img class ="couverture mat-elevation-z8" src= {{imageUrl}} *ngIf="imageUrl">
+        <mat-form-field>
+          <input matInput placeholder="Sujet" formControlName="sujetLivre">
+        </mat-form-field>
+        <mat-form-field>
+          <textarea matInput placeholder="Description" formControlName="descriptionLivre"></textarea>
+        </mat-form-field>
+      </div>
+    </form>
   </mat-card>
 </div>
 
 <div class="center">
   <button mat-raised-button (click)="onBack()">Retour</button>
-  <button mat-raised-button (click)="onSave()">Enregistrer</button>
+  <button mat-raised-button (click)="onSave()" [disabled]="livreForm.invalid">Enregistrer</button>
 </div>
