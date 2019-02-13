@@ -4,10 +4,32 @@
       <mat-icon>local_library</mat-icon>
       <span class="montserrat pad-side">{{ title | uppercase}}</span>
     </span>
+    <style> 
+        input[type=text] {
+          width: 400px;
+          height: 40px;
+          box-sizing: border-box;
+          border: 2px solid rgb(226, 226, 226);
+          border-radius: 20px;
+          background-color: rgb(43, 40, 40);
+          background-image: url("assets/icons/2x/outline_search_white_18dp.png");
+          background-repeat: no-repeat;
+          background-position-x: 10px;
+          color: white;
+          padding-left: 50px;
+        }
+        </style>
+
+<form>
+   
+    <input type="text" id="search" name="search" placeholder="Rechercher un livre par nom, par auteur, par genre...">
+  </form>
+  
     <span class="montserrat item center">
       <a routerLink="" title="Accueil"><span class="pad-side">Accueil</span></a>
       <a href="" title="Catalogue"><span class="pad-side">Catalogue</span></a>
     </span>
+
     <span class="item right">
       <a href="" title="Recherche"><mat-icon class="pad-side">search</mat-icon></a>
       <a href="" title="S'identifier"><mat-icon class="pad-side">perm_identity</mat-icon></a>
