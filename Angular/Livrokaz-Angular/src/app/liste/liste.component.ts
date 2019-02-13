@@ -30,7 +30,7 @@ export class ListeComponent implements OnInit {
     this.getEditeurs();
     this.getGenres();
     this.getAuteurs();
-    console.log(this.livresList);
+    // console.log(this.livresList);
   }
 
   getLangues() {

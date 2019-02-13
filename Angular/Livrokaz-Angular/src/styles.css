@@ -38,6 +38,10 @@ span {
     padding-right: 20px !important;
 }
 
+.pad {
+    padding: 15px;
+}
+
 .item {
     width: 200px;
 }
@@ -71,4 +75,8 @@ a:hover {
 
 .wrap {
     flex-wrap: wrap;
+}
+
+table {
+    width: 100%;
 }
