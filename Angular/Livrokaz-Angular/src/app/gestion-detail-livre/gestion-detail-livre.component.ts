@@ -4,6 +4,7 @@ import { DatasService } from '../services/datas.service';
 import { Langue } from '../Model/langue';
 import { Editeur } from '../Model/editeur';
 import { Genre } from '../Model/genre';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-gestion-detail-livre',
@@ -16,8 +17,10 @@ export class GestionDetailLivreComponent implements OnInit {
   langues: Langue[] = [];
   editeurs: Editeur[] = [];
   genres: Genre[] = [];
+  imageUrl = '';
 
-  constructor(private datasService: DatasService) { }
+  constructor(private datasService: DatasService,
+              private location: Location) { }
 
   ngOnInit() {
     this.getAuteurs();
@@ -40,6 +43,13 @@ export class GestionDetailLivreComponent implements OnInit {
 
   getGenres() {
     this.datasService.getGenres().subscribe(genres => this.genres = genres);
+  }
+
+  onSave() {
+  }
+
+  onBack() {
+    this.location.back();
   }
 
 }

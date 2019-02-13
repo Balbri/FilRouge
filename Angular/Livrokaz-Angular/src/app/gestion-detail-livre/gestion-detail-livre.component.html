@@ -1,9 +1,9 @@
-<div class="center pad">
-  <mat-card>
+<div class="center pad animated bounceInUp">
+  <mat-card class="center">
     <div class="moyen">
       <form class="center column">
         <mat-form-field>
-          <input matInput placeholder="ISBN" value="">
+          <input matInput type="number" placeholder="ISBN" value=""  onkeyup="this.value=this.value.replace(/[^\d]/,'')">
         </mat-form-field>
 
         <mat-form-field>
@@ -11,36 +11,36 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Url de l'image" value="">
+          <input matInput placeholder="Url de l'image" [value]="imageUrl" (input)="imageUrl = $event.target.value">
         </mat-form-field>
 
-        <div>
-          <mat-form-field class="moyen">
+        <div class="center">
+          <mat-form-field>
             <input matInput placeholder="Année de parution" value="" maxlength="4">
           </mat-form-field>
-          <mat-form-field class="moyen">
+          <mat-form-field class="margin-left">
             <input matInput placeholder="Stock" value="" maxlength="3">
           </mat-form-field>
         </div>
 
-        <div>
-          <mat-form-field class="moyen">
+        <div class="center">
+          <mat-form-field>
             <input matInput placeholder="Prix neuf" value="">
           </mat-form-field>
-          <mat-form-field class="moyen">
+          <mat-form-field class="margin-left">
             <input matInput placeholder="Prix occasion" value="">
           </mat-form-field>
         </div>
 
-        <div>
-          <mat-form-field class="moyen">
+        <div class="center">
+          <mat-form-field>
             <mat-select placeholder="Langue">
               <mat-option *ngFor="let langue of langues" [value]="langue.idLangue">
                 {{langue.nomLangue}}
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <mat-form-field class="moyen">
+          <mat-form-field class="margin-left">
               <mat-select placeholder="Editeur">
                 <mat-option *ngFor="let editeur of editeurs" [value]="editeur.idEditeur">
                   {{editeur.nomEditeur}}
@@ -49,15 +49,15 @@
             </mat-form-field>
         </div>
 
-        <div>
-          <mat-form-field class="moyen">
+        <div class="center">
+          <mat-form-field>
             <mat-select placeholder="Auteurs">
               <mat-option *ngFor="let auteur of auteurs" [value]="auteur.idAuteur">
                 {{auteur.surnameAuteur}} {{auteur.nameAuteur}}
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <mat-form-field class="moyen">
+          <mat-form-field class="margin-left">
               <mat-select placeholder="Genres">
                 <mat-option *ngFor="let genre of genres" [value]="genre.idGenre">
                   {{genre.nomGenre}}
@@ -67,5 +67,14 @@
         </div>
       </form>
     </div>
+
+    <div class="center moyen">
+      <img class ="couverture mat-elevation-z8" src= {{imageUrl}} *ngIf="imageUrl">
+    </div>
   </mat-card>
+</div>
+
+<div class="center">
+  <button mat-raised-button (click)="onBack()">Retour</button>
+  <button mat-raised-button (click)="onSave()">Enregistrer</button>
 </div>
