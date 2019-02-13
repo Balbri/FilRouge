@@ -58,6 +58,28 @@ public class LivreController {
 	}
 	
 /*
+ * Methode Get par Nom de livre
+ */
+	
+	@RequestMapping(value= "/livres/nom/{nom}", method = RequestMethod.GET)
+	public ResponseEntity<?>getLivreByName(@PathVariable String nom){
+		Optional<Livre> livre = null;
+		try {
+			livre=(livreRepo.findLivreByName(nom));
+		
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+		}
+		
+		if(livre == null)
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+		
+		return ResponseEntity.status(HttpStatus.OK).body(livre);
+	}
+		
+	
+	
+/*
  * Methode POST
  */
 	 @RequestMapping(value = "/livres", method = RequestMethod.POST, produces= "application/json", consumes = MediaType.APPLICATION_JSON_VALUE )
