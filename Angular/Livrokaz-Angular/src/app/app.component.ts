@@ -8,7 +8,7 @@ import { DatasService } from './services/datas.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'Livr\'ocaz';
+  title = 'LivrOkaz';
 
   constructor(private datasService: DatasService) {}
 
