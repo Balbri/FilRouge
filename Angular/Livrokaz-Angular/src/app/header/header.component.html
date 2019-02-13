@@ -4,28 +4,11 @@
       <mat-icon>local_library</mat-icon>
       <span class="montserrat pad-side"><a href = '/liste'>{{ title | uppercase}}</a></span>
     </span>
-    <style> 
-        input[type=text] {
-          width: 400px;
-          height: 40px;
-          box-sizing: border-box;
-          border: 2px solid rgb(226, 226, 226);
-          border-radius: 20px;
-          background-color: rgb(43, 40, 40);
-          background-image: url("assets/icons/2x/outline_search_white_18dp.png");
-          background-repeat: no-repeat;
-          background-position-x: 10px;
-          background-position-y: 1px;
-          color: white;
-          padding-left: 50px;
-        
-        }
-        </style>
 
-<form>
-   
-    <input type="text" id="search" name="search" placeholder="Rechercher un livre par nom, par auteur, par genre...">
-  </form>
+    <form>
+      <mat-icon class="search-icon">search</mat-icon>
+      <input type="text" id="search" name="search" placeholder="Rechercher un livre par nom, par auteur, par genre...">
+    </form>
   
     <span class="montserrat item center">
       <a routerLink="" title="Accueil"><span class="pad-side">Accueil</span></a>
@@ -34,7 +17,6 @@
 
     <span class="item right">
       <a routerLink="gestion/livres" title="Admin" class="pad-side montserrat">A</a>
-      <a href="" title="Recherche"><mat-icon class="pad-side">search</mat-icon></a>
       <a href="" title="S'identifier"><mat-icon class="pad-side">perm_identity</mat-icon></a>
       <a href="" title="Panier"><mat-icon class="pad-side">shopping_cart</mat-icon></a>
       <a href="" title="Langue-FR"><mat-icon class="pad-side">public</mat-icon></a>

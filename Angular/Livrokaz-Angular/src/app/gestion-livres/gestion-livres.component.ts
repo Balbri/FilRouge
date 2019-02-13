@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatSnackBar } from '@angular/material';
 import { Livre } from '../Model/livre';
 import { SelectionModel, DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject } from 'rxjs';
@@ -18,7 +18,7 @@ export class GestionLivresComponent implements OnInit {
 
   livresList: BehaviorSubject<Livre[]>;
 
-  constructor(private datasService: DatasService) { }
+  constructor(private datasService: DatasService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.livresList = this.datasService.availableLivres$;
@@ -29,7 +29,14 @@ export class GestionLivresComponent implements OnInit {
   onEdit() {
   }
 
-  onDelete() {
+  onDelete(selected: Livre[]) {
+    if (selected.length !== 0) {
+      this.datasService.deleteLivre(selected[0].idLivre);
+      // popu-up suppression
+      this.snackBar.open(selected[0].titreLivre, 'Supprimé', {
+        duration: 2000,
+      });
+    }
   }
 
 }
