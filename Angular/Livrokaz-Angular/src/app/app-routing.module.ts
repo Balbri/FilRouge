@@ -4,6 +4,7 @@ import { ListeComponent } from './liste/liste.component';
 import { LivreDetailComponent } from './livre-detail/livre-detail.component';
 import { GestionLivresComponent } from './gestion-livres/gestion-livres.component';
 import { GestionDetailLivreComponent } from './gestion-detail-livre/gestion-detail-livre.component';
+import { GestionLanguesComponent } from './gestion-langues/gestion-langues.component';
 
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'liste', component: ListeComponent },
   { path: 'detail/:id', component: LivreDetailComponent },
   { path: 'gestion/livres', component: GestionLivresComponent },
+  { path: 'gestion/langues', component: GestionLanguesComponent },
   { path: 'gestion/livres/nouveau', component: GestionDetailLivreComponent },
   { path: 'gestion/livres/edition/:id', component: GestionDetailLivreComponent },
   { path: '**', component: ListeComponent }

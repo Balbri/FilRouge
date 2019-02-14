@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Auteur } from '../Model/auteur';
-import { DatasService } from '../services/datas.service';
+import { LivresService } from '../services/livres.service';
 import { Langue } from '../Model/langue';
 import { Editeur } from '../Model/editeur';
 import { Genre } from '../Model/genre';
@@ -37,7 +37,7 @@ export class GestionDetailLivreComponent implements OnInit {
   sujetLivreInit = '';
   descriptionLivreInit = '';
 
-  constructor(private datasService: DatasService,
+  constructor(private datasService: LivresService,
               private location: Location,
               private route: ActivatedRoute,
               private formBuilder: FormBuilder) {}

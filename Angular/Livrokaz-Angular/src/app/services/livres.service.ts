@@ -12,7 +12,7 @@ import { Auteur } from '../Model/auteur';
 @Injectable({
   providedIn: 'root'
 })
-export class DatasService {
+export class LivresService {
 
   // La liste des livres de l'application
   private availableLivres: Livre[];
@@ -37,9 +37,6 @@ export class DatasService {
   getAuteurs(): Observable<Auteur[]> {
     return this.httpClient.get<Auteur[]>('http://localhost:8080/api/auteurs');
   }
-
-
-  /////////////// CRUD LIVRE ///////////////////
 
   /**
    * La fonction getLivres() est privée car elle n'a besoin d'être appellée que dans le service.
