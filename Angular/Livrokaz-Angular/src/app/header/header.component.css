@@ -1,10 +1,10 @@
 input {
     width: 400px;
-    height: 40px;
+    height: 44px;
     box-sizing: border-box;
     border: 2px solid rgb(226, 226, 226);
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
+    border-top-left-radius: 22px;
+    border-bottom-left-radius: 22px;
     background-color: rgb(43, 40, 40);
     background-repeat: no-repeat;
     background-position-x: 10px;
@@ -33,7 +33,7 @@ form {
     width: 200px;
     background-color:transparent;
     border: 2px solid rgb(255, 255, 255);
-    border-radius: 20px;
+    border-radius: 22px;
     color: rgb(255, 255, 255);
     flex-shrink: 0;
     font-size: 17spx;
@@ -54,9 +54,9 @@ form {
 #valider {
     border-top-left-radius: 0%;
     border-bottom-left-radius: 0%;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    height:40px;
+    border-top-right-radius: 22px;
+    border-bottom-right-radius: 22px;
+    height:44px;
     width: 60px;
     border-style: solid;
     border-left-style: none;

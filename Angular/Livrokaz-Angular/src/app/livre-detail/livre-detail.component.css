@@ -7,39 +7,71 @@
     flex-direction: column;
 }
 
-.prix {
-    position: absolute !important;
-    bottom: 0;
-    right: 0;
-    padding: 10px;
-    margin: 10px;
-    margin-bottom: 10px !important;
-    border-radius: 2rem;
-    background-color: grey;
-    text-align: center; 
+
+
+h3.titreLivre {
+    padding-top: 0;
+    margin-top: 0;
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+    
 }
 
-.titreLivre {
-    position: absolute !important;
-    top: 0;
-    left: 0;
-    padding: 10px;
-    margin: 10px;
+.prix {
+    text-decoration: line-through;
+    color: darkgrey;
+    font-size: 20px;
+    margin-left:20px;
 }
 
 .prixOccas {
-    text-decoration: line-through;
-    color: #CCC;
+    color:black;
+    font-size: 25px;
+    margin-left: 20px;
+    margin-top: 5px;
+
 }
 
 .couverture {
-    width: 155px;
+    width: 400px;
     height: auto;
-    border-radius: 3px;
+    border: black 2px solid;
 }
 
 .center {
-    display: flex;
+    display: inline-block;
     justify-content: center;
     align-items: center;
+    margin-top: 40px;
+}
+
+.detail {
+    display: inline-block;
+    margin-left: 15px;
+    vertical-align: top;
+    max-width: 500px;
+}
+
+.conteneur {
+    margin: 0 auto;
+    margin-top: 40px;
+    width: 1200px;
+    height: 800px;
+}
+span.underline {
+    text-decoration: underline;
+    display: inline;
+}
+
+.section {
+    margin-top: 50px;
+}
+
+.prixe{
+    margin-left: 15px;
+    width: 200px;
+    background-color: lightgray;
+    padding-left: 30px;
+    
 }

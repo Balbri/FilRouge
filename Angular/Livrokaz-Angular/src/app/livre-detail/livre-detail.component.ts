@@ -14,7 +14,7 @@ export class LivreDetailComponent implements OnInit {
   id: number;
   titre = '"Détails de "+{{Livre.titreLivre}}';
   displayedLivre: Livre;
-
+  etatStock = "Moins de 10 articles en stock, dépêchez-vous !"
 
   constructor(
     private route: ActivatedRoute,
@@ -28,6 +28,9 @@ export class LivreDetailComponent implements OnInit {
 
   getLivreById(id: number): void {
     this.dataService.findLivre(id).subscribe(livre => this.displayedLivre = livre);
+    if(this.displayedLivre.stock>10){
+      this.etatStock = "Disponible";
+    }
   }
 
   onBack() {

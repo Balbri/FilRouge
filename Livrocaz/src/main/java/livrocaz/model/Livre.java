@@ -3,12 +3,14 @@ package livrocaz.model;
 import java.util.Collection;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -21,7 +23,11 @@ public class Livre {
 	private String isbn;
 	private String titreLivre;
 	private String imageCouverture;
+	@Column
+	@Lob
 	private String sujetLivre;
+	@Column
+	@Lob
 	private String descriptionLivre;
 	private String anneeParution;
 	private double prixNeuf;

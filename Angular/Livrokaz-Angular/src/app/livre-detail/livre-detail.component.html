@@ -1,5 +1,5 @@
-<div class="center animated lightSpeedIn" *ngIf="displayedLivre">
-    <mat-card class="center">
+<div class = "conteneur" *ngIf="displayedLivre">
+    <!--<mat-card class="center">
         <img class = "couverture" src= {{displayedLivre.imageCouverture}} alt= '"Couverture de" {{displayedLivre.titreLivre}}'>
         <h4 class="titreLivre">{{ displayedLivre.titreLivre }}</h4>
         <div class="prix">
@@ -20,5 +20,32 @@
 </div>
 
 <div class="center">
-    <button mat-raised-button (click)="onBack()">Retour</button>
+    <button mat-raised-button (click)="onBack()">Retour</button>-->
+
+
+
+       <img class = "couverture" src= {{displayedLivre.imageCouverture}} alt= '"Couverture de" {{displayedLivre.titreLivre}}'>
+        <div class = "detail">
+            <h3 class="titreLivre">{{ displayedLivre.titreLivre }}</h3>
+            <p><strong>Année de parution : {{displayedLivre.anneeParution}}</strong></p>
+            <p><strong>Auteur : <span class= "underline" *ngFor="let auteur of displayedLivre.auteurs">{{auteur.surnameAuteur}} {{auteur.nameAuteur}}</span></strong></p>
+            <p><strong>Edition : <span class = "underline">{{displayedLivre.editeur.nomEditeur}}</span></strong></p>
+            <p><strong>Langue : {{displayedLivre.langue.nomLangue}}</strong></p>
+            <div class= "sujet">
+                <p class = "section"><strong>SUJET</strong></p>
+                <p>{{displayedLivre.sujetLivre}}</p>
+                <p class = "section"><strong>DESCRIPTION</strong></p>
+                <p>{{displayedLivre.descriptionLivre}}</p>
+            </div>
+        </div>
+        <div class = "detail prixe">
+            <p class = "prix">{{ displayedLivre.prixNeuf}} €</p>
+            <p class = "prixOccas">{{displayedLivre.prixOccas}} €</p>
+            <p class = "stock">{{etatStock}}</p>
+        </div>
 </div>
+
+
+
+
+
