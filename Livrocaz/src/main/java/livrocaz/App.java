@@ -94,13 +94,13 @@ public class App implements CommandLineRunner {
        Collection<Auteur>hashAuteurs = new HashSet<Auteur>();
        Collection<Livre>hashLivres = new ArrayList<Livre>();
        fondation.setAnneeParution("1986");
-       fondation.setDescriptionLivre("desc fondation");
+       fondation.setDescriptionLivre("Quare talis improborum consensio non modo excusatione amicitiae tegenda non est sed potius supplicio omni vindicanda est, ut ne quis concess.");
        fondation.setImageCouverture("fondation couv");
        fondation.setIsbn("1111");
        fondation.setPrixNeuf(10);
        fondation.setPrixOccas(5);
        fondation.setStock(20);
-       fondation.setSujetLivre("Sujet de Fondation");
+       fondation.setSujetLivre("En ce début de treizième millénaire, l’Empire n’a jamais été aussi puissant, aussi étendu à travers toute la galaxie. C’est dans sa capitale, Trantor, que l’éminent savant Hari Seldon invente la psychohistoire, une science nouvelle permettant de prédire l’avenir. Grâce à elle, Seldon prévoit l’effondrement de l’Empire d’ici cinq siècles, suivi d’une ère de ténèbres de trente mille ans. Réduire cette période à mille ans est peut-être possible, à condition de mener à terme son projet : la Fondation, chargée de rassembler toutes les connaissances humaines. Une entreprise visionnaire qui rencontre de nombreux et puissants détracteurs…");
        fondation.setTitreLivre("Fondation");
        fondation.setImageCouverture("https://images-na.ssl-images-amazon.com/images/I/81o5-cz-KOL.jpg");
        fondation =livreRepo.save(fondation);
