@@ -30,7 +30,9 @@ export class GestionLivresComponent implements OnInit {
   }
 
   onEdit(selected: Livre[]) {
-    this.router.navigate(['gestion/livres/edition/' + selected[0].idLivre]);
+    if (selected.length !== 0) {
+      this.router.navigate(['gestion/livres/edition/' + selected[0].idLivre]);
+    }
   }
 
   onDelete(selected: Livre[]) {

@@ -5,6 +5,9 @@ import { LivreDetailComponent } from './livre-detail/livre-detail.component';
 import { GestionLivresComponent } from './gestion-livres/gestion-livres.component';
 import { GestionDetailLivreComponent } from './gestion-detail-livre/gestion-detail-livre.component';
 import { GestionLanguesComponent } from './gestion-langues/gestion-langues.component';
+import { GestionDetailLangueComponent } from './gestion-detail-langue/gestion-detail-langue.component';
+import { GestionGenresComponent } from './gestion-genres/gestion-genres.component';
+import { GestionDetailGenreComponent } from './gestion-detail-genre/gestion-detail-genre.component';
 
 
 const routes: Routes = [
@@ -13,6 +16,11 @@ const routes: Routes = [
   { path: 'detail/:id', component: LivreDetailComponent },
   { path: 'gestion/livres', component: GestionLivresComponent },
   { path: 'gestion/langues', component: GestionLanguesComponent },
+  { path: 'gestion/langues/nouveau', component: GestionDetailLangueComponent },
+  { path: 'gestion/langues/edition/:id', component: GestionDetailLangueComponent },
+  { path: 'gestion/genres', component: GestionGenresComponent },
+  { path: 'gestion/genres/nouveau', component: GestionDetailGenreComponent },
+  { path: 'gestion/genres/edition/:id', component: GestionDetailGenreComponent },
   { path: 'gestion/livres/nouveau', component: GestionDetailLivreComponent },
   { path: 'gestion/livres/edition/:id', component: GestionDetailLivreComponent },
   { path: '**', component: ListeComponent }

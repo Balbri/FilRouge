@@ -7,6 +7,7 @@ import { Langue } from '../Model/langue';
 import { Editeur } from '../Model/editeur';
 import { Genre } from '../Model/genre';
 import { Auteur } from '../Model/auteur';
+import { MatSnackBar } from '@angular/material';
 
 
 @Injectable({
@@ -20,7 +21,7 @@ export class LivresService {
   // La liste observable que l'on rend visible partout dans l'application
   availableLivres$: BehaviorSubject<Livre[]> = new BehaviorSubject(this.availableLivres);
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private snackBar: MatSnackBar) {}
 
   getLangues(): Observable<Langue[]> {
     return this.httpClient.get<Langue[]>('http://localhost:8080/api/langues');
@@ -84,6 +85,12 @@ export class LivresService {
       nouveauLivre => {
         this.availableLivres.push(nouveauLivre);
         this.availableLivres$.next(this.availableLivres);
+      },
+      error => {
+        // popu-up erreur
+      this.snackBar.open('Le livre n\'as pas pu être créé', 'ERREUR', {
+        duration: 2000,
+      });
       }
     );
   }

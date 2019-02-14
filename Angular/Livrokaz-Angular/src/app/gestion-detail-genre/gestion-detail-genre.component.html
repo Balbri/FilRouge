@@ -1,0 +1,14 @@
+<div class="center pad animated bounceInUp">
+    <mat-card class="center">
+      <form  class="center" [formGroup]="genreForm">
+          <mat-form-field>
+            <input matInput placeholder="Genre" formControlName="nomGenre">
+          </mat-form-field>
+      </form>
+    </mat-card>
+  </div>
+  
+  <div class="center">
+    <button mat-raised-button (click)="onBack()">RETOUR</button>
+    <button mat-raised-button (click)="onSave()" [disabled]="genreForm.invalid">ENREGISTRER</button>
+  </div>

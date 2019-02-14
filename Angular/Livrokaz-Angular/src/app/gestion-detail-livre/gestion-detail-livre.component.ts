@@ -38,7 +38,7 @@ export class GestionDetailLivreComponent implements OnInit {
   descriptionLivreInit = '';
   dateModif = new Date();
 
-  constructor(private datasService: LivresService,
+  constructor(private livresService: LivresService,
               private location: Location,
               private route: ActivatedRoute,
               private formBuilder: FormBuilder) {}
@@ -74,7 +74,7 @@ export class GestionDetailLivreComponent implements OnInit {
   }
 
   getLivreById(id: number) {
-    this.datasService.findLivre(id).subscribe(livre => {
+    this.livresService.findLivre(id).subscribe(livre => {
       this.isbnInit = livre.isbn;
       this.titreLivreInit = livre.titreLivre;
       this.imageCouvertureInit = livre.imageCouverture;
@@ -92,19 +92,19 @@ export class GestionDetailLivreComponent implements OnInit {
   }
 
   getLangues() {
-    this.datasService.getLangues().subscribe(langues => this.langues = langues);
+    this.livresService.getLangues().subscribe(langues => this.langues = langues);
   }
 
   getEditeurs() {
-    this.datasService.getEditeurs().subscribe(editeurs => this.editeurs = editeurs);
+    this.livresService.getEditeurs().subscribe(editeurs => this.editeurs = editeurs);
   }
 
   getAuteurs() {
-    this.datasService.getAuteurs().subscribe(auteurs => this.auteurs = auteurs);
+    this.livresService.getAuteurs().subscribe(auteurs => this.auteurs = auteurs);
   }
 
   getGenres() {
-    this.datasService.getGenres().subscribe(genres => this.genres = genres);
+    this.livresService.getGenres().subscribe(genres => this.genres = genres);
   }
 
   onSave() {
@@ -130,9 +130,9 @@ export class GestionDetailLivreComponent implements OnInit {
       formValue['auteurs'] ? formValue['auteurs'] : []
     );
     if (this.id) {
-      this.datasService.updateLivre(newLivre);
+      this.livresService.updateLivre(newLivre);
     } else {
-      this.datasService.createLivre(newLivre);
+      this.livresService.createLivre(newLivre);
     }
     this.location.back();
   }

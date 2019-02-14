@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LanguesService } from './langues.service';
+import { GenresService } from './genres.service';
 
-describe('Langues.ServiceService', () => {
+describe('GenresService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: LanguesService = TestBed.get(LanguesService);
+    const service: GenresService = TestBed.get(GenresService);
     expect(service).toBeTruthy();
   });
 });
