@@ -15,8 +15,15 @@
 
     <span class="item right">
       
+      <a class="button petit-button" [matMenuTriggerFor]="tables">A</a>
+      <mat-menu #tables="matMenu">
+        <button mat-menu-item routerLink="gestion/livres">Livres</button>
+        <button mat-menu-item routerLink="gestion/langues">Langues</button>
+        <button mat-menu-item routerLink="gestion/genres">Genres</button>
+        <button mat-menu-item routerLink="gestion/editeurs">Editeurs</button>
+        <button mat-menu-item routerLink="gestion/auteurs">Auteurs</button>
+      </mat-menu>
       <a class="button" href="/moncompte">Mon Compte</a>
-
       <a href="" title="Favoris"><mat-icon class="pad-side">favorite_border</mat-icon></a>
       <a href="" title="Panier"><mat-icon class="pad-side">shopping_cart</mat-icon></a>
       

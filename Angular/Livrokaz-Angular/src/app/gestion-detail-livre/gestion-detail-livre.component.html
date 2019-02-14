@@ -35,7 +35,7 @@
         <div class="center cent">
           <mat-form-field>
             <mat-select placeholder="Langue" formControlName="langue">
-              <mat-option *ngFor="let langue of langues" [value]="langueInit">
+              <mat-option *ngFor="let langue of langues" [value]="langue">
                 {{langue.nomLangue}}
               </mat-option>
             </mat-select>

@@ -45,6 +45,14 @@ form {
     border-color: brown;
 }
 
+.petit-button {
+    height: 0;
+    width: 0;
+    padding : 20px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
 .titre {
     font-size: 40px;
     margin-left: 70px;
