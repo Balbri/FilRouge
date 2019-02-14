@@ -15,7 +15,7 @@ public interface LivreRepository extends JpaRepository<Livre, Integer>{
 	@Query(value = "SELECT * FROM livre WHERE id_livre = ?1", nativeQuery = true)
 	Livre findLivreById(int id);
 	
-	@Query(value = "SELECT * FROM livre WHERE livre.titre_livre= ?1", nativeQuery = true)
+	@Query(value = "SELECT * FROM livre WHERE livre.titre_livre like ?1", nativeQuery = true)
 	Optional<Livre> findLivreByName(String nom);
 		
 
