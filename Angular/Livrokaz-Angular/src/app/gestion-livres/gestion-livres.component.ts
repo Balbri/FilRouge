@@ -4,6 +4,7 @@ import { Livre } from '../Model/livre';
 import { SelectionModel, DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject } from 'rxjs';
 import { DatasService } from '../services/datas.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gestion-livres',
@@ -18,7 +19,9 @@ export class GestionLivresComponent implements OnInit {
 
   livresList: BehaviorSubject<Livre[]>;
 
-  constructor(private datasService: DatasService, private snackBar: MatSnackBar) { }
+  constructor(private datasService: DatasService,
+              private snackBar: MatSnackBar,
+              private router: Router) { }
 
   ngOnInit() {
     this.livresList = this.datasService.availableLivres$;
@@ -26,7 +29,8 @@ export class GestionLivresComponent implements OnInit {
     console.log(this.livresList);
   }
 
-  onEdit() {
+  onEdit(selected: Livre[]) {
+    this.router.navigate(['gestion/livres/edition/' + selected[0].idLivre]);
   }
 
   onDelete(selected: Livre[]) {
