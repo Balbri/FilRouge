@@ -10,11 +10,10 @@ input {
     background-position-x: 10px;
     color: white;
     padding-left: 50px;
-    border-style: solid;
-    
+    border-style: solid;  
 }
 
-input:focus {
+*:focus {
     outline:0;
 }
 
@@ -42,11 +41,8 @@ form {
 }
 
 .button:hover {
-
-color:brown;
-border-color: brown;
-
-
+    color:brown;
+    border-color: brown;
 }
 
 .titre {
@@ -56,8 +52,6 @@ border-color: brown;
 }
 
 #valider {
-
-
     border-top-left-radius: 0%;
     border-bottom-left-radius: 0%;
     border-top-right-radius: 22px;
@@ -71,7 +65,11 @@ border-color: brown;
     color:white;
     cursor: pointer;
 }
-#valider:hover {
 
-background-color:rgb(99, 99, 99); 
+#valider:hover {
+    background-color:rgb(99, 99, 99); 
+}
+
+.right {
+    padding-right: 70px;
 }

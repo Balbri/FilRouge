@@ -1,4 +1,4 @@
-@import "~@angular/material/prebuilt-themes/purple-green.css";
+
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 body { 
@@ -25,14 +25,11 @@ mat-toolbar-row {
     display: flex;
     justify-content: space-between;
     padding-right: 0 !important;
-	margin-top: 40px;
-	
+	margin-top: 40px;	
 }
 
 .header {
-	
-	
-	height: 150px; 
+    height: 150px; 
 }
 	
 span {
@@ -55,8 +52,8 @@ span {
 }
 
  .item-large { 
- width: 1000px
- }
+    width: 1000px
+}
  
 .center {
     display: flex;
@@ -70,7 +67,6 @@ span {
 .right {
     display: flex;
     justify-content: flex-end;
-	padding-right: 70px;
 }
 
 a {

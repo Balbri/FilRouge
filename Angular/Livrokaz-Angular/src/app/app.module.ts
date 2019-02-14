@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { LivreDetailComponent } from './livre-detail/livre-detail.component';
 import { GestionLivresComponent } from './gestion-livres/gestion-livres.component';
 import { GestionDetailLivreComponent } from './gestion-detail-livre/gestion-detail-livre.component';
+import { DatasService } from './services/datas.service';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,9 +29,11 @@ import { GestionDetailLivreComponent } from './gestion-detail-livre/gestion-deta
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [DatasService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
