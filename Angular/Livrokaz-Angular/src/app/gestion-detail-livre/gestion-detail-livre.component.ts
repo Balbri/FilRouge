@@ -7,6 +7,7 @@ import { Genre } from '../Model/genre';
 import { Location } from '@angular/common';
 import { Livre } from '../Model/livre';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-gestion-detail-livre',
@@ -15,41 +16,77 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 })
 export class GestionDetailLivreComponent implements OnInit {
 
+  id: number;
+  idDefault = 7;
   auteurs: Auteur[] = [];
   langues: Langue[] = [];
   editeurs: Editeur[] = [];
   genres: Genre[] = [];
-  imageUrl = '';
-  leLivre: Livre;
   livreForm: FormGroup;
+  isbnInit = '';
+  titreLivreInit = '';
+  imageCouvertureInit = '';
+  anneeParutionInit = 0;
+  stockInit = 0;
+  prixNeufInit = 0;
+  prixOccasInit = 0;
+  langueInit = null;
+  editeurInit = null;
+  auteursInit = [];
+  genresInit = [];
+  sujetLivreInit = '';
+  descriptionLivreInit = '';
 
   constructor(private datasService: DatasService,
               private location: Location,
-              private formBuilder: FormBuilder) { }
+              private route: ActivatedRoute,
+              private formBuilder: FormBuilder) {}
 
   ngOnInit() {
+    this.id = +this.route.snapshot.params.id;
     this.getAuteurs();
     this.getLangues();
     this.getEditeurs();
     this.getGenres();
+    if (this.id) {
+      this.getLivreById(this.id);
+    }
     this.initForm();
   }
 
   initForm() {
     this.livreForm = this.formBuilder.group({
-      isbn: ['', Validators.required],
-      titreLivre: ['', Validators.required],
-      imageCouverture: ['', Validators.required],
-      anneeParution: ['', Validators.required],
-      stock: ['', Validators.required],
-      prixNeuf: ['', Validators.required],
-      prixOccas: ['', Validators.required],
-      langue: [null, Validators.required],
-      editeur: [null, Validators.required],
-      auteurs: this.formBuilder.array([]),
-      genres: this.formBuilder.array([]),
-      sujetLivre: ['', Validators.required],
-      descriptionLivre: ['', Validators.required]
+      isbn: [this.isbnInit, Validators.required],
+      titreLivre: [this.titreLivreInit, Validators.required],
+      imageCouverture: [this.imageCouvertureInit, Validators.required],
+      anneeParution: [this.anneeParutionInit, Validators.required],
+      stock: [this.stockInit, Validators.required],
+      prixNeuf: [this.prixNeufInit, Validators.required],
+      prixOccas: [this.prixOccasInit, Validators.required],
+      langue: [this.langueInit, Validators.required],
+      editeur: [this.editeurInit, Validators.required],
+      auteurs: this.formBuilder.array(this.auteursInit),
+      genres: this.formBuilder.array(this.genresInit),
+      sujetLivre: [this.sujetLivreInit, Validators.required],
+      descriptionLivre: [this.descriptionLivreInit, Validators.required]
+    });
+  }
+
+  getLivreById(id: number) {
+    this.datasService.findLivre(id).subscribe(livre => {
+      this.isbnInit = livre.isbn;
+      this.titreLivreInit = livre.titreLivre;
+      this.imageCouvertureInit = livre.imageCouverture;
+      this.anneeParutionInit = livre.anneeParution;
+      this.stockInit = livre.stock;
+      this.prixNeufInit = livre.prixNeuf;
+      this.prixOccasInit = livre.prixOccas;
+      this.langueInit = livre.langue;
+      this.editeurInit = livre.editeur;
+      this.auteursInit = livre.auteurs;
+      this.genresInit = livre.genres;
+      this.sujetLivreInit = livre.sujetLivre;
+      this.descriptionLivreInit = livre.descriptionLivre;
     });
   }
 
@@ -71,8 +108,11 @@ export class GestionDetailLivreComponent implements OnInit {
 
   onSave() {
     const formValue = this.livreForm.value;
+    if (this.id) {
+      this.idDefault = this.id;
+    }
     const newLivre = new Livre(
-      5,
+      this.idDefault,
       formValue['isbn'].toString(),
       formValue['titreLivre'],
       formValue['imageCouverture'],
@@ -87,8 +127,11 @@ export class GestionDetailLivreComponent implements OnInit {
       formValue['genres'] ? formValue['genres'] : [],
       formValue['auteurs'] ? formValue['auteurs'] : []
     );
-    this.datasService.createLivre(newLivre);
-    console.log(newLivre);
+    if (this.id) {
+      this.datasService.updateLivre(newLivre);
+    } else {
+      this.datasService.createLivre(newLivre);
+    }
     this.location.back();
   }
 

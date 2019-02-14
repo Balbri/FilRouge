@@ -11,13 +11,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
- 
+
 @Entity
 public class Livre {
- 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idLivre;
+	private Integer idLivre;
 	private String isbn;
 	private String titreLivre;
 	private String imageCouverture;
@@ -27,33 +27,31 @@ public class Livre {
 	private double prixNeuf;
 	private double prixOccas;
 	private int stock;
- 
-	@ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinTable(name = "livre_auteur", joinColumns = @JoinColumn(name = "idLivre"), inverseJoinColumns = @JoinColumn(name = "idAuteur"))
 	private Collection<Auteur> auteurs;
-	
-	@ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinTable(name = "livre_genre", joinColumns = @JoinColumn(name = "idLivre"), inverseJoinColumns = @JoinColumn(name = "idGenre"))
 	private Collection<Genre> genres;
-	
+
 	@ManyToOne
-	@JoinColumn(name="idLangue")
-	private Langue langue; 
-	
+	@JoinColumn(name = "idLangue")
+	private Langue langue;
+
 	@ManyToOne
-	@JoinColumn(name="idEditeur")
-	private Editeur editeur; 
-	
-	
-	
+	@JoinColumn(name = "idEditeur")
+	private Editeur editeur;
+
 	public Livre() {
 	}
 
-	public int getIdLivre() {
+	public Integer getIdLivre() {
 		return idLivre;
 	}
 
-	public void setIdLivre(int idLivre) {
+	public void setIdLivre(Integer idLivre) {
 		this.idLivre = idLivre;
 	}
 
@@ -160,5 +158,5 @@ public class Livre {
 	public void setEditeur(Editeur editeur) {
 		this.editeur = editeur;
 	}
-		
+
 }

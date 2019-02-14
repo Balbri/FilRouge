@@ -73,7 +73,7 @@ export class DatasService {
       }
       return of(this.availableLivres.find(livre => livre.idLivre === livreId));
     } else {
-      return of(new Livre(0, 0, '', '', '', '', 0, 0, 0, null, null, 0, null, null));
+      return of(new Livre(0, '', '', '', '', '', 0, 0, 0, null, null, 0, null, null));
     }
   }
 

@@ -6,7 +6,7 @@ import { Auteur } from './auteur';
 export class Livre {
 	constructor(
 		public idLivre: number,
-		public isbn: number,
+		public isbn: string,
 		public titreLivre: string,
 		public imageCouverture: string,
 		public sujetLivre: string,

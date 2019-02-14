@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'detail/:id', component: LivreDetailComponent },
   { path: 'gestion/livres', component: GestionLivresComponent },
   { path: 'gestion/livres/nouveau', component: GestionDetailLivreComponent },
+  { path: 'gestion/livres/edition/:id', component: GestionDetailLivreComponent },
   { path: '**', component: ListeComponent }
 ];
 
