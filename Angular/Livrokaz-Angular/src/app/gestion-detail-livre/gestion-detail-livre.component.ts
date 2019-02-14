@@ -36,6 +36,7 @@ export class GestionDetailLivreComponent implements OnInit {
   genresInit = [];
   sujetLivreInit = '';
   descriptionLivreInit = '';
+  dateModif = new Date();
 
   constructor(private datasService: LivresService,
               private location: Location,
@@ -124,6 +125,7 @@ export class GestionDetailLivreComponent implements OnInit {
       formValue['langue'],
       formValue['editeur'],
       +formValue['stock'],
+      this.dateModif,
       formValue['genres'] ? formValue['genres'] : [],
       formValue['auteurs'] ? formValue['auteurs'] : []
     );

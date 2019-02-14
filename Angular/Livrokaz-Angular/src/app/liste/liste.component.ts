@@ -52,7 +52,7 @@ export class ListeComponent implements OnInit {
   onSave() {
     this.livre = new Livre(1, '666', 'Germinal', 'https://images-na.ssl-images-amazon.com/images/I/51V6YDH84BL.jpg',
                       'sujet', 'description', 2000,
-                      11, 15.59, this.langues[0], this.editeurs[0], 21, [this.genres[0], this.genres[1]], [this.auteurs[0]]);
+                      11, 15.59, this.langues[0], this.editeurs[0], 21, new Date(), [this.genres[0], this.genres[1]], [this.auteurs[0]]);
     this.livresService.createLivre(this.livre);
   }
 
@@ -63,10 +63,10 @@ export class ListeComponent implements OnInit {
 
   onUpdate() {
     const idLivre: number = this.livresList.getValue()[this.livresList.getValue().length - 1].idLivre;
-    this.livre = new Livre(idLivre, '666', 'Toto',
+    this.livre = new Livre(idLivre, '77777', 'Toto',
           'https://ec56229aec51f1baff1d-185c3068e22352c56024573e929788ff.ssl.cf1.rackcdn.com/attachments/large/3/8/9/003758389.jpg',
           'sujet', 'description', 2000,
-                      8, 10, this.langues[0], this.editeurs[0], 21, [this.genres[0]], [this.auteurs[0]]);
+                      8, 10, this.langues[0], this.editeurs[0], 21, new Date(), [this.genres[0]], [this.auteurs[0]]);
     this.livresService.updateLivre(this.livre);
   }
 

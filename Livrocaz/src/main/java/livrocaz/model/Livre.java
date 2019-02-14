@@ -1,6 +1,7 @@
 package livrocaz.model;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -20,6 +21,7 @@ public class Livre {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer idLivre;
+	@Column(unique=true)
 	private String isbn;
 	private String titreLivre;
 	private String imageCouverture;
@@ -33,6 +35,7 @@ public class Livre {
 	private double prixNeuf;
 	private double prixOccas;
 	private int stock;
+	private Date dateModif;
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinTable(name = "livre_auteur", joinColumns = @JoinColumn(name = "idLivre"), inverseJoinColumns = @JoinColumn(name = "idAuteur"))
@@ -59,6 +62,14 @@ public class Livre {
 
 	public void setIdLivre(Integer idLivre) {
 		this.idLivre = idLivre;
+	}
+
+	public Date getDateModif() {
+		return dateModif;
+	}
+
+	public void setDateModif(Date dateModif) {
+		this.dateModif = dateModif;
 	}
 
 	public String getIsbn() {
