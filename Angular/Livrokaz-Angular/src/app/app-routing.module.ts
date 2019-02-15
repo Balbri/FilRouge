@@ -4,7 +4,7 @@ import { ListeComponent } from './liste/liste.component';
 import { LivreDetailComponent } from './livre-detail/livre-detail.component';
 import { GestionLivresComponent } from './gestion-livres/gestion-livres.component';
 import { GestionDetailLivreComponent } from './gestion-detail-livre/gestion-detail-livre.component';
-
+import { GestionAuteursComponent } from './gestion-auteurs/gestion-auteurs.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/liste', pathMatch: 'full' },
@@ -13,7 +13,9 @@ const routes: Routes = [
   { path: 'gestion/livres', component: GestionLivresComponent },
   { path: 'gestion/livres/nouveau', component: GestionDetailLivreComponent },
   { path: 'gestion/livres/edition/:id', component: GestionDetailLivreComponent },
-  { path: '**', component: ListeComponent }
+  { path: 'gestion/livres/auteurs/:id', component: GestionAuteursComponent},
+  { path: '**', component: ListeComponent },
+
 ];
 
 @NgModule({

@@ -13,6 +13,7 @@ import { GestionLivresComponent } from './gestion-livres/gestion-livres.componen
 import { GestionDetailLivreComponent } from './gestion-detail-livre/gestion-detail-livre.component';
 import { DatasService } from './services/datas.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { GestionAuteursComponent } from './gestion-auteurs/gestion-auteurs.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     ListeComponent,
     LivreDetailComponent,
     GestionLivresComponent,
-    GestionDetailLivreComponent
+    GestionDetailLivreComponent,
+    GestionAuteursComponent
   ],
   imports: [
     BrowserModule,
