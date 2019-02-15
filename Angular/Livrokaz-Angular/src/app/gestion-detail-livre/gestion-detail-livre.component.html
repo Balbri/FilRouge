@@ -77,7 +77,7 @@
         <div class="couverture-off mat-elevation-z8" *ngIf="!imageCouvertureInit"></div>
         <img class ="couverture mat-elevation-z8" src= {{imageCouvertureInit}} *ngIf="imageCouvertureInit">
         <mat-form-field>
-          <input matInput placeholder="Sujet" formControlName="sujetLivre">
+          <textarea matInput placeholder="Sujet" formControlName="sujetLivre"></textarea>
         </mat-form-field>
         <mat-form-field>
           <textarea matInput placeholder="Description" formControlName="descriptionLivre"></textarea>
@@ -89,5 +89,5 @@
 
 <div class="center">
   <button mat-raised-button (click)="onBack()">RETOUR</button>
-  <button mat-raised-button (click)="onSave()" [disabled]="livreForm.invalid">ENREGISTRER</button>
+  <button mat-raised-button (click)="onSave()" >ENREGISTRER</button>
 </div>

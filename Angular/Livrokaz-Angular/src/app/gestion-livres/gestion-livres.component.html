@@ -9,7 +9,7 @@
   </div>
 
   <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource">
+    <table mat-table [dataSource]="dataSource" matSort>
   
        <!-- Checkbox Column -->
     <ng-container matColumnDef="select">
@@ -25,27 +25,27 @@
     </ng-container>
   
       <ng-container matColumnDef="titre">
-        <th mat-header-cell *matHeaderCellDef> Titre </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Titre </th>
         <td mat-cell *matCellDef="let livre"> {{livre.titreLivre}} </td>
       </ng-container>
   
       <ng-container matColumnDef="annee">
-        <th mat-header-cell *matHeaderCellDef> Année </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Année </th>
         <td mat-cell *matCellDef="let livre"> {{livre.anneeParution}} </td>
       </ng-container>
   
       <ng-container matColumnDef="prixNeuf">
-        <th mat-header-cell *matHeaderCellDef> Prix neuf </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Prix neuf </th>
         <td mat-cell *matCellDef="let livre"> {{livre.prixNeuf}} </td>
       </ng-container>
   
       <ng-container matColumnDef="prixOccas">
-        <th mat-header-cell *matHeaderCellDef> Prix occas </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Prix occas </th>
         <td mat-cell *matCellDef="let livre"> {{livre.prixOccas}} </td>
       </ng-container>
   
       <ng-container matColumnDef="stock">
-        <th mat-header-cell *matHeaderCellDef> Stock </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Stock </th>
         <td mat-cell *matCellDef="let livre"> {{livre.stock}} </td>
       </ng-container>
   
@@ -54,9 +54,9 @@
   
     </table>
   
-    <mat-paginator [length]="10"
-                  [pageSize]="10"
-                  [pageSizeOptions]="[5, 10, 25, 100]">
+    <mat-paginator [length]='dataSource.data.length'
+                   [pageSize]='10'
+                   [hidePageSize]="true">
     </mat-paginator>
   </div>
 </div>

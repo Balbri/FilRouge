@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Genre } from '../Model/genre';
-import { MatTableDataSource, MatSort, MatSnackBar } from '@angular/material';
+import { MatTableDataSource, MatSort, MatSnackBar, MatPaginator } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { BehaviorSubject } from 'rxjs';
 import { GenresService } from '../services/genres.service';
@@ -16,6 +16,7 @@ export class GestionGenresComponent implements OnInit {
   displayedColumns: string[] = ['select', 'idGenre', 'nomGenre'];
   dataSource = new MatTableDataSource<Genre>();
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   selection = new SelectionModel<Genre>(false, []);
 
   genresList: BehaviorSubject<Genre[]>;
@@ -25,7 +26,8 @@ export class GestionGenresComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.dataSource.sort = this.sort;
+    setTimeout(() => this.dataSource.sort = this.sort);
+    setTimeout(() => this.dataSource.paginator = this.paginator);
     this.genresList = this.genresService.availableGenres$;
     this.genresList.subscribe(genres => this.dataSource = new MatTableDataSource<Genre>(genres));
   }
