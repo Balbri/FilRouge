@@ -19,6 +19,10 @@ import { GestionDetailLangueComponent } from './gestion-detail-langue/gestion-de
 import { GestionGenresComponent } from './gestion-genres/gestion-genres.component';
 import { GestionDetailGenreComponent } from './gestion-detail-genre/gestion-detail-genre.component';
 import { GenresService } from './services/genres.service';
+import { UsersService } from './services/users.service';
+import { GestionUsersComponent } from './gestion-users/gestion-users.component';
+import { GestionDetailUserComponent } from './gestion-detail-user/gestion-detail-user.component';
+import { AuthoritiesService } from './services/authorities.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,9 @@ import { GenresService } from './services/genres.service';
     GestionLanguesComponent,
     GestionDetailLangueComponent,
     GestionGenresComponent,
-    GestionDetailGenreComponent
+    GestionDetailGenreComponent,
+    GestionUsersComponent,
+    GestionDetailUserComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +49,7 @@ import { GenresService } from './services/genres.service';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [LivresService, LanguesService, GenresService],
+  providers: [LivresService, LanguesService, GenresService, UsersService, AuthoritiesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

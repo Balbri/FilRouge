@@ -90,7 +90,7 @@ public class AuthController {
 	 /*
 	  * Methode DELETE
 	  */
-	 @RequestMapping(value = "/admin/auth/{id}", method = RequestMethod.DELETE)
+	 @RequestMapping(value = "/admin/auths/{id}", method = RequestMethod.DELETE)
 		public ResponseEntity<?> deleteAuth(@PathVariable Integer id){
 			try {
 			authRepo.deleteById(id);

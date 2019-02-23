@@ -1,3 +1,5 @@
+import { Users } from './users';
+
 export class Client {
     constructor(
         public idClient: number,
@@ -13,5 +15,6 @@ export class Client {
         public complementF: string,
         public cpF: string,
         public villeF: string,
-        public emailClient: string) {}
+        public emailClient: string,
+        public identifiants: Users) {}
 }

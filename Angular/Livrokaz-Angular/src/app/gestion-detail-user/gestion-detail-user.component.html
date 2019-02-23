@@ -1,0 +1,27 @@
+<div class="center pad animated bounceInUp">
+  <mat-card class="center">
+    <form  class="center" [formGroup]="userForm">
+        <mat-form-field>
+          <input matInput placeholder="Identifiant" formControlName="username">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Mot de passe" formControlName="password">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="activé" formControlName="enabled">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Rôle" formControlName="authority">
+            <mat-option *ngFor="let role of rolesUniques" [value]="role">
+              {{role}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+    </form>
+  </mat-card>
+</div>
+
+<div class="center">
+  <button mat-raised-button (click)="onBack()">RETOUR</button>
+  <button mat-raised-button (click)="onSave()" [disabled]="userForm.invalid">ENREGISTRER</button>
+</div>
