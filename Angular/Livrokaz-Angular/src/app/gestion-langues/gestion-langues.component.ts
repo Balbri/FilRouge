@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatSort, MatSnackBar } from '@angular/material';
+import { MatTableDataSource, MatSort, MatSnackBar, PageEvent, MatPaginator, Sort } from '@angular/material';
 import { Langue } from '../Model/langue';
 import { SelectionModel } from '@angular/cdk/collections';
 import { BehaviorSubject } from 'rxjs';
@@ -16,16 +16,18 @@ export class GestionLanguesComponent implements OnInit {
   displayedColumns: string[] = ['select', 'idLangue', 'nomLangue'];
   dataSource = new MatTableDataSource<Langue>();
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   selection = new SelectionModel<Langue>(false, []);
 
   languesList: BehaviorSubject<Langue[]>;
 
   constructor(private languesService: LanguesService,
               private snackBar: MatSnackBar,
-              private router: Router) { }
+              private router: Router) {}
 
   ngOnInit() {
-    this.dataSource.sort = this.sort;
+    setTimeout(() => this.dataSource.sort = this.sort);
+    setTimeout(() => this.dataSource.paginator = this.paginator);
     this.languesList = this.languesService.availableLangues$;
     this.languesList.subscribe(langues => this.dataSource = new MatTableDataSource<Langue>(langues));
   }

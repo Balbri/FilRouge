@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource, MatSnackBar } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource, MatSnackBar, MatSort, MatPaginator } from '@angular/material';
 import { Livre } from '../Model/livre';
 import { SelectionModel, DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject } from 'rxjs';
@@ -16,6 +16,8 @@ export class GestionLivresComponent implements OnInit {
   displayedColumns: string[] = ['select', 'titre', 'annee', 'prixNeuf', 'prixOccas', 'stock'];
   dataSource = new MatTableDataSource<Livre>();
   selection = new SelectionModel<Livre>(false, []);
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   livresList: BehaviorSubject<Livre[]>;
 
@@ -24,6 +26,8 @@ export class GestionLivresComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    setTimeout(() => this.dataSource.sort = this.sort);
+    setTimeout(() => this.dataSource.paginator = this.paginator);
     this.livresList = this.livresService.availableLivres$;
     this.livresList.subscribe(livres => this.dataSource = new MatTableDataSource<Livre>(livres));
     console.log(this.livresList);

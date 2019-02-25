@@ -3,6 +3,8 @@ import 'hammerjs';
 import { LivresService } from './services/livres.service';
 import { LanguesService } from './services/langues.service';
 import { GenresService } from './services/genres.service';
+import { UsersService } from './services/users.service';
+import { AuthoritiesService } from './services/authorities.service';
 
 @Component({
   selector: 'app-root',
@@ -14,11 +16,15 @@ export class AppComponent implements OnInit {
 
   constructor(private livresService: LivresService,
               private languesService: LanguesService,
-              private genresService: GenresService) {}
+              private genresService: GenresService,
+              private usersService: UsersService,
+              private authoritiesService: AuthoritiesService) {}
 
   ngOnInit() {
     this.livresService.publishLivres();
     this.languesService.publishLangues();
     this.genresService.publishGenres();
+    this.usersService.publishUsers();
+    this.authoritiesService.publishAuthorities();
   }
 }

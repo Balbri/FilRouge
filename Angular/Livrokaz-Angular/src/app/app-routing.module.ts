@@ -9,6 +9,8 @@ import { GestionLanguesComponent } from './gestion-langues/gestion-langues.compo
 import { GestionDetailLangueComponent } from './gestion-detail-langue/gestion-detail-langue.component';
 import { GestionGenresComponent } from './gestion-genres/gestion-genres.component';
 import { GestionDetailGenreComponent } from './gestion-detail-genre/gestion-detail-genre.component';
+import { GestionUsersComponent } from './gestion-users/gestion-users.component';
+import { GestionDetailUserComponent } from './gestion-detail-user/gestion-detail-user.component';
 
 
 const routes: Routes = [
@@ -27,6 +29,10 @@ const routes: Routes = [
   { path: 'gestion/livres/auteurs/:id', component: GestionAuteursComponent},
   { path: '**', component: ListeComponent },
 
+  { path: 'gestion/users', component: GestionUsersComponent },
+  { path: 'gestion/users/nouveau', component: GestionDetailUserComponent },
+  { path: 'gestion/users/edition/:username', component: GestionDetailUserComponent },
+  { path: '**', component: ListeComponent }
 ];
 
 @NgModule({

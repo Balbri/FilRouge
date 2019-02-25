@@ -8,6 +8,8 @@ import { Location } from '@angular/common';
 import { Livre } from '../Model/livre';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+import { LanguesService } from '../services/langues.service';
 
 @Component({
   selector: 'app-gestion-detail-livre',
@@ -38,7 +40,10 @@ export class GestionDetailLivreComponent implements OnInit {
   descriptionLivreInit = '';
   dateModif = new Date();
 
+  langueList: BehaviorSubject<Langue[]>;
+
   constructor(private livresService: LivresService,
+              private languesService: LanguesService,
               private location: Location,
               private route: ActivatedRoute,
               private formBuilder: FormBuilder) {}
@@ -51,11 +56,13 @@ export class GestionDetailLivreComponent implements OnInit {
     this.getGenres();
     if (this.id) {
       this.getLivreById(this.id);
+    } else {
+      this.initForm();
     }
-    this.initForm();
   }
 
   initForm() {
+    console.log(this.langueInit);
     this.livreForm = this.formBuilder.group({
       isbn: [this.isbnInit, Validators.required],
       titreLivre: [this.titreLivreInit, Validators.required],
@@ -88,11 +95,16 @@ export class GestionDetailLivreComponent implements OnInit {
       this.genresInit = livre.genres;
       this.sujetLivreInit = livre.sujetLivre;
       this.descriptionLivreInit = livre.descriptionLivre;
+      this.initForm();
     });
   }
 
   getLangues() {
-    this.livresService.getLangues().subscribe(langues => this.langues = langues);
+    this.langueList = this.languesService.availableLangues$;
+    this.langueList.subscribe(langues => {
+      console.log(langues);
+      this.langueInit = langues.find(langue => langue.idLangue === this.langueInit.idLangue);
+    });
   }
 
   getEditeurs() {

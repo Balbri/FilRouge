@@ -81,9 +81,11 @@ public class App implements CommandLineRunner {
         genreRepo.deleteAll();
         langueRepo.deleteAll();
         editeurRepo.deleteAll();
-        AuthRepo.deleteAll();
-        userRepo.deleteAll();
-        AuthRepo.deleteAll();        
+        AuthRepo.deleteAll(); 
+        userRepo.deleteAll(); 
+         
+        
+             
 
         //.....etc........//
 
@@ -172,34 +174,41 @@ public class App implements CommandLineRunner {
       us1.setUsername("toto33");
       us1.setPassword("{bcrypt}$2a$04$3oa5XGzGArd2DnRv3.ax7OxGxnvCisSuWWGxYM2xNE99UFLCgQXYS");
       us1.setEnabled(1);
-      userRepo.save(us1);
       
       Users us2 = new Users();
       us2.setUsername("Riri77");
       us2.setPassword("{bcrypt}$2a$04$CZsnHi2Jg/Z0dmBWEE3BKehk9MkLQsQAMtVgsepayT1WdIEx5GTIq");
       us2.setEnabled(1);
-      userRepo.save(us2);
       
       Users us3 = new Users();
       us3.setUsername("Loulou88");
-      us3.setPassword("{bcrypt}$2a$04$L81ltvjTKE57lMNPMC3TQeDAPtTBmoxcclRsfDVt.u7uUCHHLSmMO");
+      us3.setPassword("{noop}simplon");
       us3.setEnabled(1);
-      userRepo.save(us3);
+      
       
       Authorities rol = new Authorities();
-      rol.setUsers(us1);
       rol.setAuthority("INSCRIT");
+      rol.setUsername(us1.getUsername());
+      us1.setAuthority(rol.getAuthority());
       AuthRepo.save(rol);
+      userRepo.save(us1);
+      
       
       Authorities rol2 = new Authorities();
-      rol2.setUsers(us2);
       rol2.setAuthority("GESTIONNAIRE");
+      rol2.setUsername(us2.getUsername());
+      us2.setAuthority(rol2.getAuthority());
       AuthRepo.save(rol2);
+      userRepo.save(us2);
+      
       
       Authorities rol3 = new Authorities();
-      rol3.setUsers(us3);
       rol3.setAuthority("ADMIN");
+      rol3.setUsername(us3.getUsername());
+      us3.setAuthority(rol3.getAuthority());
       AuthRepo.save(rol3);
+      userRepo.save(us3);
+      
       
       Client c1 = new Client("toto", "tata", 1, "Rue Hoche", "Bat A", 75000, "Paris", "toto@toto", us1);
       clientRepo.save(c1);

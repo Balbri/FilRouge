@@ -88,9 +88,9 @@ export class LivresService {
       },
       error => {
         // popu-up erreur
-      this.snackBar.open('Le livre n\'as pas pu être créé', 'ERREUR', {
-        duration: 2000,
-      });
+        this.snackBar.open('Le livre n\'a pas pu être créé', 'ERREUR', {
+          duration: 2000,
+        });
       }
     );
   }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -39,12 +40,12 @@ public class UsersController {
 /*
  * Methode get par ID
  */
-	@RequestMapping(value = "/admin/users/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> getUser(@PathVariable Integer id){
+	@RequestMapping(value = "/admin/users/{username}", method = RequestMethod.GET)
+	public ResponseEntity<?> getUser(@PathVariable String username){
 		Optional<Users> user = null;
 				
 		try {
-			user =(userRepo.findById(id));
+			user =(userRepo.findByUsername(username));
 			
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
@@ -63,6 +64,10 @@ public class UsersController {
 	public ResponseEntity<?> addUser(@RequestBody Users user){
 		 Users resultUser = null;				
 		try {
+			// cryptage mot de passe avant sauvegarde dans BDD
+			BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+			user.setPassword("{bcrypt}" + bcrypt.encode(user.getPassword()));
+			
 			resultUser = userRepo.saveAndFlush(user);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
@@ -79,8 +84,18 @@ public class UsersController {
 	    @ResponseBody
 	    public ResponseEntity<?> modifyUser(@RequestBody Users user) {
 	        Users useramodifier = null;
+	        String userPassword = null;
 	        try {
-	           useramodifier = userRepo.saveAndFlush(user);
+	        	userPassword = user.getPassword();
+	        	
+	        	// Si le MdP n'est pas déjà encrypté
+	        	if (!userPassword.startsWith("{bcrypt}")) {
+	        		// cryptage mot de passe avant sauvegarde dans BDD
+					BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+					user.setPassword("{bcrypt}" + bcrypt.encode(user.getPassword()));
+	        	}
+	        	
+	            useramodifier = userRepo.saveAndFlush(user);
 	        } catch (Exception e) {
 	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 	        }
@@ -92,12 +107,14 @@ public class UsersController {
 	  */
 	 @RequestMapping(value = "/admin/users/{id}", method = RequestMethod.DELETE)
 		public ResponseEntity<?> deleteUser(@PathVariable Integer id){
+		 	Users userToDelete = null;
 			try {
-			userRepo.deleteById(id);
+				userToDelete = userRepo.findById(id).get();
+				userRepo.deleteById(id);
 			} catch (Exception e) {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 			}
 			
-			return ResponseEntity.status(HttpStatus.OK).body(null);
+			return ResponseEntity.status(HttpStatus.OK).body(userToDelete);
 		}
 }
