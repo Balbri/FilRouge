@@ -1,7 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource, MatSort, MatPaginator, MatSnackBar } from '@angular/material';
+import { Auteur } from '../Model/auteur';
+import { SelectionModel } from '@angular/cdk/collections';
+import { BehaviorSubject } from 'rxjs';
+import { AuteursService } from '../services/auteurs.service';
+import { Router } from '@angular/router';
 
-import { ActivatedRoute } from '@angular/router';
-import { FormBuilder } from '@angular/forms';
+
 
 @Component({
   selector: 'app-gestion-auteurs',
@@ -10,38 +15,41 @@ import { FormBuilder } from '@angular/forms';
 })
 export class GestionAuteursComponent implements OnInit {
 
+  displayedColumns: string[] = ['select', 'idAuteur', 'nameAuteur', 'surnameAuteur'];
+  dataSource = new MatTableDataSource<Auteur>();
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  selection = new SelectionModel<Auteur>(false, []);
 
-idAuteur:number;
-idDefault:7;
-nomAuteurInit:string;
-prenomAuteurInit: string;
+  auteursList: BehaviorSubject<Auteur[]>;
 
-
-  constructor( 
-            private auteurService: DatasService,
-            private location: Location,
-            private route: ActivatedRoute,
-            private formBuilder: FormBuilder) { }
+  constructor(private auteursService: AuteursService,
+              private snackBar: MatSnackBar,
+              private router: Router) {}
 
   ngOnInit() {
-    this.idAuteur = +this.route.snapshot.params.id;
-    if (this.idAuteur) {
-      this.getAuteurById(this.idAuteur);
-    }
-    this.initForm();
+    setTimeout(() => this.dataSource.sort = this.sort);
+    setTimeout(() => this.dataSource.paginator = this.paginator);
+    this.auteursList = this.auteursService.availableAuteurs$;
+    this.auteursList.subscribe(auteurs => this.dataSource = new MatTableDataSource<Auteur>(auteurs));
+    console.log(this.auteursList);
   }
 
-  initForm() {
-    this.auteurForm = this.formBuilder.group({
-      nomAuteur: [this.nomAuteurInit, Validators.required],
-      prenomAuteur: [this.prenomAuteurInit, Validators.required]
-    });
+  onEdit(selected: Auteur[]) {
+    if (selected.length !== 0) {
+      this.router.navigate(['gestion/auteurs/edition/' + selected[0].idAuteur]);
+    }
   }
-  getAuteurById(id: number) {
-    this.auteurService.findAuteur(id).subscribe(auteur => {
-     
-      this.nomAuteurInit = auteur.nameAuteur;
-      this.prenomAuteurInit = auteur.surnameAuteur;
-    });
-}
+
+  onDelete(selected: Auteur[]) {
+    if (selected.length !== 0) {
+      this.auteursService.deleteAuteur(selected[0].idAuteur);
+      // popu-up suppression
+      this.snackBar.open(selected[0].nameAuteur +' '+  selected[0].surnameAuteur + ' ', 'supprimé', {
+        duration: 2000,
+      });
+      this.selection = new SelectionModel<Auteur>(false, []);
+    }
+  }
+
 }

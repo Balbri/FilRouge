@@ -46,6 +46,7 @@ export class GestionLivresComponent implements OnInit {
       this.snackBar.open(selected[0].titreLivre, 'Supprimé', {
         duration: 2000,
       });
+      this.selection = new SelectionModel<Livre>(false, []);
     }
   }
 

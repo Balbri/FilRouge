@@ -45,6 +45,7 @@ export class GestionLanguesComponent implements OnInit {
       this.snackBar.open(selected[0].nomLangue, 'Supprimé', {
         duration: 2000,
       });
+      this.selection = new SelectionModel<Langue>(false, []);
     }
   }
 

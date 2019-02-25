@@ -13,7 +13,6 @@ import { ListeComponent } from './liste/liste.component';
 import { LivreDetailComponent } from './livre-detail/livre-detail.component';
 import { GestionLivresComponent } from './gestion-livres/gestion-livres.component';
 import { GestionDetailLivreComponent } from './gestion-detail-livre/gestion-detail-livre.component';
-import { LivresService } from './services/livres.service';
 import { GestionAuteursComponent } from './gestion-auteurs/gestion-auteurs.component';
 import { GestionLanguesComponent } from './gestion-langues/gestion-langues.component';
 import { GestionDetailLangueComponent } from './gestion-detail-langue/gestion-detail-langue.component';
@@ -21,6 +20,9 @@ import { GestionGenresComponent } from './gestion-genres/gestion-genres.componen
 import { GestionDetailGenreComponent } from './gestion-detail-genre/gestion-detail-genre.component';
 import { GestionUsersComponent } from './gestion-users/gestion-users.component';
 import { GestionDetailUserComponent } from './gestion-detail-user/gestion-detail-user.component';
+import { GestionDetailAuteurComponent } from './gestion-detail-auteur/gestion-detail-auteur.component';
+import { GestionEditeursComponent } from './gestion-editeurs/gestion-editeurs.component';
+import { GestionDetailEditeurComponent } from './gestion-detail-editeur/gestion-detail-editeur.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,10 @@ import { GestionDetailUserComponent } from './gestion-detail-user/gestion-detail
     GestionGenresComponent,
     GestionDetailGenreComponent,
     GestionUsersComponent,
-    GestionDetailUserComponent
+    GestionDetailUserComponent,
+    GestionDetailAuteurComponent,
+    GestionEditeursComponent,
+    GestionDetailEditeurComponent
   ],
   imports: [
     BrowserModule,

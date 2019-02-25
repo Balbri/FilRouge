@@ -50,6 +50,7 @@ export class GestionUsersComponent implements OnInit {
         const authToDelete = authorities.find(authority => authority.username === selected[0].username);
         this.authoritiesService.deleteAuthority(authToDelete.idAuth);
       });
+      this.selection = new SelectionModel<Users>(false, []);
     }
   }
 

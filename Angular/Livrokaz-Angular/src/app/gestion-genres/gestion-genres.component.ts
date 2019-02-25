@@ -45,6 +45,7 @@ export class GestionGenresComponent implements OnInit {
       this.snackBar.open(selected[0].nomGenre, 'Supprimé', {
         duration: 2000,
       });
+      this.selection = new SelectionModel<Genre>(false, []);
     }
   }
 

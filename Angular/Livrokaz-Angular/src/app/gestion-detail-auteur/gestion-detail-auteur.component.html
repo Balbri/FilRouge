@@ -1,0 +1,17 @@
+<div class="center pad animated bounceInUp">
+  <mat-card class="center">
+    <form  class="center" [formGroup]="auteurForm">
+        <mat-form-field>
+          <input matInput placeholder="Nom de l'auteur" formControlName="nameAuteur">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Prénom de l'auteur" formControlName="surnameAuteur">
+        </mat-form-field>
+    </form>
+  </mat-card>
+</div>
+
+<div class="center">
+  <button mat-raised-button (click)="onBack()">RETOUR</button>
+  <button mat-raised-button (click)="onSave()" [disabled]="auteurForm.invalid">ENREGISTRER</button>
+</div>
