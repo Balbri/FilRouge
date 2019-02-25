@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import 'hammerjs';
-import { DatasService } from './services/datas.service';
+import { LivresService } from './services/livres.service';
+import { LanguesService } from './services/langues.service';
+import { GenresService } from './services/genres.service';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +12,13 @@ import { DatasService } from './services/datas.service';
 export class AppComponent implements OnInit {
   title = 'LivrOkaz';
 
-  constructor(private datasService: DatasService) {}
+  constructor(private livresService: LivresService,
+              private languesService: LanguesService,
+              private genresService: GenresService) {}
 
   ngOnInit() {
-    this.datasService.publishLivres();
+    this.livresService.publishLivres();
+    this.languesService.publishLangues();
+    this.genresService.publishGenres();
   }
 }

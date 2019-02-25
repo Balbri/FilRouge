@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DatasService } from '../services/datas.service';
+
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 
@@ -13,8 +13,8 @@ export class GestionAuteursComponent implements OnInit {
 
 idAuteur:number;
 idDefault:7;
-nomAuteur:string;
-prenomAuteur: string;
+nomAuteurInit:string;
+prenomAuteurInit: string;
 
 
   constructor( 
@@ -25,6 +25,23 @@ prenomAuteur: string;
 
   ngOnInit() {
     this.idAuteur = +this.route.snapshot.params.id;
+    if (this.idAuteur) {
+      this.getAuteurById(this.idAuteur);
+    }
+    this.initForm();
   }
 
+  initForm() {
+    this.auteurForm = this.formBuilder.group({
+      nomAuteur: [this.nomAuteurInit, Validators.required],
+      prenomAuteur: [this.prenomAuteurInit, Validators.required]
+    });
+  }
+  getAuteurById(id: number) {
+    this.auteurService.findAuteur(id).subscribe(auteur => {
+     
+      this.nomAuteurInit = auteur.nameAuteur;
+      this.prenomAuteurInit = auteur.surnameAuteur;
+    });
+}
 }

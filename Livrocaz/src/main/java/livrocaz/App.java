@@ -113,7 +113,7 @@ public class App implements CommandLineRunner {
        robots.setPrixOccas(3);
        robots.setStock(10);
        robots.setSujetLivre("Sujet de robots");
-       robots.setTitreLivre("robots");
+       robots.setTitreLivre("Robots");
        robots.setImageCouverture("https://media.senscritique.com/media/000000171713/source_big/Les_Robots_Le_Cycle_des_robots_tome_1.jpg");
        robots=livreRepo.save(robots);
 

@@ -17,6 +17,7 @@ export class Livre {
 		public langue: Langue,
 		public editeur: Editeur,
 		public stock: number,
+		public dateModif: Date,
 		public genres: Genre[],
 		public auteurs: Auteur[]) {}
 }

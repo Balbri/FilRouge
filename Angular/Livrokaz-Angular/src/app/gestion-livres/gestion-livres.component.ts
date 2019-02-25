@@ -3,8 +3,8 @@ import { MatTableDataSource, MatSnackBar } from '@angular/material';
 import { Livre } from '../Model/livre';
 import { SelectionModel, DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject } from 'rxjs';
-import { DatasService } from '../services/datas.service';
 import { Router } from '@angular/router';
+import { LivresService } from '../services/livres.service';
 
 @Component({
   selector: 'app-gestion-livres',
@@ -19,23 +19,25 @@ export class GestionLivresComponent implements OnInit {
 
   livresList: BehaviorSubject<Livre[]>;
 
-  constructor(private datasService: DatasService,
+  constructor(private livresService: LivresService,
               private snackBar: MatSnackBar,
               private router: Router) { }
 
   ngOnInit() {
-    this.livresList = this.datasService.availableLivres$;
+    this.livresList = this.livresService.availableLivres$;
     this.livresList.subscribe(livres => this.dataSource = new MatTableDataSource<Livre>(livres));
     console.log(this.livresList);
   }
 
   onEdit(selected: Livre[]) {
-    this.router.navigate(['gestion/livres/edition/' + selected[0].idLivre]);
+    if (selected.length !== 0) {
+      this.router.navigate(['gestion/livres/edition/' + selected[0].idLivre]);
+    }
   }
 
   onDelete(selected: Livre[]) {
     if (selected.length !== 0) {
-      this.datasService.deleteLivre(selected[0].idLivre);
+      this.livresService.deleteLivre(selected[0].idLivre);
       // popu-up suppression
       this.snackBar.open(selected[0].titreLivre, 'Supprimé', {
         duration: 2000,

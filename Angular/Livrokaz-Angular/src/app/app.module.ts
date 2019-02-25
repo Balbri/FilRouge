@@ -11,9 +11,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { LivreDetailComponent } from './livre-detail/livre-detail.component';
 import { GestionLivresComponent } from './gestion-livres/gestion-livres.component';
 import { GestionDetailLivreComponent } from './gestion-detail-livre/gestion-detail-livre.component';
-import { DatasService } from './services/datas.service';
+import { LivresService } from './services/livres.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { GestionAuteursComponent } from './gestion-auteurs/gestion-auteurs.component';
+import { GestionLanguesComponent } from './gestion-langues/gestion-langues.component';
+import { LanguesService } from './services/langues.service';
+import { GestionDetailLangueComponent } from './gestion-detail-langue/gestion-detail-langue.component';
+import { GestionGenresComponent } from './gestion-genres/gestion-genres.component';
+import { GestionDetailGenreComponent } from './gestion-detail-genre/gestion-detail-genre.component';
+import { GenresService } from './services/genres.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +30,11 @@ import { GestionAuteursComponent } from './gestion-auteurs/gestion-auteurs.compo
     LivreDetailComponent,
     GestionLivresComponent,
     GestionDetailLivreComponent,
-    GestionAuteursComponent
+    GestionAuteursComponent,
+    GestionLanguesComponent,
+    GestionDetailLangueComponent,
+    GestionGenresComponent,
+    GestionDetailGenreComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +45,7 @@ import { GestionAuteursComponent } from './gestion-auteurs/gestion-auteurs.compo
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [DatasService],
+  providers: [LivresService, LanguesService, GenresService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
