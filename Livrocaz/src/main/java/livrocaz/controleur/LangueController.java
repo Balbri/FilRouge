@@ -92,12 +92,14 @@ public class LangueController {
 	  */
 	 @RequestMapping(value = "/langues/{id}", method = RequestMethod.DELETE)
 		public ResponseEntity<?> deleteLangue(@PathVariable Integer id){
+		 Langue langueToDelete = null;
 			try {
+				langueToDelete = langueRepo.findById(id).get();
 			langueRepo.deleteById(id);
 			} catch (Exception e) {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 			}
 			
-			return ResponseEntity.status(HttpStatus.OK).body(null);
+			return ResponseEntity.status(HttpStatus.OK).body(langueToDelete);
 		}
 }

@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import livrocaz.model.Livre;
 import livrocaz.repository.LivreRepository;
 
@@ -115,12 +114,14 @@ public class LivreController {
 	  */
 	 @RequestMapping(value = "/livres/{id}", method = RequestMethod.DELETE)
 		public ResponseEntity<?> deleteLivre(@PathVariable Integer id){
+		 	Livre livreToDelete = null;
 			try {
-			livreRepo.deleteById(id);
+				livreToDelete = livreRepo.findById(id).get();
+				livreRepo.deleteById(id);
 			} catch (Exception e) {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 			}
 			
-			return ResponseEntity.status(HttpStatus.OK).body(null);
+			return ResponseEntity.status(HttpStatus.OK).body(livreToDelete);
 		}
 }

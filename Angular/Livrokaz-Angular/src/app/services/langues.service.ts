@@ -3,6 +3,7 @@ import { Langue } from '../Model/langue';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class LanguesService {
 
   availableLangues$: BehaviorSubject<Langue[]> = new BehaviorSubject(this.availableLangues);
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private snackBar: MatSnackBar) {}
 
   private getLangues(): Observable<Langue[]> {
     return this.httpClient.get<Langue[]>('http://localhost:8080/api/langues');
@@ -80,6 +81,10 @@ export class LanguesService {
       deleteLangue => {
         this.availableLangues.splice(this.availableLangues.indexOf(this.availableLangues.find(langue => langue.idLangue === id)), 1);
         this.availableLangues$.next(this.availableLangues);
+        // pop-up suppression
+        this.snackBar.open(deleteLangue.nomLangue, 'Supprimé', {
+          duration: 2000,
+        });
       }
     );
   }

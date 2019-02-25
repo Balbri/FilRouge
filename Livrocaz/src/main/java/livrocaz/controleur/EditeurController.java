@@ -92,12 +92,14 @@ public class EditeurController {
 	  */
 	 @RequestMapping(value = "/editeurs/{id}", method = RequestMethod.DELETE)
 		public ResponseEntity<?> deleteEditeur(@PathVariable Integer id){
+		 Editeur editeurToDelete = null;
 			try {
+				editeurToDelete = editeurRepo.findById(id).get();
 				editeurRepo.deleteById(id);
 			} catch (Exception e) {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 			}
 			
-			return ResponseEntity.status(HttpStatus.OK).body(null);
+			return ResponseEntity.status(HttpStatus.OK).body(editeurToDelete);
 		}
 }

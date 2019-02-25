@@ -41,10 +41,6 @@ export class GestionLanguesComponent implements OnInit {
   onDelete(selected: Langue[]) {
     if (selected.length !== 0) {
       this.languesService.deleteLangue(selected[0].idLangue);
-      // popu-up suppression
-      this.snackBar.open(selected[0].nomLangue, 'Supprimé', {
-        duration: 2000,
-      });
     }
   }
 

@@ -117,6 +117,10 @@ export class LivresService {
       deleteLivre => {
         this.availableLivres.splice(this.availableLivres.indexOf(this.availableLivres.find(livre => livre.idLivre === id)), 1);
         this.availableLivres$.next(this.availableLivres);
+        // pop-up suppression
+        this.snackBar.open(deleteLivre.titreLivre, 'Supprimé', {
+          duration: 2000,
+        });
       }
     );
   }

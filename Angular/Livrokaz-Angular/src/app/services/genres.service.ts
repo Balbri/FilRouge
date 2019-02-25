@@ -3,6 +3,7 @@ import { Genre } from '../Model/genre';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class GenresService {
 
   availableGenres$: BehaviorSubject<Genre[]> = new BehaviorSubject(this.availableGenres);
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private snackBar: MatSnackBar) {}
 
   private getGenres(): Observable<Genre[]> {
     return this.httpClient.get<Genre[]>('http://localhost:8080/api/genres');
@@ -80,6 +81,10 @@ export class GenresService {
       deleteGenre => {
         this.availableGenres.splice(this.availableGenres.indexOf(this.availableGenres.find(genre => genre.idGenre === id)), 1);
         this.availableGenres$.next(this.availableGenres);
+        // pop-up suppression
+        this.snackBar.open(deleteGenre.nomGenre, 'Supprimé', {
+          duration: 2000,
+        });
       }
     );
   }

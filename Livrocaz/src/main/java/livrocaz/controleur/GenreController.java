@@ -92,12 +92,14 @@ public class GenreController {
 	  */
 	 @RequestMapping(value = "/genres/{id}", method = RequestMethod.DELETE)
 		public ResponseEntity<?> deleteGenre(@PathVariable Integer id){
+		 	Genre genreToDelete = null;
 			try {
+				genreToDelete = genreRepo.findById(id).get();
 				genreRepo.deleteById(id);
 			} catch (Exception e) {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 			}
 			
-			return ResponseEntity.status(HttpStatus.OK).body(null);
+			return ResponseEntity.status(HttpStatus.OK).body(genreToDelete);
 		}
 }

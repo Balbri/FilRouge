@@ -75,13 +75,15 @@ public class AuteurController {
 		  */
 		 @RequestMapping(value = "/auteurs/{id}", method = RequestMethod.DELETE)
 			public ResponseEntity<?> deleteLivre(@PathVariable Integer id){
+			 	Auteur auteurToDelete = null;
 				try {
-				auteurRepo.deleteById(id);
+					auteurToDelete = auteurRepo.findById(id).get();
+					auteurRepo.deleteById(id);
 				} catch (Exception e) {
 					return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 				}
 				
-				return ResponseEntity.status(HttpStatus.OK).body(null);
+				return ResponseEntity.status(HttpStatus.OK).body(auteurToDelete);
 			}
 }
 

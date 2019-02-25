@@ -6,6 +6,8 @@ import { GenresService } from './services/genres.service';
 import { UsersService } from './services/users.service';
 import { AuthoritiesService } from './services/authorities.service';
 import { ClientsService } from './services/clients.service';
+import { AuteursService} from './services/auteurs.service';
+import { EditeursService} from './services/editeurs.service';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +15,7 @@ import { ClientsService } from './services/clients.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+
   title = 'LivrOkaz';
 
   constructor(private livresService: LivresService,
@@ -20,7 +23,10 @@ export class AppComponent implements OnInit {
               private genresService: GenresService,
               private usersService: UsersService,
               private authoritiesService: AuthoritiesService,
-              private clientsService: ClientsService) {}
+              private clientsService: ClientsService,
+              private auteursService: AuteursService,
+              private editeursService: EditeursService
+              ) {}
 
   ngOnInit() {
     this.livresService.publishLivres();
@@ -29,5 +35,7 @@ export class AppComponent implements OnInit {
     this.usersService.publishUsers();
     this.authoritiesService.publishAuthorities();
     this.clientsService.publishClients();
+    this.editeursService.publishEditeurs();
+    this.auteursService.publishAuteurs();
   }
 }

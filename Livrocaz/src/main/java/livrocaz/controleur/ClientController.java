@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import livrocaz.model.Client;
-import livrocaz.model.Users;
 import livrocaz.repository.ClientRepository;
 
 

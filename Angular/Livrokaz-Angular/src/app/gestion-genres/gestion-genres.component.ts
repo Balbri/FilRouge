@@ -41,10 +41,6 @@ export class GestionGenresComponent implements OnInit {
   onDelete(selected: Genre[]) {
     if (selected.length !== 0) {
       this.genresService.deleteGenre(selected[0].idGenre);
-      // popu-up suppression
-      this.snackBar.open(selected[0].nomGenre, 'Supprimé', {
-        duration: 2000,
-      });
     }
   }
 

@@ -42,10 +42,6 @@ export class GestionLivresComponent implements OnInit {
   onDelete(selected: Livre[]) {
     if (selected.length !== 0) {
       this.livresService.deleteLivre(selected[0].idLivre);
-      // popu-up suppression
-      this.snackBar.open(selected[0].titreLivre, 'Supprimé', {
-        duration: 2000,
-      });
     }
   }
 
