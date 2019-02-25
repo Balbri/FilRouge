@@ -5,6 +5,7 @@ import { LanguesService } from './services/langues.service';
 import { GenresService } from './services/genres.service';
 import { UsersService } from './services/users.service';
 import { AuthoritiesService } from './services/authorities.service';
+import { ClientsService } from './services/clients.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,8 @@ export class AppComponent implements OnInit {
               private languesService: LanguesService,
               private genresService: GenresService,
               private usersService: UsersService,
-              private authoritiesService: AuthoritiesService) {}
+              private authoritiesService: AuthoritiesService,
+              private clientsService: ClientsService) {}
 
   ngOnInit() {
     this.livresService.publishLivres();
@@ -26,5 +28,6 @@ export class AppComponent implements OnInit {
     this.genresService.publishGenres();
     this.usersService.publishUsers();
     this.authoritiesService.publishAuthorities();
+    this.clientsService.publishClients();
   }
 }

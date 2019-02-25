@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import livrocaz.model.Client;
+import livrocaz.model.Users;
 import livrocaz.repository.ClientRepository;
 
 
@@ -92,12 +93,14 @@ public class ClientController {
 	  */
 	 @RequestMapping(value = "/admin/clients/{id}", method = RequestMethod.DELETE)
 		public ResponseEntity<?> deleteClient(@PathVariable Integer id){
+		 	Client clientToDelete = null;
 			try {
-			clientRepo.deleteById(id);
+				clientToDelete = clientRepo.findById(id).get();
+				clientRepo.deleteById(id);
 			} catch (Exception e) {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 			}
 			
-			return ResponseEntity.status(HttpStatus.OK).body(null);
+			return ResponseEntity.status(HttpStatus.OK).body(clientToDelete);
 		}
 }
