@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import livrocaz.model.Client;
+import livrocaz.model.Users;
 import livrocaz.repository.ClientRepository;
 
 
@@ -61,8 +63,15 @@ public class ClientController {
  */
 	 @RequestMapping(value = "/admin/clients", method = RequestMethod.POST, produces= "application/json", consumes = MediaType.APPLICATION_JSON_VALUE )
 	public ResponseEntity<?> addClient(@RequestBody Client client){
-		Client resultClient = null;				
+		Client resultClient = null;	
+		Users userClient = null;
 		try {
+			// cryptage mot de passe avant sauvegarde dans BDD
+			BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+			userClient = client.getUsers();
+			userClient.setPassword("{bcrypt}" + bcrypt.encode(userClient.getPassword()));
+			client.setUsers(userClient);
+			
 			resultClient = clientRepo.saveAndFlush(client);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
@@ -79,7 +88,20 @@ public class ClientController {
 	    @ResponseBody
 	    public ResponseEntity<?> modifyClient(@RequestBody Client client) {
 	        Client clientamodifier = null;
+	        Users userClient = null;
+	        String userPassword = null;
 	        try {
+	        	userClient = client.getUsers();
+	        	userPassword = userClient.getPassword();
+	        	
+	        	// Si le MdP n'est pas déjà encrypté
+	        	if (!userPassword.startsWith("{bcrypt}")) {
+	        		// cryptage mot de passe avant sauvegarde dans BDD
+					BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+					userClient.setPassword("{bcrypt}" + bcrypt.encode(userClient.getPassword()));
+					client.setUsers(userClient);
+	        	}
+	        	
 	           clientamodifier = clientRepo.saveAndFlush(client);
 	        } catch (Exception e) {
 	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());

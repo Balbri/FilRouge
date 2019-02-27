@@ -1,5 +1,6 @@
 package livrocaz.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,8 +32,9 @@ public class Client {
 	private String villeF;
 	private String emailClient;
 	
-	@OneToOne
-	@JoinColumn(name = "username")
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idUser")
 	private Users users;
 
 	public Client() {

@@ -14,6 +14,8 @@ import { GestionDetailUserComponent } from './gestion-detail-user/gestion-detail
 import { GestionDetailAuteurComponent} from './gestion-detail-auteur/gestion-detail-auteur.component';
 import { GestionEditeursComponent} from './gestion-editeurs/gestion-editeurs.component';
 import { GestionDetailEditeurComponent} from './gestion-detail-editeur/gestion-detail-editeur.component';
+import { GestionClientsComponent } from './gestion-clients/gestion-clients.component';
+import { GestionDetailClientComponent } from './gestion-detail-client/gestion-detail-client.component';
 
 
 const routes: Routes = [
@@ -36,8 +38,9 @@ const routes: Routes = [
   { path: 'gestion/editeurs', component: GestionEditeursComponent},
   { path: 'gestion/editeurs/nouveau', component: GestionDetailEditeurComponent },
   { path: 'gestion/editeurs/edition/:id', component: GestionDetailEditeurComponent },
-  { path: '**', component: ListeComponent },
-  
+  { path: 'gestion/clients', component: GestionClientsComponent },
+  { path: 'gestion/clients/nouveau', component: GestionDetailClientComponent },
+  { path: 'gestion/clients/edition/:id', component: GestionDetailClientComponent },
   { path: 'gestion/users', component: GestionUsersComponent },
   { path: 'gestion/users/nouveau', component: GestionDetailUserComponent },
   { path: 'gestion/users/edition/:username', component: GestionDetailUserComponent },

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { GenresService } from '../services/genres.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Users } from '../Model/users';

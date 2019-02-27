@@ -23,6 +23,8 @@ import { GestionDetailUserComponent } from './gestion-detail-user/gestion-detail
 import { GestionDetailAuteurComponent } from './gestion-detail-auteur/gestion-detail-auteur.component';
 import { GestionEditeursComponent } from './gestion-editeurs/gestion-editeurs.component';
 import { GestionDetailEditeurComponent } from './gestion-detail-editeur/gestion-detail-editeur.component';
+import { GestionClientsComponent } from './gestion-clients/gestion-clients.component';
+import { GestionDetailClientComponent } from './gestion-detail-client/gestion-detail-client.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { GestionDetailEditeurComponent } from './gestion-detail-editeur/gestion-
     GestionDetailUserComponent,
     GestionDetailAuteurComponent,
     GestionEditeursComponent,
-    GestionDetailEditeurComponent
+    GestionDetailEditeurComponent,
+    GestionClientsComponent,
+    GestionDetailClientComponent
   ],
   imports: [
     BrowserModule,

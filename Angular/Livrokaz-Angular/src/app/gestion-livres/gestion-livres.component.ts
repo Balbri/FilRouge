@@ -30,7 +30,6 @@ export class GestionLivresComponent implements OnInit {
     setTimeout(() => this.dataSource.paginator = this.paginator);
     this.livresList = this.livresService.availableLivres$;
     this.livresList.subscribe(livres => this.dataSource = new MatTableDataSource<Livre>(livres));
-    console.log(this.livresList);
   }
 
   onEdit(selected: Livre[]) {

@@ -41,7 +41,7 @@ export class ClientsService {
       }
       return of(this.availableClients.find(client => client.idClient === clientId));
     } else {
-      return of(new Client(0, '', '', '', '', '', '', '', 0, '', '', '', '', '', null));
+      return of(new Client(0, '', '', 0, '', '', 0, '', 0, '', '', 0, '', '', null));
     }
   }
 

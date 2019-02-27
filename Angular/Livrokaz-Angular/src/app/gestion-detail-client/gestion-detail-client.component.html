@@ -1,0 +1,61 @@
+<div class="center pad animated bounceInUp">
+  <mat-card class="center">
+    <form  class="center column" [formGroup]="clientForm">
+        <mat-form-field>
+          <input matInput placeholder="Nom" formControlName="nomClient">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Prénom" formControlName="prenomClient">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="E-mail" formControlName="emailClient">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Identifiant" formControlName="username">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Mot de passe" formControlName="password">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Enabled" formControlName="enabled">
+        </mat-form-field>
+        <h4>Adresse de Livraison</h4>
+        <mat-form-field>
+          <input matInput placeholder="Numero" formControlName="numeroL">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Rue" formControlName="rueL">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Complement" formControlName="complementL">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Code Postal" formControlName="cpL">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Ville" formControlName="villeL">
+        </mat-form-field>
+        <h4>Adresse de Facturation</h4>
+        <mat-form-field>
+          <input matInput placeholder="Numero" formControlName="numeroF">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Rue" formControlName="rueF">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Complement" formControlName="complementF">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Code Postal" formControlName="cpF">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Ville" formControlName="villeF">
+        </mat-form-field>
+    </form>
+  </mat-card>
+</div>
+
+<div class="center">
+  <button mat-raised-button (click)="onBack()">RETOUR</button>
+  <button mat-raised-button (click)="onSave()" [disabled]="clientForm.invalid">ENREGISTRER</button>
+</div>
