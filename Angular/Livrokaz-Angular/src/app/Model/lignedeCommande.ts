@@ -1,5 +1,9 @@
+import { Livre } from './livre';
+
 export class LigneDeCommande {
     constructor(
-        public idLigneDeCommande: number,
-        public quantite: number ) {}
+        public idLigneCommande: number,
+        public quantite: number,
+        public livre: Livre
+    ) {}
 }

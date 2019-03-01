@@ -8,6 +8,7 @@ import { AuthoritiesService } from './services/authorities.service';
 import { ClientsService } from './services/clients.service';
 import { AuteursService} from './services/auteurs.service';
 import { EditeursService} from './services/editeurs.service';
+import { CommandesService } from './services/commandes.service';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +26,8 @@ export class AppComponent implements OnInit {
               private authoritiesService: AuthoritiesService,
               private clientsService: ClientsService,
               private auteursService: AuteursService,
-              private editeursService: EditeursService
+              private editeursService: EditeursService,
+              private commandesService: CommandesService
               ) {}
 
   ngOnInit() {
@@ -37,5 +39,6 @@ export class AppComponent implements OnInit {
     this.clientsService.publishClients();
     this.editeursService.publishEditeurs();
     this.auteursService.publishAuteurs();
+    this.commandesService.publishCommandes();
   }
 }

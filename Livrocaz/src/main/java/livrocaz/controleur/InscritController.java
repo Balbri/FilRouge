@@ -41,20 +41,20 @@ public class InscritController {
 	    @PostMapping("/panier/{username}/{idLivre}/{quantite}")
 	    public void ajouterPanier(@PathVariable String username, @PathVariable int idLivre, @PathVariable int quantite){
 	    	
-	    	Client client = clientRepo.findClientByUsername(username);
-	    	
-	    	LocalDate today = LocalDateTime.now().toLocalDate();
-	    	int jour = today.getDayOfMonth();
-	    	int mois = today.getMonthValue();
-	    	int annee = today.getYear();
-	    	String date = "" + (jour<10?("0"+jour):(jour)) + "/" + (mois<10?("0"+mois):(mois)) + "/" + annee;
-	    	
-	        Commande cmd = new Commande(client, date, 15.0, 5.5, 0.0, 0);
-	        commandeController.addCommande(cmd);
-	        
-	        Livre livre = livreRepo.findLivreById(idLivre);
-	        LigneDeCommande lc = new LigneDeCommande(quantite, livre, cmd);
-	        ldcController.addLdc(lc);
+//	    	Client client = clientRepo.findClientByUsername(username);
+//	    	
+//	    	LocalDate today = LocalDateTime.now().toLocalDate();
+//	    	int jour = today.getDayOfMonth();
+//	    	int mois = today.getMonthValue();
+//	    	int annee = today.getYear();
+//	    	String date = "" + (jour<10?("0"+jour):(jour)) + "/" + (mois<10?("0"+mois):(mois)) + "/" + annee;
+//	    	
+//	        Commande cmd = new Commande(client, date, 15.0, 5.5, 0.0, 0);
+//	        commandeController.addCommande(cmd);
+//	        
+//	        Livre livre = livreRepo.findLivreById(idLivre);
+//	        LigneDeCommande lc = new LigneDeCommande(quantite, livre, cmd);
+//	        ldcController.addLdc(lc);
 	    }
 	    
 	    
