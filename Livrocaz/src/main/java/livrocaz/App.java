@@ -1,4 +1,5 @@
 package livrocaz;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -93,8 +94,11 @@ public class App implements CommandLineRunner {
        Livre fondation = new Livre();
        Livre robots = new Livre();
        Auteur azimov = new Auteur();
+       Auteur nico = new Auteur();
        Collection<Auteur>hashAuteurs = new HashSet<Auteur>();
+       Collection<Auteur>hashAuteurs2 = new HashSet<Auteur>();
        Collection<Livre>hashLivres = new ArrayList<Livre>();
+       Collection<Livre>bioLivres = new ArrayList<Livre>();
        fondation.setAnneeParution("1986");
        fondation.setDescriptionLivre("Quare talis improborum consensio non modo excusatione amicitiae tegenda non est sed potius supplicio omni vindicanda est, ut ne quis concess.");
        fondation.setImageCouverture("fondation couv");
@@ -107,6 +111,18 @@ public class App implements CommandLineRunner {
        fondation.setImageCouverture("https://images-na.ssl-images-amazon.com/images/I/81o5-cz-KOL.jpg");
        fondation =livreRepo.save(fondation);
 
+       Livre napoleon = new Livre();
+       napoleon.setAnneeParution("2009");
+       napoleon.setDescriptionLivre("Une biographie de Napoleon");
+       napoleon.setImageCouverture("https://images-eu.ssl-images-amazon.com/images/I/51tjLAtoXyL.jpg");
+       napoleon.setIsbn("999-2222");
+       napoleon.setTitreLivre("Napoleon Bonaparte");
+       napoleon.setStock(77);
+       napoleon.setPrixNeuf(99);
+       napoleon.setPrixOccas(23);
+       napoleon =livreRepo.save(napoleon);
+       
+       
        robots.setAnneeParution("1975");
        robots.setDescriptionLivre("desc robots");
        robots.setImageCouverture("robots couv");
@@ -123,40 +139,57 @@ public class App implements CommandLineRunner {
        azimov.setNameAuteur("Azimov");
        azimov.setSurnameAuteur("Isaac");
        azimov= auteurRepo.save(azimov);
+       nico.setNameAuteur("Nico");
+       nico.setSurnameAuteur("Filine");
+       nico = auteurRepo.save(nico);
 
        hashAuteurs.add(azimov);
+       hashAuteurs2.add(nico);
        fondation.setAuteurs(hashAuteurs);
        robots.setAuteurs(hashAuteurs);
+       napoleon.setAuteurs(hashAuteurs2);
        hashLivres.add(robots);
        hashLivres.add(fondation);
        azimov.setLivres(hashLivres);
+       
+       bioLivres.add(napoleon);
+       nico.setLivres(bioLivres);
 
 
       Genre roman = new Genre();
       Genre sf = new Genre();
+      Genre bio = new Genre();
       Collection<Genre> genres = new HashSet<Genre>();
+      Collection<Genre> genres2 = new HashSet<Genre>();
       roman.setNomGenre("Roman");
       sf.setNomGenre("Science-fiction");
+      bio.setNomGenre("Biographie");
       roman = genreRepo.save(roman);
       sf = genreRepo.save(sf);
+      bio = genreRepo.save(bio);
       genres.add(roman);
       genres.add(sf);
+      genres2.add(bio);
       fondation.setGenres(genres);
       robots.setGenres(genres);
+      napoleon.setGenres(genres2);
       roman.setLivres(hashLivres);
       sf.setLivres(hashLivres);
+      bio.setLivres(bioLivres);
 
       Langue fr = new Langue();
       fr.setNomLangue("Francais");
       fr = langueRepo.save(fr);
       fondation.setLangue(fr);
       robots.setLangue(fr);
+      napoleon.setLangue(fr);
       
       Editeur gp = new Editeur();
       gp.setNomEditeur("Gnome Press");
       gp = editeurRepo.save(gp);
       fondation.setEditeur(gp);
       robots.setEditeur(gp);
+      napoleon.setEditeur(gp);
       
       LigneDeCommande lc = new LigneDeCommande();
       lc.setQuantite(1);
@@ -166,10 +199,12 @@ public class App implements CommandLineRunner {
       langueRepo.save(fr);
       genreRepo.save(roman);
       genreRepo.save(sf);
+      genreRepo.save(bio);
       livreRepo.save(fondation);
       livreRepo.save(robots);
+      livreRepo.save(napoleon);
       auteurRepo.save(azimov);
-      
+      auteurRepo.save(nico);
       Users us1 = new Users();
       us1.setUsername("toto33");
       us1.setPassword("{bcrypt}$2a$04$3oa5XGzGArd2DnRv3.ax7OxGxnvCisSuWWGxYM2xNE99UFLCgQXYS");
