@@ -9,10 +9,12 @@ vente de livres d’occasion par un envoi physique (courrier postal) aux clients
 ## Taches réalisées :
 * Maquettage des pages Web (y compris sur les mobiles)...en cours...
 * Le modèle conceptuel des données (MCD).
-* Le modèle logique des données (MLD)
-* CRUD (microservice) en JSON...en cours...
-* Architecture SpringBoot avec les liens @ManyToMany, @ManyToOne...en cours..
+* Le modèle logique des données (MLD).
+* CRUD (microservice) en JSON.
+* Architecture SpringBoot avec les liens @ManyToMany, @ManyToOne, @OneToOne.
 * Authentification avec Springboot security.
+* Front en Angular.
+* Gestion des tables de la BDD en front sur le site.
 
 ## Dépendances liées au projet : 
 

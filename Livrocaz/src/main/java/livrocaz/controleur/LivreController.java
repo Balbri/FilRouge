@@ -76,8 +76,13 @@ public class LivreController {
 		return ResponseEntity.status(HttpStatus.OK).body(livre);
 	}
 		
-	
-	
+	/*
+	 * Methode Get pour champs de recherche par titre, nom/prenom, ou genre
+	 */
+		
+		@RequestMapping(value= "/livres/search/{nom}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+		public ResponseEntity<Collection<Livre>>getLivresBySearchtext(@PathVariable String nom){
+			return new ResponseEntity<Collection<Livre>>(livreRepo.findLivresBySearchtext(nom), HttpStatus.OK);}
 /*
  * Methode POST
  */
