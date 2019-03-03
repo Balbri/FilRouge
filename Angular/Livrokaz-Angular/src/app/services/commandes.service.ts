@@ -41,7 +41,7 @@ export class CommandesService {
       }
       return of(this.availableCommandes.find(commande => commande.idCommande === commandeId));
     } else {
-      return of(new Commande(0, new Date(), 0, 0, 0, 0, 0, 0, null, null));
+      return of(new Commande(0, new Date(), 0, 0, 0, 0, 0, 0, null));
     }
   }
 
@@ -53,7 +53,6 @@ export class CommandesService {
   public createCommande(newCommande: Commande) {
     this.httpClient.post<Commande>('http://localhost:8080/api/commandes', newCommande).subscribe(
       nouvelleCommande => {
-        console.log(nouvelleCommande);
         this.availableCommandes.push(nouvelleCommande);
         this.availableCommandes$.next(this.availableCommandes);
       }
@@ -67,7 +66,7 @@ export class CommandesService {
   public updateCommande(commande: Commande) {
     this.httpClient.put<Commande>('http://localhost:8080/api/commandes/' + commande.idCommande, commande).subscribe(
       updatedCommande => {
-        this.availableCommandes.splice(this.availableCommandes.indexOf(commande), 1, commande);
+        this.availableCommandes.splice(this.availableCommandes.indexOf(commande), 1, updatedCommande);
         this.availableCommandes$.next(this.availableCommandes);
       }
     );
@@ -84,7 +83,7 @@ export class CommandesService {
                                                                         commande => commande.idCommande === id)), 1);
         this.availableCommandes$.next(this.availableCommandes);
         // pop-up suppression
-        this.snackBar.open('Commande n° ' + id, 'Supprimé', {
+        this.snackBar.open('Commande n° ' + id, 'Supprimée', {
           duration: 2000,
         });
       }

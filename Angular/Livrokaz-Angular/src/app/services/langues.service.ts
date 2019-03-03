@@ -66,7 +66,7 @@ export class LanguesService {
   public updateLangue(langue: Langue) {
     this.httpClient.put<Langue>('http://localhost:8080/api/langues/' + langue.idLangue, langue).subscribe(
       updatedLangue => {
-        this.availableLangues.splice(this.availableLangues.indexOf(langue), 1, langue);
+        this.availableLangues.splice(this.availableLangues.indexOf(langue), 1, updatedLangue);
         this.availableLangues$.next(this.availableLangues);
       }
     );

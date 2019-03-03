@@ -1,4 +1,3 @@
-import { LigneDeCommande } from './lignedeCommande';
 import { Client } from './client';
 
 export class Commande {
@@ -12,7 +11,6 @@ export class Commande {
         public total: number,
         public nbreArticles: number,
         public valide: number,
-        public client: Client,
-        public ligneDeCommandes: LigneDeCommande[]
+        public client: Client
     ) {}
 }

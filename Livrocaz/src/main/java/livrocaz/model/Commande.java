@@ -1,6 +1,5 @@
 package livrocaz.model;
 
-import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -9,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity (name = "commande")
@@ -19,9 +17,6 @@ public class Commande {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idCommande;
-	
-	@OneToMany(mappedBy="commande")
-	private Collection<LigneDeCommande> ligneDeCommande;
 	
 	@ManyToOne
 	@JoinColumn(name="idClient")
@@ -55,15 +50,6 @@ public class Commande {
 
 	public void setIdCommande(int idCommande) {
 		this.idCommande = idCommande;
-	}
-
-
-	public Collection<LigneDeCommande> getLigneDeCommande() {
-		return ligneDeCommande;
-	}
-
-	public void setLigneDeCommande(Collection<LigneDeCommande> ligneDeCommande) {
-		this.ligneDeCommande = ligneDeCommande;
 	}
 
 	public Client getClient() {

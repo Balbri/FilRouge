@@ -88,7 +88,7 @@ export class ClientsService {
         this.availableClients.splice(this.availableClients.indexOf(this.availableClients.find(client => client.idClient === idClient)), 1);
         this.availableClients$.next(this.availableClients);
         // pop-up suppression
-        this.snackBar.open(deleteClient.nomClient, 'Supprimé', {
+        this.snackBar.open(deleteClient.prenomClient + ' ' + deleteClient.nomClient, 'Supprimé', {
           duration: 2000,
         });
       }

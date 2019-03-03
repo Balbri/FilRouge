@@ -55,9 +55,7 @@ export class GestionNewCommandeComponent implements OnInit {
       0,
       0,
       formValue['client'],
-      null
     );
-    console.log(newCommande);
     this.commandesService.createCommande(newCommande);
     this.location.back();
   }

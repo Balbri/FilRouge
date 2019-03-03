@@ -1,5 +1,5 @@
 package livrocaz;
-import java.sql.Date;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -264,6 +264,7 @@ public class App implements CommandLineRunner {
       cmd.setValide(0);
       cmd.setTtc(0.0);
       cmd.setTotal(0.0);
+      cmd.setNbreArticles(3);
       commandeRepo.save(cmd);
       lc.setCommande(cmd);
       ligneCommandeRepo.save(lc);

@@ -18,6 +18,8 @@ import { GestionClientsComponent } from './gestion-clients/gestion-clients.compo
 import { GestionDetailClientComponent } from './gestion-detail-client/gestion-detail-client.component';
 import { GestionCommandesComponent } from './gestion-commandes/gestion-commandes.component';
 import { GestionNewCommandeComponent } from './gestion-new-commande/gestion-new-commande.component';
+import { GestionDetailCommandeComponent } from './gestion-detail-commande/gestion-detail-commande.component';
+import { GestionDetailLigneDeCommandeComponent } from './gestion-detail-ligne-de-commande/gestion-detail-ligne-de-commande.component';
 
 
 const routes: Routes = [
@@ -45,6 +47,8 @@ const routes: Routes = [
   { path: 'gestion/clients/edition/:id', component: GestionDetailClientComponent },
   { path: 'gestion/commandes', component: GestionCommandesComponent },
   { path: 'gestion/commandes/nouveau', component: GestionNewCommandeComponent },
+  { path: 'gestion/commandes/edition/:id', component: GestionDetailCommandeComponent },
+  { path: 'gestion/ligneDeCommande/nouveau/:idCommande', component: GestionDetailLigneDeCommandeComponent },
   { path: 'gestion/users', component: GestionUsersComponent },
   { path: 'gestion/users/nouveau', component: GestionDetailUserComponent },
   { path: 'gestion/users/edition/:username', component: GestionDetailUserComponent },
