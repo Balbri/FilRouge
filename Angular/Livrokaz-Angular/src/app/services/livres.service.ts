@@ -17,9 +17,13 @@ export class LivresService {
 
   // La liste des livres de l'application
   private availableLivres: Livre[];
+  private searchText ="";
+  private filteredBooks: Livre[];
+  
 
   // La liste observable que l'on rend visible partout dans l'application
   availableLivres$: BehaviorSubject<Livre[]> = new BehaviorSubject(this.availableLivres);
+  filteredBooks$: BehaviorSubject<Livre[]> = new BehaviorSubject(this.filteredBooks);
 
   constructor(private httpClient: HttpClient, private snackBar: MatSnackBar) {}
 
@@ -47,6 +51,13 @@ export class LivresService {
   }
 
   /**
+   * La fonction getFilteredLivres() est privée et permet d'obtenir une liste filtrée par l'utilisateur (par genre, titre, et auteur)
+   */
+  private getFilteredLivres(): Observable<Livre[]> {
+    return this.httpClient.get<Livre[]>('http://localhost:8080/api/livres/search/'+ this.searchText);
+  }
+
+  /**
    * La fonction publishLivres() est chargée une fois au démarrage de l'application.
    * Elle récupère la liste des livres depuis la base de données et met à jour la liste et la liste observable.
    */
@@ -56,6 +67,18 @@ export class LivresService {
         this.availableLivres = livresList;
         this.availableLivres$.next(this.availableLivres);
       }
+    );
+  }
+
+  /**
+   * La fonction getFilteredLivres() récupère la liste des livres correspondant à la recherche effectuée par l'utilisateur via le champs de recherche
+   */
+  public publishFilteredLivres() {
+    this.getFilteredLivres().subscribe(
+      filteredList => {
+      this.filteredBooks = filteredList;
+      this.filteredBooks$.next(this.filteredBooks);
+    }
     );
   }
 

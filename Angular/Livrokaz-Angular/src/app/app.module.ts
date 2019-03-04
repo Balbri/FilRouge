@@ -25,10 +25,13 @@ import { GestionEditeursComponent } from './gestion-editeurs/gestion-editeurs.co
 import { GestionDetailEditeurComponent } from './gestion-detail-editeur/gestion-detail-editeur.component';
 import { GestionClientsComponent } from './gestion-clients/gestion-clients.component';
 import { GestionDetailClientComponent } from './gestion-detail-client/gestion-detail-client.component';
+
 import { GestionCommandesComponent } from './gestion-commandes/gestion-commandes.component';
 import { GestionNewCommandeComponent } from './gestion-new-commande/gestion-new-commande.component';
 import { GestionDetailCommandeComponent } from './gestion-detail-commande/gestion-detail-commande.component';
 import { GestionDetailLigneDeCommandeComponent } from './gestion-detail-ligne-de-commande/gestion-detail-ligne-de-commande.component';
+import { CatalogueFiltreComponent } from './catalogue-filtre/catalogue-filtre.component';
+
 
 @NgModule({
   declarations: [
@@ -51,10 +54,13 @@ import { GestionDetailLigneDeCommandeComponent } from './gestion-detail-ligne-de
     GestionDetailEditeurComponent,
     GestionClientsComponent,
     GestionDetailClientComponent,
+
     GestionCommandesComponent,
     GestionNewCommandeComponent,
     GestionDetailCommandeComponent,
     GestionDetailLigneDeCommandeComponent
+    CatalogueFiltreComponent,
+    Composant-liste-filtree-pre-version
   ],
   imports: [
     BrowserModule,
