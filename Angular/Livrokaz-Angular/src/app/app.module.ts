@@ -25,6 +25,7 @@ import { GestionEditeursComponent } from './gestion-editeurs/gestion-editeurs.co
 import { GestionDetailEditeurComponent } from './gestion-detail-editeur/gestion-detail-editeur.component';
 import { GestionClientsComponent } from './gestion-clients/gestion-clients.component';
 import { GestionDetailClientComponent } from './gestion-detail-client/gestion-detail-client.component';
+import { CatalogueFiltreComponent } from './catalogue-filtre/catalogue-filtre.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { GestionDetailClientComponent } from './gestion-detail-client/gestion-de
     GestionEditeursComponent,
     GestionDetailEditeurComponent,
     GestionClientsComponent,
-    GestionDetailClientComponent
+    GestionDetailClientComponent,
+    CatalogueFiltreComponent
   ],
   imports: [
     BrowserModule,
