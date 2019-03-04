@@ -14,7 +14,7 @@ export class LivreDetailComponent implements OnInit {
   id: number;
   titre = '"Détails de "+{{Livre.titreLivre}}';
   displayedLivre: Livre;
-  etatStock = 'Moins de 10 articles en stock, dépêchez-vous !'
+  etatStock = 'Moins de 10 articles en stock, dépêchez-vous !';
 
   constructor(
     private route: ActivatedRoute,

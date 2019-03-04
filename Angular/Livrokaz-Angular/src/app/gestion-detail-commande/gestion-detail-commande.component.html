@@ -1,0 +1,76 @@
+<div class="center align column pad animated bounceInUp">
+
+  <div class="space-between width-cent margin-bottom">
+    <div class="center align-bas">
+      <h1>Commande n° {{id}}</h1>
+      <h2>du {{commande.date | date:' dd / MM / y '}} de {{commande.client.prenomClient}} {{commande.client.nomClient}}</h2>
+    </div>
+    <h3>Total : {{commande.total | number:'1.2-2'}} €</h3>
+  </div>
+
+  <div class="left column width-cent">
+    <p>Nombre d'articles : {{commande.nbreArticles}}</p>
+    <p>Frais de port : {{commande.fraisDePort | number:'1.2-2'}} €</p>
+    <p>TVA : {{commande.tva | number:'1.2-2'}} €</p>
+    <p>TTC : {{commande.ttc | number:'1.2-2'}} €</p>
+  </div>
+
+  <div class="width-cent">
+    <div class="right">
+      <button mat-raised-button (click)="onBack()">RETOUR</button>
+      <button mat-raised-button routerLink="/gestion/ligneDeCommande/nouveau/{{id}}">AJOUTER</button>
+      <button mat-raised-button (click)="onEdit(selection.selected)">EDITER</button>
+      <button mat-raised-button (click)="onDelete(selection.selected)">SUPPRIMER</button>
+    </div>
+
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort>
+    
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                          (change)="$event ? selection.toggle(row) : null"
+                          [checked]="selection.isSelected(row)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="livre">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Livre </th>
+          <td mat-cell *matCellDef="let ldc"> {{ldc.livre.titreLivre}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="quantite">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantité </th>
+          <td mat-cell *matCellDef="let ldc"> {{ldc.quantite}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="prix">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Prix (€ HT) </th>
+          <td mat-cell *matCellDef="let ldc"> {{ldc.livre.prixOccas | number:'1.2-2'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="total">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Total (€ HT) </th>
+          <td mat-cell *matCellDef="let ldc"> {{ldc.livre.prixOccas * ldc.quantite | number:'1.2-2'}}</td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+      </table>
+
+      <p class="center" *ngIf="commande.nbreArticles == 0">Pas encore d'articles dans cette commande...</p>
+    
+      <mat-paginator [length]='dataSource.data.length'
+                    [pageSize]='10'
+                    [hidePageSize]="true">
+      </mat-paginator>
+    </div>
+  </div>
+
+</div>

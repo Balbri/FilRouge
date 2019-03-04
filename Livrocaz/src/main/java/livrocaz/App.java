@@ -1,7 +1,8 @@
 package livrocaz;
-import java.sql.Date;
+
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -195,6 +196,11 @@ public class App implements CommandLineRunner {
       lc.setQuantite(1);
       lc.setLivre(robots);
       lc = ligneCommandeRepo.save(lc);
+      
+      LigneDeCommande lc2 = new LigneDeCommande();
+      lc2.setQuantite(2);
+      lc2.setLivre(fondation);
+      lc2 = ligneCommandeRepo.save(lc2);
 
       langueRepo.save(fr);
       genreRepo.save(roman);
@@ -252,16 +258,18 @@ public class App implements CommandLineRunner {
       
       Commande cmd = new Commande();
       cmd.setClient(c1);
-      cmd.setDate("12/12/2019");
+      cmd.setDate(new Date());
       cmd.setFraisDePort(20.2);
-      cmd.setTva(5.5);
+      cmd.setTva(0.0);
       cmd.setValide(0);
       cmd.setTtc(0.0);
+      cmd.setTotal(0.0);
+      cmd.setNbreArticles(3);
       commandeRepo.save(cmd);
       lc.setCommande(cmd);
       ligneCommandeRepo.save(lc);
-      
-      
+      lc2.setCommande(cmd);
+      ligneCommandeRepo.save(lc2);
       
       
       

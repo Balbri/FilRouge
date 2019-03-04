@@ -1,5 +1,11 @@
+import { Livre } from './livre';
+import { Commande } from './commande';
+
 export class LigneDeCommande {
     constructor(
-        public idLigneDeCommande: number,
-        public quantite: number ) {}
+        public idLigneCommande: number,
+        public quantite: number,
+        public livre: Livre,
+        public commande: Commande
+    ) {}
 }

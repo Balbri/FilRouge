@@ -1,0 +1,22 @@
+<div class="center pad animated bounceInUp">
+  <mat-card class="center">
+    <form  class="center column" [formGroup]="commandeForm">
+        <mat-form-field>
+          <mat-select placeholder="Client" formControlName="client">
+            <mat-option *ngFor="let client of clients" [value]="client">
+              {{client.prenomClient}} {{client.nomClient}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Frais de port (€)" formControlName="fraisDePort">
+        </mat-form-field>
+    </form>
+  </mat-card>
+</div>
+
+<div class="center">
+  <button mat-raised-button (click)="onBack()">RETOUR</button>
+  <button mat-raised-button (click)="onSave()" [disabled]="commandeForm.invalid">ENREGISTRER</button>
+</div>

@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import livrocaz.model.Commande;
+import livrocaz.model.LigneDeCommande;
 import livrocaz.repository.CommandeRepository;
+import livrocaz.repository.LigneDeCommandeRepository;
 
 
 @RestController
@@ -28,6 +30,9 @@ public class CommandeController {
 
 	@Autowired
 	private CommandeRepository commandeRepo;
+	@Autowired
+	private LigneDeCommandeRepository ligneDeCommandeRepo;
+	
 /*
  * Methode Get All
  */
@@ -41,8 +46,7 @@ public class CommandeController {
  */
 	@RequestMapping(value = "/commandes/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> getCommande(@PathVariable Integer id){
-		Optional<Commande> commande = null;
-				
+		Optional<Commande> commande = null;		
 		try {
 			commande =(commandeRepo.findById(id));
 			
@@ -61,8 +65,25 @@ public class CommandeController {
  */
 	 @RequestMapping(value = "/commandes", method = RequestMethod.POST, produces= "application/json", consumes = MediaType.APPLICATION_JSON_VALUE )
 	public ResponseEntity<?> addCommande(@RequestBody Commande commande){
-		Commande resultCommande = null;				
+		Commande resultCommande = null;	
+		Collection<LigneDeCommande> lignesDeCommande = ligneDeCommandeRepo.findAll();
 		try {
+			// Ajout du prix TTC, de la TVA et du total de la commande
+			Double sommePrixLivres = 0.0;
+			Double TVA = 0.0;
+			int nbre = 0;
+			for (LigneDeCommande LDC : lignesDeCommande) {
+				if (LDC.getCommande().getIdCommande() == commande.getIdCommande()) {
+					sommePrixLivres += LDC.getLivre().getPrixOccas() * LDC.getQuantite();
+					nbre += LDC.getQuantite();
+				}
+			}
+			TVA = (5.5 * sommePrixLivres)/100;
+			commande.setTva(TVA);
+			commande.setTtc(sommePrixLivres+TVA);
+			commande.setTotal(sommePrixLivres+TVA+commande.getFraisDePort());
+			commande.setNbreArticles(nbre);
+			
 			resultCommande = commandeRepo.saveAndFlush(commande);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
@@ -79,7 +100,24 @@ public class CommandeController {
 	    @ResponseBody
 	    public ResponseEntity<?> modifyCommande(@RequestBody Commande commande) {
 	        Commande commandeamodifier = null;
+	        Collection<LigneDeCommande> lignesDeCommande = ligneDeCommandeRepo.findAll();
 	        try {
+	        	// Ajout du prix TTC, de la TVA et du total de la commande
+				Double sommePrixLivres = 0.0;
+				Double TVA = 0.0;
+				int nbre = 0;
+				for (LigneDeCommande LDC : lignesDeCommande) {
+					if (LDC.getCommande().getIdCommande() == commande.getIdCommande()) {
+						sommePrixLivres += LDC.getLivre().getPrixOccas() * LDC.getQuantite();
+						nbre += LDC.getQuantite();
+					}
+				}
+				TVA = (5.5 * sommePrixLivres)/100;
+				commande.setTva(TVA);
+				commande.setTtc(sommePrixLivres+TVA);
+				commande.setTotal(sommePrixLivres+TVA+commande.getFraisDePort());
+				commande.setNbreArticles(nbre);
+	        	
 	           commandeamodifier = commandeRepo.saveAndFlush(commande);
 	        } catch (Exception e) {
 	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
@@ -93,6 +131,7 @@ public class CommandeController {
 	 @RequestMapping(value = "/commandes/{id}", method = RequestMethod.DELETE)
 		public ResponseEntity<?> deleteCommande(@PathVariable Integer id){
 			try {
+				commandeRepo.deleteById(id);
 			} catch (Exception e) {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 			}

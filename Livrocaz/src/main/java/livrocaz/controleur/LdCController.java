@@ -92,11 +92,14 @@ public class LdCController {
 	  */
 	 @RequestMapping(value = "/ldc/{id}", method = RequestMethod.DELETE)
 		public ResponseEntity<?> deleteLdc(@PathVariable Integer id){
+		 	LigneDeCommande ldcToDelete = null;
 			try {
+				ldcToDelete = ldcRepo.findById(id).get();
+				ldcRepo.deleteById(id);
 			} catch (Exception e) {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 			}
 			
-			return ResponseEntity.status(HttpStatus.OK).body(null);
+			return ResponseEntity.status(HttpStatus.OK).body(ldcToDelete);
 		}
 }

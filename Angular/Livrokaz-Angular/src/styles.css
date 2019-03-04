@@ -60,6 +60,26 @@ span {
     justify-content: center;
 }
 
+.left {
+    display: flex;
+    justify-content: left;
+}
+
+.space-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.align {
+    display: flex;
+    align-items: center;
+}
+
+.align-bas {
+    display: flex;
+    align-items: flex-end;
+}
+
 .column {
     flex-direction: column;
 }
@@ -86,7 +106,7 @@ a:hover {
     flex-wrap: wrap;
 }
 
-table {
+table, .width-cent {
     width: 100%;
 }
 

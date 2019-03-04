@@ -1,5 +1,7 @@
 package livrocaz.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,17 +22,19 @@ public class Commande {
 	@JoinColumn(name="idClient")
 	private Client client;
 	
-	private String date;
+	private Date date;
 	private Double fraisDePort;
 	private Double tva;
 	private Double ttc;
+	private Double total;
+	private int nbreArticles;
 	private int valide;
 	
 	
 	public Commande() {
 	}
 
-	public Commande(Client client, String date, Double fraisDePort, Double tva, Double ttc, int valide) {
+	public Commande(Client client, Date date, Double fraisDePort, Double tva, Double ttc, int valide) {
 		this.client = client;
 		this.date = date;
 		this.fraisDePort = fraisDePort;
@@ -48,7 +52,6 @@ public class Commande {
 		this.idCommande = idCommande;
 	}
 
-
 	public Client getClient() {
 		return client;
 	}
@@ -59,15 +62,13 @@ public class Commande {
 	}
 
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
-
 
 	public Double getFraisDePort() {
 		return fraisDePort;
@@ -96,6 +97,22 @@ public class Commande {
 
 	public void setTtc(Double ttc) {
 		this.ttc = ttc;
+	}
+
+	public Double getTotal() {
+		return total;
+	}
+
+	public void setTotal(Double total) {
+		this.total = total;
+	}
+
+	public int getNbreArticles() {
+		return nbreArticles;
+	}
+
+	public void setNbreArticles(int nbreArticles) {
+		this.nbreArticles = nbreArticles;
 	}
 
 	public int getValide() {
