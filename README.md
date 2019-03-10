@@ -41,3 +41,6 @@ vente de livres d’occasion par un envoi physique (courrier postal) aux clients
 
 ## MLD
 ![MLD](Diagrammes/MLD.jpg)
+
+## Organisation du front (Angular)
+![Angular](Diagrammes/Organisation_Angular.JPG)
