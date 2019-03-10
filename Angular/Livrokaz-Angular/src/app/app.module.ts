@@ -29,6 +29,7 @@ import { GestionCommandesComponent } from './gestion-commandes/gestion-commandes
 import { GestionNewCommandeComponent } from './gestion-new-commande/gestion-new-commande.component';
 import { GestionDetailCommandeComponent } from './gestion-detail-commande/gestion-detail-commande.component';
 import { GestionDetailLigneDeCommandeComponent } from './gestion-detail-ligne-de-commande/gestion-detail-ligne-de-commande.component';
+import { GestionCaComponent } from './gestion-ca/gestion-ca.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { GestionDetailLigneDeCommandeComponent } from './gestion-detail-ligne-de
     GestionCommandesComponent,
     GestionNewCommandeComponent,
     GestionDetailCommandeComponent,
-    GestionDetailLigneDeCommandeComponent
+    GestionDetailLigneDeCommandeComponent,
+    GestionCaComponent
   ],
   imports: [
     BrowserModule,

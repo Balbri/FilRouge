@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Commande } from '../Model/commande';
-import { LigneDeCommande } from '../Model/lignedeCommande';
-import { Livre } from '../Model/livre';
 import { CommandesService } from '../services/commandes.service';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
