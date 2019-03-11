@@ -1,7 +1,11 @@
 <div class="center align column pad animated bounceInUp">
 
   <div class="center">
-    <h1>Chiffre d'affaire du mois : {{CA | number:'1.2-2'}} €</h1>
+    <h1>Chiffre d'affaire du mois de {{mois[moisActuel]}} : {{CAduMois | number:'1.2-2'}} €</h1>
+  </div>
+
+  <div class="center width-cinquante-cent pad">
+    <canvas id="canvas"></canvas>
   </div>
 
   <div class="center">

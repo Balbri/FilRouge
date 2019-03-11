@@ -52,7 +52,7 @@ span {
 }
 
 .item-large { 
-    width: 1000px
+    width: 1000px;
 }
  
 .center {
@@ -108,6 +108,10 @@ a:hover {
 
 table, .width-cent {
     width: 100%;
+}
+
+.width-cinquante-cent {
+    width: 50%;
 }
 
 /* Pop-up suppression */
