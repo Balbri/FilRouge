@@ -77,7 +77,7 @@ export class GestionDetailLigneDeCommandeComponent implements OnInit {
       this.client
     );
     const newLigneCommande = new LigneDeCommande(
-      7,
+      null,
       +formValue['quantite'],
       formValue['livre'],
       newCommande

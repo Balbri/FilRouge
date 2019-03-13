@@ -1,14 +1,19 @@
 package livrocaz.model;
 
+import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity (name = "commande")
 @Table(name = "Commande")
@@ -21,6 +26,10 @@ public class Commande {
 	@ManyToOne
 	@JoinColumn(name="idClient")
 	private Client client;
+	
+	@OneToMany(mappedBy="commande", cascade = {CascadeType.REMOVE})
+	@JsonIgnore
+	private  Collection<LigneDeCommande> ldc;
 	
 	private Date date;
 	private Double fraisDePort;
@@ -122,6 +131,13 @@ public class Commande {
 	public void setValide(int valide) {
 		this.valide = valide;
 	}
-	
+
+	public Collection<LigneDeCommande> getLdc() {
+		return ldc;
+	}
+
+	public void setLdc(Collection<LigneDeCommande> ldc) {
+		this.ldc = ldc;
+	}
 	
 }

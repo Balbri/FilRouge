@@ -46,7 +46,7 @@ export class GestionNewCommandeComponent implements OnInit {
   onSave() {
     const formValue = this.commandeForm.value;
     const newCommande = new Commande(
-      7,
+      null,
       new Date(),
       formValue['fraisDePort'],
       0,

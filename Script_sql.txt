@@ -1,0 +1,210 @@
+#--------------------------------------------------------------------------------------------------
+#   SUPPRESSION Database: DB_LIVROCAZ
+#--------------------------------------------------------------------------------------------------
+
+DROP DATABASE db_livrocaz;
+
+#--------------------------------------------------------------------------------------------------
+#   REMPLISSAGE Database: DB_LIVROCAZ
+#--------------------------------------------------------------------------------------------------
+
+USE db_livrocaz;
+TRUNCATE table hibernate_sequence;
+INSERT INTO hibernate_sequence (next_val) VALUES (100);
+
+#--------------------------------------------
+#   REMPLISSAGE Table: AUTEUR
+#--------------------------------------------
+
+INSERT INTO auteur (id_auteur, name_auteur, surname_auteur) VALUES (1, 'Azimov', 'Isaac'),
+								   (2, 'Tolkien', 'JRR');
+
+#--------------------------------------------
+#   REMPLISSAGE Table: GENRE
+#--------------------------------------------
+
+INSERT INTO genre (id_genre, nom_genre) VALUES (1, 'Roman'),
+					       (2, 'Science-fiction'),
+					       (3, 'Biographie'),
+					       (4, 'Fantasy');
+
+#--------------------------------------------
+#   REMPLISSAGE Table: EDITEUR
+#--------------------------------------------
+
+INSERT INTO editeur (id_editeur, nom_editeur) VALUES (1, 'Folio SF'),
+						     (2, "J'ai Lu"),
+						     (3, "Gallimard Jeunesse"),
+						     (4, "Hachette Romans");
+
+#--------------------------------------------
+#   REMPLISSAGE Table: LANGUE
+#--------------------------------------------
+
+INSERT INTO langue (id_langue, nom_langue) VALUES (1, 'Francais');
+INSERT INTO langue (id_langue, nom_langue) VALUES (2, 'Anglais');
+
+#--------------------------------------------
+#   REMPLISSAGE Table: LIVRE
+#--------------------------------------------
+
+INSERT INTO livre (id_livre, annee_parution, date_modif, description_livre, image_couverture, isbn, prix_neuf, prix_occas, stock, sujet_livre, titre_livre, id_editeur, id_langue)
+       VALUES (1,
+		'2009',
+		'2019-01-25 00:00:00',
+		"Livre de Science fiction qui traite de fondation.",
+		'https://images-na.ssl-images-amazon.com/images/I/81o5-cz-KOL.jpg',
+		'9782070360536',
+		7.40,
+		5,
+		20,
+		"En ce début de treizième millénaire, l’Empire n’a jamais été aussi puissant, aussi étendu à travers toute la galaxie. C’est dans sa capitale, Trantor, que l’éminent savant Hari Seldon invente la psychohistoire, une science nouvelle permettant de prédire l’avenir. Grâce à elle, Seldon prévoit l’effondrement de l’Empire d’ici cinq siècles, suivi d’une ère de ténèbres de trente mille ans. Réduire cette période à mille ans est peut-être possible, à condition de mener à terme son projet : la Fondation, chargée de rassembler toutes les connaissances humaines. Une entreprise visionnaire qui rencontre de nombreux et puissants détracteurs…",
+		'Fondation',
+		1,
+		1);
+INSERT INTO livre (id_livre, annee_parution, date_modif, description_livre, image_couverture, isbn, prix_neuf, prix_occas, stock, sujet_livre, titre_livre, id_editeur, id_langue)
+       VALUES (2,
+		'1940',
+		'2019-02-20 00:00:00',
+		"Livre de Science fiction qui traite de robots.",
+		'https://media.senscritique.com/media/000000171713/source_big/Les_Robots_Le_Cycle_des_robots_tome_1.jpg',
+		'9782290055953',
+		5.99,
+		3,
+		12,
+		"Première Loi : Un robot ne peut porter atteinte à un être humain ni, restant passif, laisser cet être humain exposé au danger. Deuxième Loi : Un robot doit obéir aux ordres donnés par les êtres humains, sauf si de tels ordres entrent en contradiction avec la Première Loi. Troisième Loi : Un robot doit protéger son existence dans la mesure où cette protection n’entre pas en contradiction avec la Première ou la Deuxième Loi.",
+		"Les Robots",
+		2,
+		1);
+INSERT INTO livre (id_livre, annee_parution, date_modif, description_livre, image_couverture, isbn, prix_neuf, prix_occas, stock, sujet_livre, titre_livre, id_editeur, id_langue)
+       VALUES (3,
+		'2007',
+		'2019-03-13 00:00:00',
+		"Livre de Medieval Fantastique trés connu.",
+		'https://ec56229aec51f1baff1d-185c3068e22352c56024573e929788ff.ssl.cf1.rackcdn.com/attachments/large/0/8/2/004781082.jpg',
+		'2070612880',
+		8.70,
+		4.35,
+		8,
+		"Dans les vertes prairies de la Comté, les Hobbits, ou Semi-hommes, vivaient en paix... Jusqu'au jour fatal où l'un d'entre eux, au cours de ses voyages, entra en possession de l'Anneau Unique aux immenses pouvoirs. Pour le reconquérir, Sauron, le seigneur ténébreux, va déchaîner toutes les forces du Mal... Frodon, le Porteur de l'Anneau, Gandalf, le magicien, et leurs intrépides compagnons réussiront-t-ils à écarter la menace qui pèse sur la Terre du Milieu ?",
+		"La communauté de l'anneau",
+		3,
+		1);
+INSERT INTO livre (id_livre, annee_parution, date_modif, description_livre, image_couverture, isbn, prix_neuf, prix_occas, stock, sujet_livre, titre_livre, id_editeur, id_langue)
+       VALUES (4,
+		'2014',
+		'2019-03-13 00:00:00',
+		"Livre de Medieval Fantastique trés connu.",
+		'https://www.hachette.fr/sites/default/files/images/livres/couv/9782012035614-T.jpg',
+		'9782012035614',
+		18.70,
+		7.50,
+		15,
+		"Bilbo, comme tous les hobbits, est un petit être paisible qui n'aime pas être dérangé quand il est à table. L'aventure lui tombe dessus comme la foudre, quand le magicien Gandalf et treize nains barbus viennent lui parler de trésor, d'expédition périlleuse, et du dragon Smaug... qu'il va affronter. Car Bilbo doit partir avec eux ! Et le plus extraordinaire, c'est que le hobbit affrontera tous les dangers, sans jamais perdre son humour, même s'il tremblera plus d'une fois.",
+		"Bilbo le hobbit",
+		4,
+		1);
+
+#--------------------------------------------
+#   REMPLISSAGE Table: LIVRE_AUTEUR
+#--------------------------------------------
+
+INSERT INTO livre_auteur (id_livre, id_auteur) VALUES (1, 1),
+						      (2, 1),
+						      (3, 2),
+						      (4, 2);
+
+#--------------------------------------------
+#   REMPLISSAGE Table: LIVRE_GENRE
+#--------------------------------------------
+
+INSERT INTO livre_genre (id_livre, id_genre) VALUES (1, 1),
+						    (1, 2),
+						    (2, 1),
+						    (2, 2),
+						    (3, 4),
+						    (4, 4);
+
+#--------------------------------------------
+#   REMPLISSAGE Table: USERS
+#--------------------------------------------
+
+INSERT INTO users (id_user, authority, enabled, password, username)
+	VALUES (1, 'GESTIONNAIRE', 1, '{bcrypt}$2a$10$1nI0T5uO1Rj5.N6hp3oDfO.Dy2Ja720UF2oT7sR/iatsOdCGXMxp.', 'Riri77');
+INSERT INTO users (id_user, authority, enabled, password, username)
+	VALUES (2, 'ADMIN', 1, '{bcrypt}$2a$10$Lj9TEO57.mH4dmFBGikvoOJBOzxVZuXA9Lr1S86TtW591Lv83AhJi', 'Loulou88');
+INSERT INTO users (id_user, authority, enabled, password, username)
+	VALUES (3, 'INSCRIT', 1, '{bcrypt}$2a$10$E4H4JHgdTaVgROdNznwWF.MgEjRR/FeoUwaSafepRzlq2Pbb44YPC', 'Toto33');
+INSERT INTO users (id_user, authority, enabled, password, username)
+	VALUES (4, 'INSCRIT', 1, '{bcrypt}$2a$10$aSz5PQXPmNazi7B67K/yU.dN2zoy8F.1f1BELNE2gK.ixhLOV5aty', 'Fifi66');
+INSERT INTO users (id_user, authority, enabled, password, username)
+	VALUES (5, 'INSCRIT', 1, '{bcrypt}$2a$10$E4H4JHgdTaVgROdNznwWF.MgEjRR/FeoUwaSafepRzlq2Pbb44YPC', 'Jojo75');
+INSERT INTO users (id_user, authority, enabled, password, username)
+	VALUES (6, 'INSCRIT', 1, '{bcrypt}$2a$10$Lud4XmpdmTZvFB5VtjldReEzX.z/auDiqeM6OwWHni0Q/Wvws/XRG', 'Mario33');
+INSERT INTO users (id_user, authority, enabled, password, username)
+	VALUES (7, 'INSCRIT', 1, '{bcrypt}$2a$10$E4H4JHgdTaVgROdNznwWF.MgEjRR/FeoUwaSafepRzlq2Pbb44YPC', 'Luigi33');
+
+#--------------------------------------------
+#   REMPLISSAGE Table: AUTHORITIES
+#--------------------------------------------
+
+INSERT INTO authorities (id_auth, authority, username) VALUES (1, 'GESTIONNAIRE', 'Riri77');
+INSERT INTO authorities (id_auth, authority, username) 	VALUES (2, 'ADMIN', 'Loulou88');
+INSERT INTO authorities (id_auth, authority, username) 	VALUES (3, 'INSCRIT', 'Toto33');
+INSERT INTO authorities (id_auth, authority, username) 	VALUES (4, 'INSCRIT', 'Fifi66');
+INSERT INTO authorities (id_auth, authority, username) 	VALUES (5, 'INSCRIT', 'Jojo75');
+INSERT INTO authorities (id_auth, authority, username) 	VALUES (6, 'INSCRIT', 'Mario33');
+INSERT INTO authorities (id_auth, authority, username) 	VALUES (7, 'INSCRIT', 'Luigi33');
+
+#--------------------------------------------
+#   REMPLISSAGE Table: CLIENT
+#--------------------------------------------
+
+INSERT INTO client (id_client, complementf, complementl, cpf, cpl, email_client, nom_client, numerof, numerol, prenom_client, ruef, ruel, villef, villel, id_user)
+	VALUES (1, 'Bat A', 'Bat A', 75000, 75000, 'robert.u@mail.com', 'U', 1, 1, 'Robert', 'Rue Hoche', 'Rue Hoche', 'Paris', 'Paris', 4);
+INSERT INTO client (id_client, complementf, complementl, cpf, cpl, email_client, nom_client, numerof, numerol, prenom_client, ruef, ruel, villef, villel, id_user)
+	VALUES (2, NULL, NULL, 75000, 75000, 'jojo.lapin@mail.com', 'Lapin', 23, 23, 'Jojo', 'Rue Clébert', 'Rue Clébert', 'Paris', 'Paris', 5);
+INSERT INTO client (id_client, complementf, complementl, cpf, cpl, email_client, nom_client, numerof, numerol, prenom_client, ruef, ruel, villef, villel, id_user)
+	VALUES (3, NULL, NULL, 33000, 33000, 'mario.bross@mail.com', 'Bross', 7, 7, 'Mario', 'Rue Perlimpimpin', 'Rue Perlimpimpin', 'Bordeaux', 'Bordeaux', 6);
+INSERT INTO client (id_client, complementf, complementl, cpf, cpl, email_client, nom_client, numerof, numerol, prenom_client, ruef, ruel, villef, villel, id_user)
+	VALUES (4, NULL, NULL, 33000, 33000, 'luigi.bross@mail.com', 'Bross', 3, 3, 'Luigi', 'Rue Perlimpimpin', 'Rue Perlimpimpin', 'Bordeaux', 'Bordeaux', 7);
+
+#--------------------------------------------
+#   REMPLISSAGE Table: COMMANDE
+#--------------------------------------------
+
+INSERT INTO commande (id_commande, date, frais_de_port, nbre_articles, total, ttc, tva, valide, id_client)
+	VALUES (1, '2018-12-20 00:00:00', 5.65, 1, 8.82, 3.17, 0.17, 1, 1);
+INSERT INTO commande (id_commande, date, frais_de_port, nbre_articles, total, ttc, tva, valide, id_client)
+	VALUES (2, '2019-01-12 00:00:00', 5.65, 2, 14.09, 8.44, 0.44, 1, 2);
+INSERT INTO commande (id_commande, date, frais_de_port, nbre_articles, total, ttc, tva, valide, id_client)
+	VALUES (3, '2019-02-05 00:00:00', 5.65, 1, 10.93, 5.28, 0.28, 1, 3);
+INSERT INTO commande (id_commande, date, frais_de_port, nbre_articles, total, ttc, tva, valide, id_client)
+	VALUES (4, '2019-03-11 00:00:00', 5.65, 3, 19.37, 13.72, 0.72, 1, 4);
+
+#--------------------------------------------
+#   REMPLISSAGE Table: LIGNE_DE_COMMANDE
+#--------------------------------------------
+
+INSERT INTO ligne_de_commande (id_ligne_commande, quantite, id_commande, id_livre)
+	VALUES (1, 1, 1, 2);
+INSERT INTO ligne_de_commande (id_ligne_commande, quantite, id_commande, id_livre)
+	VALUES (2, 1, 2, 1);
+INSERT INTO ligne_de_commande (id_ligne_commande, quantite, id_commande, id_livre)
+	VALUES (3, 1, 2, 2);
+INSERT INTO ligne_de_commande (id_ligne_commande, quantite, id_commande, id_livre)
+	VALUES (4, 1, 3, 1);
+INSERT INTO ligne_de_commande (id_ligne_commande, quantite, id_commande, id_livre)
+	VALUES (5, 2, 4, 1);
+INSERT INTO ligne_de_commande (id_ligne_commande, quantite, id_commande, id_livre)
+	VALUES (6, 1, 4, 2);
+
+
+
+
+
+
+
+
+
+

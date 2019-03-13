@@ -109,7 +109,7 @@ export class LignesDeCommandeService {
         // mise à jour de la commande
         this.commandesService.updateCommande(deleteLigneDeCommande.commande);
         // pop-up suppression
-        this.snackBar.open('Ligne de commande', 'Supprimé', {
+        this.snackBar.open('Ligne de commande', 'Supprimée', {
           duration: 2000,
         });
       }

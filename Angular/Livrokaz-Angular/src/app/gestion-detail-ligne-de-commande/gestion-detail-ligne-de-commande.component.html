@@ -1,22 +1,26 @@
-<div class="center pad animated bounceInUp">
-  <mat-card class="center">
-    <form  class="center column" [formGroup]="ligneCommandeForm">
-        <mat-form-field>
-          <mat-select placeholder="Livre" formControlName="livre">
-            <mat-option *ngFor="let livre of livres" [value]="livre">
-              {{livre.titreLivre}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+<div class="center column pad animated bounceInUp">
+  <div class="center">
+    <mat-card class="center">
+      <form  class="center column" [formGroup]="ligneCommandeForm">
+          <mat-form-field>
+            <mat-select placeholder="Livre" formControlName="livre">
+              <mat-option *ngFor="let livre of livres" [value]="livre">
+                {{livre.titreLivre}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
-        <mat-form-field>
-          <input matInput placeholder="Quantité" formControlName="quantite">
-        </mat-form-field>
-    </form>
-  </mat-card>
+          <mat-form-field>
+            <input matInput placeholder="Quantité" formControlName="quantite">
+          </mat-form-field>
+      </form>
+    </mat-card>
+  </div>
+
+  <div class="center pad">
+    <button mat-raised-button (click)="onBack()">RETOUR</button>
+    <button mat-raised-button (click)="onSave()" [disabled]="ligneCommandeForm.invalid">ENREGISTRER</button>
+  </div>
 </div>
 
-<div class="center">
-  <button mat-raised-button (click)="onBack()">RETOUR</button>
-  <button mat-raised-button (click)="onSave()" [disabled]="ligneCommandeForm.invalid">ENREGISTRER</button>
-</div>
+
