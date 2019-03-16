@@ -21,6 +21,7 @@ import { GestionNewCommandeComponent } from './gestion-new-commande/gestion-new-
 import { GestionDetailCommandeComponent } from './gestion-detail-commande/gestion-detail-commande.component';
 import { GestionDetailLigneDeCommandeComponent } from './gestion-detail-ligne-de-commande/gestion-detail-ligne-de-commande.component';
 import { GestionCaComponent } from './gestion-ca/gestion-ca.component';
+import { ResultatRechercheComponent } from './resultat-recherche/resultat-recherche.component';
 
 
 const routes: Routes = [
@@ -50,10 +51,12 @@ const routes: Routes = [
   { path: 'gestion/commandes/nouveau', component: GestionNewCommandeComponent },
   { path: 'gestion/commandes/edition/:id', component: GestionDetailCommandeComponent },
   { path: 'gestion/ligneDeCommande/nouveau/:idCommande', component: GestionDetailLigneDeCommandeComponent },
+  { path: 'gestion/ligneDeCommande/edition/:id', component: GestionDetailLigneDeCommandeComponent },
   { path: 'gestion/users', component: GestionUsersComponent },
   { path: 'gestion/users/nouveau', component: GestionDetailUserComponent },
   { path: 'gestion/users/edition/:username', component: GestionDetailUserComponent },
   { path: 'gestion/ca', component: GestionCaComponent },
+  { path: 'recherche/resultat', component: ResultatRechercheComponent },
   { path: '**', component: ListeComponent }
 ];
 

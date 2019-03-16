@@ -31,12 +31,12 @@ export class GestionDetailClientComponent implements OnInit {
   complementFInit = '';
   cpFInit = 0;
   villeFInit = '';
-  userIdInit = 7;
-  clientIdInit = 7;
+  userIdInit = null;
+  clientIdInit = null;
   usernameInit = '';
   passwordInit = '';
   enabledInit = 1;
-  roleIdInit = 7;
+  roleIdInit = null;
 
   constructor(private clientsService: ClientsService,
               private authoritiesService: AuthoritiesService,
@@ -94,7 +94,7 @@ export class GestionDetailClientComponent implements OnInit {
       complementF: [this.complementFInit],
       cpF: [this.cpFInit],
       villeF: [this.villeFInit],
-      idUser: [this.userIdInit, Validators.required],
+      idUser: [this.userIdInit],
       username: [this.usernameInit, Validators.required],
       password: [this.passwordInit, Validators.required],
       enabled: [this.enabledInit, Validators.required]

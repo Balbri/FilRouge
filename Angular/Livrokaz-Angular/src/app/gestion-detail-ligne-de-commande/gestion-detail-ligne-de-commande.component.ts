@@ -19,12 +19,12 @@ import { LignesDeCommandeService } from '../services/lignes-de-commande.service'
 export class GestionDetailLigneDeCommandeComponent implements OnInit {
 
   idCommande: number;
-  id: number;
+  id: number = null;
   ligneCommandeForm: FormGroup;
   livresList: BehaviorSubject<Livre[]>;
   livres: Livre[] = [];
-  livreInit: null;
-  quantiteInit: 1;
+  livreInit: Livre = null;
+  quantiteInit = 1;
   fraisDePort: number;
   client: Client;
   date: Date;
@@ -38,8 +38,14 @@ export class GestionDetailLigneDeCommandeComponent implements OnInit {
 
   ngOnInit() {
     this.idCommande = +this.route.snapshot.params.idCommande;
-    this.getCommandeById(this.idCommande);
-    this.getLivres();
+    this.id = +this.route.snapshot.params.id;
+    if (this.idCommande) {
+      this.getCommandeById(this.idCommande);
+      this.getLivres();
+    }
+    if (this.id) {
+      this.getLigneCommandeById(this.id);
+    }
     this.initForm();
   }
 
@@ -48,6 +54,16 @@ export class GestionDetailLigneDeCommandeComponent implements OnInit {
       this.date = commande.date;
       this.client = commande.client;
       this.fraisDePort = commande.fraisDePort;
+    });
+  }
+
+  getLigneCommandeById(id: number) {
+    this.lignesDeCommandeService.findLigneDeCommande(id).subscribe(ldc => {
+      this.getCommandeById(ldc.commande.idCommande);
+      this.getLivres();
+      this.idCommande = ldc.commande.idCommande;
+      this.livreInit = this.livres.find(livre => livre.idLivre === ldc.livre.idLivre);
+      this.quantiteInit = ldc.quantite;
     });
   }
 
@@ -77,12 +93,16 @@ export class GestionDetailLigneDeCommandeComponent implements OnInit {
       this.client
     );
     const newLigneCommande = new LigneDeCommande(
-      null,
+      this.id,
       +formValue['quantite'],
       formValue['livre'],
       newCommande
     );
-    this.lignesDeCommandeService.createLdc(newLigneCommande);
+    if (this.id) {
+      this.lignesDeCommandeService.updateLigneDeCommande(newLigneCommande);
+    } else {
+      this.lignesDeCommandeService.createLdc(newLigneCommande);
+    }
     this.location.back();
   }
 

@@ -13,7 +13,7 @@ import { Langue } from '../Model/langue';
 export class GestionDetailLangueComponent implements OnInit {
 
   id: number;
-  idDefault = 7;
+  idDefault: number = null;
   langueForm: FormGroup;
   nomLangueInit = '';
 

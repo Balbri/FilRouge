@@ -13,7 +13,7 @@ import { Genre } from '../Model/genre';
 export class GestionDetailGenreComponent implements OnInit {
 
   id: number;
-  idDefault = 7;
+  idDefault: number = null;
   genreForm: FormGroup;
   nomGenreInit = '';
 

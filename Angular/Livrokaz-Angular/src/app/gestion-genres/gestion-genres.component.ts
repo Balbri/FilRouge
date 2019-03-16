@@ -22,7 +22,6 @@ export class GestionGenresComponent implements OnInit {
   genresList: BehaviorSubject<Genre[]>;
 
   constructor(private genresService: GenresService,
-              private snackBar: MatSnackBar,
               private router: Router) { }
 
   ngOnInit() {

@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatSnackBar, MatSort, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { Livre } from '../Model/livre';
-import { SelectionModel, DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import { LivresService } from '../services/livres.service';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-gestion-livres',
@@ -22,7 +22,6 @@ export class GestionLivresComponent implements OnInit {
   livresList: BehaviorSubject<Livre[]>;
 
   constructor(private livresService: LivresService,
-              private snackBar: MatSnackBar,
               private router: Router) { }
 
   ngOnInit() {

@@ -8,8 +8,13 @@ import { Location } from '@angular/common';
 import { Livre } from '../Model/livre';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { LanguesService } from '../services/langues.service';
+import { EditeursService } from '../services/editeurs.service';
+import { AuteursService } from '../services/auteurs.service';
+import { GenresService } from '../services/genres.service';
+import { HttpClient } from '@angular/common/http';
+import { getTreeMissingMatchingNodeDefError } from '@angular/cdk/tree';
 
 @Component({
   selector: 'app-gestion-detail-livre',
@@ -19,7 +24,7 @@ import { LanguesService } from '../services/langues.service';
 export class GestionDetailLivreComponent implements OnInit {
 
   id: number;
-  idDefault = 7;
+  idDefault = null;
   auteurs: Auteur[] = [];
   langues: Langue[] = [];
   editeurs: Editeur[] = [];
@@ -28,6 +33,7 @@ export class GestionDetailLivreComponent implements OnInit {
   isbnInit = '';
   titreLivreInit = '';
   imageCouvertureInit = '';
+  imageCouverture = '';
   anneeParutionInit = 0;
   stockInit = 0;
   prixNeufInit = 0;
@@ -44,25 +50,28 @@ export class GestionDetailLivreComponent implements OnInit {
 
   constructor(private livresService: LivresService,
               private languesService: LanguesService,
+              private editeursService: EditeursService,
+              private auteursService: AuteursService,
+              private genresService: GenresService,
               private location: Location,
               private route: ActivatedRoute,
-              private formBuilder: FormBuilder) {}
+              private formBuilder: FormBuilder,
+              private httpClient: HttpClient) {}
 
   ngOnInit() {
     this.id = +this.route.snapshot.params.id;
-    this.getAuteurs();
-    this.getLangues();
-    this.getEditeurs();
-    this.getGenres();
     if (this.id) {
       this.getLivreById(this.id);
     } else {
+      this.getAuteurs();
+      this.getLangues();
+      this.getEditeurs();
+      this.getGenres();
       this.initForm();
     }
   }
 
   initForm() {
-    console.log(this.langueInit);
     this.livreForm = this.formBuilder.group({
       isbn: [this.isbnInit, Validators.required],
       titreLivre: [this.titreLivreInit, Validators.required],
@@ -82,6 +91,10 @@ export class GestionDetailLivreComponent implements OnInit {
 
   getLivreById(id: number) {
     this.livresService.findLivre(id).subscribe(livre => {
+      this.getAuteurs();
+      this.getLangues();
+      this.getEditeurs();
+      this.getGenres();
       this.isbnInit = livre.isbn;
       this.titreLivreInit = livre.titreLivre;
       this.imageCouvertureInit = livre.imageCouverture;
@@ -89,10 +102,22 @@ export class GestionDetailLivreComponent implements OnInit {
       this.stockInit = livre.stock;
       this.prixNeufInit = livre.prixNeuf;
       this.prixOccasInit = livre.prixOccas;
-      this.langueInit = livre.langue;
-      this.editeurInit = livre.editeur;
-      this.auteursInit = livre.auteurs;
-      this.genresInit = livre.genres;
+      this.langueInit = this.langues.find(langue => langue.idLangue === livre.langue.idLangue);
+      this.editeurInit = this.editeurs.find(editeur => editeur.idEditeur === livre.editeur.idEditeur);
+      for (const auteur of this.auteurs) {
+        for (const auteurLivre of livre.auteurs) {
+          if (auteur.idAuteur === auteurLivre.idAuteur) {
+            this.auteursInit.push(auteur);
+          }
+        }
+      }
+      for (const genre of this.genres) {
+        for (const genreLivre of livre.genres) {
+          if (genre.idGenre === genreLivre.idGenre) {
+            this.genresInit.push(genre);
+          }
+        }
+      }
       this.sujetLivreInit = livre.sujetLivre;
       this.descriptionLivreInit = livre.descriptionLivre;
       this.initForm();
@@ -100,23 +125,19 @@ export class GestionDetailLivreComponent implements OnInit {
   }
 
   getLangues() {
-    this.langueList = this.languesService.availableLangues$;
-    this.langueList.subscribe(langues => {
-      console.log(langues);
-      this.langueInit = langues.find(langue => langue.idLangue === this.langueInit.idLangue);
-    });
+    this.languesService.availableLangues$.subscribe(langues => this.langues = langues);
   }
 
   getEditeurs() {
-    this.livresService.getEditeurs().subscribe(editeurs => this.editeurs = editeurs);
+    this.editeursService.availableEditeurs$.subscribe(editeurs => this.editeurs = editeurs);
   }
 
   getAuteurs() {
-    this.livresService.getAuteurs().subscribe(auteurs => this.auteurs = auteurs);
+    this.auteursService.availableAuteurs$.subscribe(auteurs => this.auteurs = auteurs);
   }
 
   getGenres() {
-    this.livresService.getGenres().subscribe(genres => this.genres = genres);
+    this.genresService.availableGenres$.subscribe(genres => this.genres = genres);
   }
 
   onSave() {

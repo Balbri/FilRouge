@@ -13,7 +13,7 @@ import { Auteur } from '../Model/Auteur';
 export class GestionDetailAuteurComponent implements OnInit {
 
   id: number;
-  idDefault = 7;
+  idDefault = null;
   auteurForm: FormGroup;
   nomAuteurInit = '';
   prenomAuteurInit = '';

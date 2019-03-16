@@ -13,7 +13,7 @@ import { Editeur } from '../Model/editeur';
 export class GestionDetailEditeurComponent implements OnInit {
 
   id: number;
-  idDefault: number;
+  idDefault: number = null;
   editeurForm: FormGroup;
   nomEditeurInit = '';
 

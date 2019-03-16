@@ -17,12 +17,12 @@ export class GestionDetailUserComponent implements OnInit {
 
   username: string;
   userForm: FormGroup;
-  userIdInit = 7;
+  userIdInit = null;
   usernameInit = '';
   passwordInit = '';
   enabledInit = 1;
   roleInit = null;
-  roleIdInit = 7;
+  roleIdInit = null;
   authorities: Authorities[] = [];
   roles: string[] = [];
   rolesUniques: string[] = [];

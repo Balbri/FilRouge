@@ -1,0 +1,19 @@
+<div class="center column" *ngIf="tableauLivre">
+  <h2 class="center">Résultat de la recherche</h2>
+  <p class="center" *ngIf="tableauLivre.length === 0">Aucun résultat trouvé...</p>
+  <div class="center wrap">
+    <mat-card *ngFor="let livre of tableauLivre">
+        <a routerLink="/detail/{{livre.idLivre}}">
+          <img class = "couverture" src= {{livre.imageCouverture}} alt= '"Couverture de" {{livre.titreLivre}}' title= {{livre.titreLivre}} >
+          <h4 class="titreLivre">{{ livre.titreLivre }}</h4>
+          <div class="prix">
+            <div>{{ livre.prixOccas | number:'1.2-2'}} €</div>
+            <div class="prixOccas">{{ livre.prixNeuf | number:'1.2-2'}} €</div>
+          </div>
+      </a>
+    </mat-card>
+  </div>
+  <div class="center">
+    <button mat-raised-button (click)="onBack()">RETOUR</button>
+  </div>
+</div> 

@@ -32,7 +32,6 @@ export class GestionAuteursComponent implements OnInit {
     setTimeout(() => this.dataSource.paginator = this.paginator);
     this.auteursList = this.auteursService.availableAuteurs$;
     this.auteursList.subscribe(auteurs => this.dataSource = new MatTableDataSource<Auteur>(auteurs));
-    console.log(this.auteursList);
   }
 
   onEdit(selected: Auteur[]) {

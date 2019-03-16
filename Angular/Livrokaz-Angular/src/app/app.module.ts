@@ -30,6 +30,7 @@ import { GestionNewCommandeComponent } from './gestion-new-commande/gestion-new-
 import { GestionDetailCommandeComponent } from './gestion-detail-commande/gestion-detail-commande.component';
 import { GestionDetailLigneDeCommandeComponent } from './gestion-detail-ligne-de-commande/gestion-detail-ligne-de-commande.component';
 import { GestionCaComponent } from './gestion-ca/gestion-ca.component';
+import { ResultatRechercheComponent } from './resultat-recherche/resultat-recherche.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { GestionCaComponent } from './gestion-ca/gestion-ca.component';
     GestionNewCommandeComponent,
     GestionDetailCommandeComponent,
     GestionDetailLigneDeCommandeComponent,
-    GestionCaComponent
+    GestionCaComponent,
+    ResultatRechercheComponent
   ],
   imports: [
     BrowserModule,

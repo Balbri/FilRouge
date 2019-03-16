@@ -121,7 +121,6 @@ public class LivreController {
 		public ResponseEntity<?> deleteLivre(@PathVariable Integer id){
 		 	Livre livreToDelete = null;
 			try {
-				livreToDelete = livreRepo.findById(id).get();
 				livreRepo.deleteById(id);
 			} catch (Exception e) {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());

@@ -25,10 +25,10 @@
 
         <div class="center cent">
           <mat-form-field>
-            <input matInput placeholder="Prix neuf" formControlName="prixNeuf">
+            <input matInput placeholder="Prix neuf (€)" formControlName="prixNeuf">
           </mat-form-field>
           <mat-form-field class="margin-left">
-            <input matInput placeholder="Prix occasion" formControlName="prixOccas">
+            <input matInput placeholder="Prix occasion (€)" formControlName="prixOccas">
           </mat-form-field>
         </div>
 
@@ -42,7 +42,7 @@
           </mat-form-field>
           <mat-form-field class="margin-left">
               <mat-select placeholder="Editeur" formControlName="editeur">
-                <mat-option *ngFor="let editeur of editeurs" [value]="editeurInit">
+                <mat-option *ngFor="let editeur of editeurs" [value]="editeur">
                   {{editeur.nomEditeur}}
                 </mat-option>
               </mat-select>
@@ -53,7 +53,7 @@
           <div formArrayName="auteurs">
             <mat-form-field *ngFor="let auteurControl of getAuteursControl().controls; let i = index">
               <mat-select placeholder="Auteurs" [formControlName]="i">
-                <mat-option *ngFor="let auteur of auteurs" [value]="auteursInit[i]">
+                <mat-option *ngFor="let auteur of auteurs" [value]="auteur">
                   {{auteur.surnameAuteur}} {{auteur.nameAuteur}}
                 </mat-option>
               </mat-select>
@@ -63,7 +63,7 @@
           <div formArrayName="genres">
             <mat-form-field class="margin-left" *ngFor="let genreControl of getGenresControl().controls; let i = index">
               <mat-select placeholder="Genres" [formControlName]="i">
-                <mat-option *ngFor="let genre of genres" [value]="genresInit[i]">
+                <mat-option *ngFor="let genre of genres" [value]="genre">
                   {{genre.nomGenre}}
                 </mat-option>
               </mat-select>
@@ -77,10 +77,10 @@
         <div class="couverture-off mat-elevation-z8" *ngIf="!imageCouvertureInit"></div>
         <img class ="couverture mat-elevation-z8" src= {{imageCouvertureInit}} *ngIf="imageCouvertureInit">
         <mat-form-field>
-          <textarea matInput placeholder="Sujet" formControlName="sujetLivre"></textarea>
+          <textarea rows="7" matInput placeholder="Sujet" formControlName="sujetLivre"></textarea>
         </mat-form-field>
         <mat-form-field>
-          <textarea matInput placeholder="Description" formControlName="descriptionLivre"></textarea>
+          <textarea rows="1" matInput placeholder="Description" formControlName="descriptionLivre"></textarea>
         </mat-form-field>
       </div>
     </form>
@@ -89,5 +89,5 @@
 
 <div class="center">
   <button mat-raised-button (click)="onBack()">RETOUR</button>
-  <button mat-raised-button (click)="onSave()" >ENREGISTRER</button>
+  <button mat-raised-button (click)="onSave()" [disabled]="livreForm.invalid">ENREGISTRER</button>
 </div>

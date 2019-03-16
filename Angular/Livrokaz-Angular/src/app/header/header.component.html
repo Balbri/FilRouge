@@ -1,14 +1,14 @@
 <mat-toolbar class = "header">
   <mat-toolbar-row>
     <span class="item titre">
-      <span class="montserrat pad-side"><a href = '/liste'>{{ title }}</a></span>
+      <span class="montserrat pad-side"><a routerLink=''>{{ title }}</a></span>
     </span>
 
     <span class = "item-large">
     <form>
       <mat-icon class="search-icon">search</mat-icon>
-      <input type="text" id="search" name="search" placeholder="Rechercher un livre par nom, par auteur, par genre...">
-      <button type="submit" id="valider" form="search" value="Submit">Go !</button>
+      <input type="text" id="searchBox" placeholder="Rechercher un livre par nom, par auteur, par genre...">
+      <button type="button" (click)="onSearch()" id="valider">Go !</button>
     </form>
   </span>
   
@@ -23,8 +23,8 @@
         <button mat-menu-item routerLink="gestion/editeurs">Editeurs</button>
         <button mat-menu-item routerLink="gestion/auteurs">Auteurs</button>
         <button mat-menu-item routerLink="gestion/clients">Clients</button>
-        <button mat-menu-item routerLink="gestion/commandes">Commandes</button>
         <button mat-menu-item routerLink="gestion/users">Identifiants</button>
+        <button mat-menu-item routerLink="gestion/commandes">Commandes</button>
         <button mat-menu-item routerLink="gestion/ca">Chiffre d'affaire</button>
       </mat-menu>
       <a class="button" href="/moncompte">Mon Compte</a>

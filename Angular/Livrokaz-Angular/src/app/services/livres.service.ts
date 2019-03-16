@@ -115,10 +115,11 @@ export class LivresService {
   public deleteLivre(id: number) {
     this.httpClient.delete<Livre>('http://localhost:8080/api/livres/' + id).subscribe(
       deleteLivre => {
+        const deletedLivre = this.availableLivres.find(livre => livre.idLivre === id);
         this.availableLivres.splice(this.availableLivres.indexOf(this.availableLivres.find(livre => livre.idLivre === id)), 1);
         this.availableLivres$.next(this.availableLivres);
         // pop-up suppression
-        this.snackBar.open(deleteLivre.titreLivre, 'Supprimé', {
+        this.snackBar.open(deletedLivre.titreLivre, 'Supprimé', {
           duration: 2000,
         });
       }
