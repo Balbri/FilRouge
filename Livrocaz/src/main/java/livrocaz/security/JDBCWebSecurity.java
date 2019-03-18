@@ -6,32 +6,44 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableWebSecurity
 public class JDBCWebSecurity extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
-    private Environment env;
+    private JwtTokenProvider jwtTokenProvider;
 
-    @Bean
-    public DataSource dataSource() {
-        final DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(env.getProperty("spring.datasource.driver-class-name"));
-        dataSource.setUrl(env.getProperty("spring.datasource.url"));
-        dataSource.setUsername(env.getProperty("spring.datasource.username"));
-        dataSource.setPassword(env.getProperty("spring.datasource.password"));
-        return dataSource;
+    @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
-    
-    @Autowired
-    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication().dataSource(dataSource());
-    }
+	
+//	@Autowired
+//    private Environment env;
+//
+//    @Bean
+//    public DataSource dataSource() {
+//        final DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//        dataSource.setDriverClassName(env.getProperty("spring.datasource.driver-class-name"));
+//        dataSource.setUrl(env.getProperty("spring.datasource.url"));
+//        dataSource.setUsername(env.getProperty("spring.datasource.username"));
+//        dataSource.setPassword(env.getProperty("spring.datasource.password"));
+//        return dataSource;
+//    }
+//    
+//    @Autowired
+//    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.jdbcAuthentication().dataSource(dataSource());
+//    }
     
     @Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -63,5 +75,8 @@ public class JDBCWebSecurity extends WebSecurityConfigurerAdapter{
     	.and()
         .exceptionHandling().accessDeniedPage("/accessDenied") //page perso accés refusé
         .and().csrf().ignoringAntMatchers("/api/**"); //pour que l'écriture fonctionne sous postman
+        
+     // Apply JWT pour vérifier si le token est bon
+        http.addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
 	}
 }

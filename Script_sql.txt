@@ -130,19 +130,19 @@ INSERT INTO livre_genre (id_livre, id_genre) VALUES (1, 1),
 #--------------------------------------------
 
 INSERT INTO users (id_user, authority, enabled, password, username)
-	VALUES (1, 'GESTIONNAIRE', 1, '{bcrypt}$2a$10$1nI0T5uO1Rj5.N6hp3oDfO.Dy2Ja720UF2oT7sR/iatsOdCGXMxp.', 'Riri77');
+	VALUES (1, 'GESTIONNAIRE', 1, '$2a$10$1nI0T5uO1Rj5.N6hp3oDfO.Dy2Ja720UF2oT7sR/iatsOdCGXMxp.', 'Riri77');
 INSERT INTO users (id_user, authority, enabled, password, username)
-	VALUES (2, 'ADMIN', 1, '{bcrypt}$2a$10$Lj9TEO57.mH4dmFBGikvoOJBOzxVZuXA9Lr1S86TtW591Lv83AhJi', 'Loulou88');
+	VALUES (2, 'ADMIN', 1, '$2a$10$Lj9TEO57.mH4dmFBGikvoOJBOzxVZuXA9Lr1S86TtW591Lv83AhJi', 'Loulou88');
 INSERT INTO users (id_user, authority, enabled, password, username)
-	VALUES (3, 'INSCRIT', 1, '{bcrypt}$2a$10$E4H4JHgdTaVgROdNznwWF.MgEjRR/FeoUwaSafepRzlq2Pbb44YPC', 'Toto33');
+	VALUES (3, 'INSCRIT', 1, '$2a$10$E4H4JHgdTaVgROdNznwWF.MgEjRR/FeoUwaSafepRzlq2Pbb44YPC', 'Toto33');
 INSERT INTO users (id_user, authority, enabled, password, username)
-	VALUES (4, 'INSCRIT', 1, '{bcrypt}$2a$10$aSz5PQXPmNazi7B67K/yU.dN2zoy8F.1f1BELNE2gK.ixhLOV5aty', 'Fifi66');
+	VALUES (4, 'INSCRIT', 1, '$2a$10$aSz5PQXPmNazi7B67K/yU.dN2zoy8F.1f1BELNE2gK.ixhLOV5aty', 'Fifi66');
 INSERT INTO users (id_user, authority, enabled, password, username)
-	VALUES (5, 'INSCRIT', 1, '{bcrypt}$2a$10$E4H4JHgdTaVgROdNznwWF.MgEjRR/FeoUwaSafepRzlq2Pbb44YPC', 'Jojo75');
+	VALUES (5, 'INSCRIT', 1, '$2a$10$E4H4JHgdTaVgROdNznwWF.MgEjRR/FeoUwaSafepRzlq2Pbb44YPC', 'Jojo75');
 INSERT INTO users (id_user, authority, enabled, password, username)
-	VALUES (6, 'INSCRIT', 1, '{bcrypt}$2a$10$Lud4XmpdmTZvFB5VtjldReEzX.z/auDiqeM6OwWHni0Q/Wvws/XRG', 'Mario33');
+	VALUES (6, 'INSCRIT', 1, '$2a$10$Lud4XmpdmTZvFB5VtjldReEzX.z/auDiqeM6OwWHni0Q/Wvws/XRG', 'Mario33');
 INSERT INTO users (id_user, authority, enabled, password, username)
-	VALUES (7, 'INSCRIT', 1, '{bcrypt}$2a$10$E4H4JHgdTaVgROdNznwWF.MgEjRR/FeoUwaSafepRzlq2Pbb44YPC', 'Luigi33');
+	VALUES (7, 'INSCRIT', 1, '$2a$10$E4H4JHgdTaVgROdNznwWF.MgEjRR/FeoUwaSafepRzlq2Pbb44YPC', 'Luigi33');
 
 #--------------------------------------------
 #   REMPLISSAGE Table: AUTHORITIES

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ListeComponent } from './liste/liste.component';
+
 import { LivreDetailComponent } from './livre-detail/livre-detail.component';
 import { GestionLivresComponent } from './gestion-livres/gestion-livres.component';
 import { GestionDetailLivreComponent } from './gestion-detail-livre/gestion-detail-livre.component';
@@ -22,11 +22,16 @@ import { GestionDetailCommandeComponent } from './gestion-detail-commande/gestio
 import { GestionDetailLigneDeCommandeComponent } from './gestion-detail-ligne-de-commande/gestion-detail-ligne-de-commande.component';
 import { GestionCaComponent } from './gestion-ca/gestion-ca.component';
 import { ResultatRechercheComponent } from './resultat-recherche/resultat-recherche.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { AccueilComponent } from './accueil/accueil.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/liste', pathMatch: 'full' },
-  { path: 'liste', component: ListeComponent },
+  { path: '', redirectTo: '/accueil', pathMatch: 'full' },
+  { path: 'accueil', component: AccueilComponent },
+  { path: 'signin', component: SignInComponent },
+  { path: 'signup', component: SignUpComponent },
   { path: 'detail/:id', component: LivreDetailComponent },
   { path: 'gestion/livres', component: GestionLivresComponent },
   { path: 'gestion/langues', component: GestionLanguesComponent },
@@ -57,7 +62,7 @@ const routes: Routes = [
   { path: 'gestion/users/edition/:username', component: GestionDetailUserComponent },
   { path: 'gestion/ca', component: GestionCaComponent },
   { path: 'recherche/resultat', component: ResultatRechercheComponent },
-  { path: '**', component: ListeComponent }
+  { path: '**', component: AccueilComponent }
 ];
 
 @NgModule({

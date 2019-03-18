@@ -8,11 +8,11 @@ import { Genre } from '../Model/genre';
 import { Auteur } from '../Model/auteur';
 
 @Component({
-  selector: 'app-liste',
-  templateUrl: './liste.component.html',
-  styleUrls: ['./liste.component.css']
+  selector: 'app-accueil',
+  templateUrl: './accueil.component.html',
+  styleUrls: ['./accueil.component.css']
 })
-export class ListeComponent implements OnInit {
+export class AccueilComponent implements OnInit {
 
   livre: Livre;
   langues: Langue[] = [];

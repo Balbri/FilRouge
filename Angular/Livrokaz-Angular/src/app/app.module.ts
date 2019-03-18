@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './Angular-Material';
 import { HeaderComponent } from './header/header.component';
 import { PubComponent } from './pub/pub.component';
-import { ListeComponent } from './liste/liste.component';
+import { AccueilComponent } from './accueil/accueil.component';
 import { LivreDetailComponent } from './livre-detail/livre-detail.component';
 import { GestionLivresComponent } from './gestion-livres/gestion-livres.component';
 import { GestionDetailLivreComponent } from './gestion-detail-livre/gestion-detail-livre.component';
@@ -31,13 +31,15 @@ import { GestionDetailCommandeComponent } from './gestion-detail-commande/gestio
 import { GestionDetailLigneDeCommandeComponent } from './gestion-detail-ligne-de-commande/gestion-detail-ligne-de-commande.component';
 import { GestionCaComponent } from './gestion-ca/gestion-ca.component';
 import { ResultatRechercheComponent } from './resultat-recherche/resultat-recherche.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     PubComponent,
-    ListeComponent,
+    AccueilComponent,
     LivreDetailComponent,
     GestionLivresComponent,
     GestionDetailLivreComponent,
@@ -58,7 +60,9 @@ import { ResultatRechercheComponent } from './resultat-recherche/resultat-recher
     GestionDetailCommandeComponent,
     GestionDetailLigneDeCommandeComponent,
     GestionCaComponent,
-    ResultatRechercheComponent
+    ResultatRechercheComponent,
+    SignInComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

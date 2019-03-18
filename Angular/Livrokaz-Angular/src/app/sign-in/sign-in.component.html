@@ -1,0 +1,17 @@
+<div class="center pad animated bounceInUp">
+  <mat-card class="center">
+    <form  class="center column" [formGroup]="connectForm">
+        <mat-form-field>
+          <input matInput placeholder="Identifiant" formControlName="username">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Mot de passe" formControlName="password">
+        </mat-form-field>
+    </form>
+  </mat-card>
+</div>
+
+<div class="center">
+  <button mat-raised-button (click)="onBack()">RETOUR</button>
+  <button mat-raised-button (click)="onConnect()" [disabled]="connectForm.invalid">CONNEXION</button>
+</div>

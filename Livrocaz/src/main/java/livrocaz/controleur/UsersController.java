@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,17 +19,59 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import livrocaz.model.Client;
+import livrocaz.model.JsonWebToken;
 import livrocaz.model.Users;
 import livrocaz.repository.UserRepository;
+import livrocaz.service.UserService;
 
 
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
 public class UsersController {
+	
+	private UserService userService;
+
+    public UsersController(UserService userService) {
+        this.userService = userService;
+    }
 
 	@Autowired
 	private UserRepository userRepo;
+	
+	/**
+     * Method to register a new user in database.
+     * @param user the new user to create.
+     * @return a JWT if sign up is ok, a bad response code otherwise.
+	 * @throws Exception 
+     */
+    @PostMapping("/sign-up")
+    public ResponseEntity<JsonWebToken> signUp(@RequestBody Client client) throws Exception {
+        try {
+        	String token = userService.signup(client);
+            return ResponseEntity.ok(new JsonWebToken(token));
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+    
+    /**
+     * Method to sign in a user (already existing).
+     * @param user the user to sign in to the app.
+     * @return a JWT if sign in is ok, a bad response code otherwise.
+     * @throws Exception 
+     */
+    @PostMapping("/sign-in")
+    public ResponseEntity<JsonWebToken> signIn(@RequestBody Users user) throws Exception {
+        try {
+        	String token = userService.signin(user.getUsername(), user.getPassword());
+            return ResponseEntity.ok(new JsonWebToken(token));
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+	
 /*
  * Methode Get All
  */
@@ -66,7 +109,7 @@ public class UsersController {
 		try {
 			// cryptage mot de passe avant sauvegarde dans BDD
 			BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
-			user.setPassword("{bcrypt}" + bcrypt.encode(user.getPassword()));
+			user.setPassword(bcrypt.encode(user.getPassword()));
 			
 			resultUser = userRepo.saveAndFlush(user);
 		} catch (Exception e) {
@@ -89,10 +132,10 @@ public class UsersController {
 	        	userPassword = user.getPassword();
 	        	
 	        	// Si le MdP n'est pas déjà encrypté
-	        	if (!userPassword.startsWith("{bcrypt}")) {
+	        	if (!userPassword.startsWith("$2a$10$")) {
 	        		// cryptage mot de passe avant sauvegarde dans BDD
 					BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
-					user.setPassword("{bcrypt}" + bcrypt.encode(user.getPassword()));
+					user.setPassword(bcrypt.encode(user.getPassword()));
 	        	}
 	        	
 	            useramodifier = userRepo.saveAndFlush(user);
