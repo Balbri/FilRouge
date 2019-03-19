@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
   @Input() title: string;
   searchtext = '';
   isAdmin: boolean;
+  username: BehaviorSubject<string>;
 
   livresList: BehaviorSubject<Livre[]>;
   tableauLivre: Livre[];
@@ -27,6 +28,7 @@ export class HeaderComponent implements OnInit {
     this.loginService.userRole.subscribe(userRoles => {
       this.isAdmin = userRoles.includes('ADMIN');
     });
+    this.username = this.loginService.userName;
   }
 
   onSearch() {

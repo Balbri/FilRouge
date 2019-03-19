@@ -1,51 +1,26 @@
 <div class = "conteneur" *ngIf="displayedLivre">
-    <!--<mat-card class="center">
-        <img class = "couverture" src= {{displayedLivre.imageCouverture}} alt= '"Couverture de" {{displayedLivre.titreLivre}}'>
-        <h4 class="titreLivre">{{ displayedLivre.titreLivre }}</h4>
-        <div class="prix">
-            <div>{{ displayedLivre.prixOccas }} €</div>
-            <div class="prixOccas">{{ displayedLivre.prixNeuf }} €</div>
+    <img class = "couverture" src= {{displayedLivre.imageCouverture}} alt= '"Couverture de" {{displayedLivre.titreLivre}}'>
+    <div class = "detail">
+        <h3 class="titreLivre">{{ displayedLivre.titreLivre }}</h3>
+        <p><strong>Année de parution : {{displayedLivre.anneeParution}}</strong></p>
+        <p><strong>Auteur : <span class= "underline" *ngFor="let auteur of displayedLivre.auteurs">{{auteur.surnameAuteur}} {{auteur.nameAuteur}}</span></strong></p>
+        <p><strong>Edition : <span class = "underline">{{displayedLivre.editeur.nomEditeur}}</span></strong></p>
+        <p><strong>Langue : {{displayedLivre.langue.nomLangue}}</strong></p>
+        <div class= "sujet">
+            <p class = "section"><strong>SUJET</strong></p>
+            <p>{{displayedLivre.sujetLivre}}</p>
+            <p class = "section"><strong>DESCRIPTION</strong></p>
+            <p>{{displayedLivre.descriptionLivre}}</p>
         </div>
-    </mat-card>
-    <div class="column">
-        <p><strong>ISBN : </strong>{{displayedLivre.isbn}}</p>
-        <p><strong>Année de parution : </strong>{{displayedLivre.anneeParution}}</p>
-        <p><strong>Langue : </strong>{{displayedLivre.langue.nomLangue}}</p>
-        <p><strong>Produits en stock : </strong>{{displayedLivre.stock}}</p>
-        <p><strong>Genres : </strong><span *ngFor="let genre of displayedLivre.genres">{{genre.nomGenre}}</span></p>
-        <p><strong>Auteurs : </strong><span *ngFor="let auteur of displayedLivre.auteurs">{{auteur.surnameAuteur}} {{auteur.nameAuteur}}</span></p>
-        <p><strong>Sujet du livre : </strong>{{displayedLivre.sujetLivre}}</p>
-        <p><strong>Description : </strong>{{displayedLivre.descriptionLivre}}</p>
     </div>
-</div>
+    <div class = "detail prixe">
+        <p class = "prix">{{ displayedLivre.prixNeuf}} €</p>
+        <p class = "prixOccas">{{displayedLivre.prixOccas}} €</p>
+        <p class = "stock">{{etatStock}}</p>
 
-<div class="center">
-    <button mat-raised-button (click)="onBack()">Retour</button>-->
-
-
-
-       <img class = "couverture" src= {{displayedLivre.imageCouverture}} alt= '"Couverture de" {{displayedLivre.titreLivre}}'>
-        <div class = "detail">
-            <h3 class="titreLivre">{{ displayedLivre.titreLivre }}</h3>
-            <p><strong>Année de parution : {{displayedLivre.anneeParution}}</strong></p>
-            <p><strong>Auteur : <span class= "underline" *ngFor="let auteur of displayedLivre.auteurs">{{auteur.surnameAuteur}} {{auteur.nameAuteur}}</span></strong></p>
-            <p><strong>Edition : <span class = "underline">{{displayedLivre.editeur.nomEditeur}}</span></strong></p>
-            <p><strong>Langue : {{displayedLivre.langue.nomLangue}}</strong></p>
-            <div class= "sujet">
-                <p class = "section"><strong>SUJET</strong></p>
-                <p>{{displayedLivre.sujetLivre}}</p>
-                <p class = "section"><strong>DESCRIPTION</strong></p>
-                <p>{{displayedLivre.descriptionLivre}}</p>
-            </div>
-        </div>
-        <div class = "detail prixe">
-            <p class = "prix">{{ displayedLivre.prixNeuf}} €</p>
-            <p class = "prixOccas">{{displayedLivre.prixOccas}} €</p>
-            <p class = "stock">{{etatStock}}</p>
-
-            <button type="submit" id="commander" value="Submit">Acheter</button>
-            <p>Livraison en 24<sup>H</sup></p>
-        </div>
+        <button type="button" (click)="onShop()" id="commander">Acheter</button>
+        <p>Livraison en 24<sup>H</sup></p>
+    </div>
 </div>
 
 

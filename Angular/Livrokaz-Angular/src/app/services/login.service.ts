@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Users } from '../Model/users';
@@ -14,9 +14,11 @@ import { MatSnackBar } from '@angular/material';
 export class LoginService {
 
   userRole: BehaviorSubject<string> = new BehaviorSubject('');
+  userName: BehaviorSubject<string> = new BehaviorSubject('');
 
   constructor(private httpClient: HttpClient, private router: Router, private snackBar: MatSnackBar) {
     this.getUserRoles();
+    this.getUserUsername();
   }
 
   public get loggedIn(): boolean {
@@ -29,6 +31,7 @@ export class LoginService {
         sessionStorage.setItem('access_token', token.token);
 
         this.getUserRoles();
+        this.getUserUsername();
 
         this.router.navigate(['']);
 
@@ -50,6 +53,7 @@ export class LoginService {
         sessionStorage.setItem('access_token', token.token);
 
         this.getUserRoles();
+        this.getUserUsername();
 
         this.router.navigate(['']);
 
@@ -68,6 +72,7 @@ export class LoginService {
   signOut() {
     sessionStorage.removeItem('access_token');
     this.userRole.next('');
+    this.userName.next('');
     this.snackBar.open('Vous êtes déconnecté !', 'DECONNEXION', {
       duration: 2000,
     });
@@ -78,6 +83,14 @@ export class LoginService {
       const decodedToken = jwt_decode(sessionStorage.getItem('access_token'));
       const authority: string = decodedToken.auth;
       this.userRole.next(authority);
+    }
+  }
+
+  private getUserUsername() {
+    if (sessionStorage.getItem('access_token')) {
+      const decodedToken = jwt_decode(sessionStorage.getItem('access_token'));
+      const username: string = decodedToken.sub;
+      this.userName.next(username);
     }
   }
 }

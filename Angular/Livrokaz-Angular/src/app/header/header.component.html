@@ -29,6 +29,7 @@
       </mat-menu>
       <a class="button" routerLink='signin'>Mon Compte</a>
       <a routerLink="" (click)="signOut()" title="Favoris"><mat-icon class="pad-side">power_settings_new</mat-icon></a>
+      <p *ngIf='username'>{{username?.value}}</p>
       <a href="" title="Panier"><mat-icon class="pad-side">shopping_cart</mat-icon></a>
       
     </span>

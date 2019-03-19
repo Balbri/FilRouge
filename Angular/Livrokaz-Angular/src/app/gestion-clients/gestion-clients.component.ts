@@ -5,7 +5,6 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { BehaviorSubject } from 'rxjs';
 import { ClientsService } from '../services/clients.service';
 import { Router } from '@angular/router';
-import { AuthoritiesService } from '../services/authorities.service';
 
 @Component({
   selector: 'app-gestion-clients',
@@ -23,7 +22,6 @@ export class GestionClientsComponent implements OnInit {
   clientsList: BehaviorSubject<Client[]>;
 
   constructor(private clientsService: ClientsService,
-              private authoritiesService: AuthoritiesService,
               private router: Router) { }
 
   ngOnInit() {
@@ -45,11 +43,6 @@ export class GestionClientsComponent implements OnInit {
     if (selected.length !== 0) {
       // suppression du client
       this.clientsService.deleteClient(selected[0].idClient);
-      // suppression du rôle associé
-      this.authoritiesService.getAuthorities().subscribe(authorities => {
-        const authToDelete = authorities.find(authority => authority.username === selected[0].users.username);
-        this.authoritiesService.deleteAuthority(authToDelete.idAuth);
-      });
       this.selection = new SelectionModel<Client>(false, []);
     }
   }

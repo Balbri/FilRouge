@@ -1,5 +1,7 @@
 package livrocaz.service;
 
+import java.util.Date;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
@@ -7,8 +9,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import livrocaz.model.Client;
+import livrocaz.model.Commande;
 import livrocaz.model.Users;
 import livrocaz.repository.ClientRepository;
+import livrocaz.repository.CommandeRepository;
 import livrocaz.repository.UserRepository;
 import livrocaz.security.JwtTokenProvider;
 
@@ -18,14 +22,16 @@ public class UserServiceImpl implements UserService {
 
     private UserRepository userRepo;
     private ClientRepository clientRepo;
+    private CommandeRepository commandeRepo;
     private BCryptPasswordEncoder passwordEncoder;
     private JwtTokenProvider jwtTokenProvider;
     private AuthenticationManager authenticationManager;
 
-    public UserServiceImpl(UserRepository userRepository, ClientRepository clientRepository, BCryptPasswordEncoder passwordEncoder,
-                              JwtTokenProvider jwtTokenProvider, AuthenticationManager authenticationManager) {
+    public UserServiceImpl(UserRepository userRepository, ClientRepository clientRepository, CommandeRepository commandeRepository,
+    						BCryptPasswordEncoder passwordEncoder, JwtTokenProvider jwtTokenProvider, AuthenticationManager authenticationManager) {
         this.userRepo = userRepository;
         this.clientRepo = clientRepository;
+        this.commandeRepo = commandeRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtTokenProvider = jwtTokenProvider;
         this.authenticationManager = authenticationManager;
@@ -52,7 +58,10 @@ public class UserServiceImpl implements UserService {
             								client.getVilleL(),
             								client.getEmailClient(),
             								userToSave);
+            // création du panier client (commande à 0)
+            Commande commandeToSave = new Commande(clientToSave, new Date(), 5.65, 0.0, 0.0, 0);
             clientRepo.save(clientToSave);
+            commandeRepo.save(commandeToSave);
             return jwtTokenProvider.createToken(client.getUsers().getUsername(), client.getUsers().getAuthority());
         } else {
             throw new Exception();

@@ -77,6 +77,9 @@ export class LignesDeCommandeService {
         this.availableLigneDeCommandes$.next(this.availableLigneDeCommandes);
         // mise à jour de la commande
         this.commandesService.updateCommande(newLigneDeCommande.commande);
+        this.snackBar.open(newLigneDeCommande.livre.titreLivre + ' ajouté', 'PANIER', {
+          duration: 2000,
+        });
       }
     );
   }
