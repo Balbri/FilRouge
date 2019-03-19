@@ -181,6 +181,14 @@ INSERT INTO commande (id_commande, date, frais_de_port, nbre_articles, total, tt
 	VALUES (3, '2019-02-05 00:00:00', 5.65, 1, 10.93, 5.28, 0.28, 1, 3);
 INSERT INTO commande (id_commande, date, frais_de_port, nbre_articles, total, ttc, tva, valide, id_client)
 	VALUES (4, '2019-03-11 00:00:00', 5.65, 3, 19.37, 13.72, 0.72, 1, 4);
+INSERT INTO commande (id_commande, date, frais_de_port, nbre_articles, total, ttc, tva, valide, id_client)
+	VALUES (5, '2018-12-20 00:00:00', 5.65, 0, 5.65, 0, 0, 0, 1);
+INSERT INTO commande (id_commande, date, frais_de_port, nbre_articles, total, ttc, tva, valide, id_client)
+	VALUES (6, '2019-01-12 00:00:00', 5.65, 2, 14.09, 8.44, 0.44, 0, 2);
+INSERT INTO commande (id_commande, date, frais_de_port, nbre_articles, total, ttc, tva, valide, id_client)
+	VALUES (7, '2019-02-05 00:00:00', 5.65, 1, 10.93, 5.28, 0.28, 0, 3);
+INSERT INTO commande (id_commande, date, frais_de_port, nbre_articles, total, ttc, tva, valide, id_client)
+	VALUES (8, '2019-03-11 00:00:00', 5.65, 0, 5.65, 0, 0, 0, 4);
 
 #--------------------------------------------
 #   REMPLISSAGE Table: LIGNE_DE_COMMANDE

@@ -25,6 +25,7 @@ import { ResultatRechercheComponent } from './resultat-recherche/resultat-recher
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AccueilComponent } from './accueil/accueil.component';
+import { PanierComponent } from './panier/panier.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
   { path: 'signin', component: SignInComponent },
   { path: 'signup', component: SignUpComponent },
+  { path: 'panier', component: PanierComponent },
   { path: 'detail/:id', component: LivreDetailComponent },
   { path: 'gestion/livres', component: GestionLivresComponent },
   { path: 'gestion/langues', component: GestionLanguesComponent },

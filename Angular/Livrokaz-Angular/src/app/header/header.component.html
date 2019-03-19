@@ -27,10 +27,10 @@
         <button mat-menu-item routerLink="gestion/commandes">Commandes</button>
         <button mat-menu-item routerLink="gestion/ca">Chiffre d'affaire</button>
       </mat-menu>
-      <a class="button" routerLink='signin'>Mon Compte</a>
+      <a class="button" routerLink='signin'>Connexion</a>
       <a routerLink="" (click)="signOut()" title="Favoris"><mat-icon class="pad-side">power_settings_new</mat-icon></a>
       <p *ngIf='username'>{{username?.value}}</p>
-      <a href="" title="Panier"><mat-icon class="pad-side">shopping_cart</mat-icon></a>
+      <a routerLink="panier" title="Panier"><mat-icon class="pad-side">shopping_cart</mat-icon></a>
       
     </span>
   </mat-toolbar-row>

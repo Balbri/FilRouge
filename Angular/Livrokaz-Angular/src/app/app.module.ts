@@ -33,6 +33,7 @@ import { GestionCaComponent } from './gestion-ca/gestion-ca.component';
 import { ResultatRechercheComponent } from './resultat-recherche/resultat-recherche.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { PanierComponent } from './panier/panier.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     GestionCaComponent,
     ResultatRechercheComponent,
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    PanierComponent
   ],
   imports: [
     BrowserModule,
