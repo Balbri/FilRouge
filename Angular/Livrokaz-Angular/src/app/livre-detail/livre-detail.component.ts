@@ -65,6 +65,7 @@ export class LivreDetailComponent implements OnInit {
       // Si l'utilisateur est connecté l'article vas dans son panier
       if (this.commandeClient !== null) {
         const ldc = new LigneDeCommande(null, 1, this.displayedLivre, this.commandeClient);
+        console.log(ldc);
         this.lignesDeCommandeService.createLdc(ldc);
       } else {
         this.snackBar.open('Une erreur est survenue !', 'ECHEC', {

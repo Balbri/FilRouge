@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,6 +35,7 @@ import { ResultatRechercheComponent } from './resultat-recherche/resultat-recher
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { PanierComponent } from './panier/panier.component';
+import { AchatComponent } from './achat/achat.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,8 @@ import { PanierComponent } from './panier/panier.component';
     ResultatRechercheComponent,
     SignInComponent,
     SignUpComponent,
-    PanierComponent
+    PanierComponent,
+    AchatComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +76,8 @@ import { PanierComponent } from './panier/panier.component';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPayPalModule
   ],
   providers: [],
   bootstrap: [AppComponent]

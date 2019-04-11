@@ -8,6 +8,7 @@ import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { LigneDeCommande } from '../Model/lignedeCommande';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-panier',
@@ -31,7 +32,8 @@ export class PanierComponent implements OnInit {
   constructor(private commandeService: CommandesService,
               private loginService: LoginService,
               private lignesDeCommandeService: LignesDeCommandeService,
-              private location: Location) {}
+              private location: Location,
+              private router: Router) {}
 
   ngOnInit() {
     this.userName = this.loginService.userName;
@@ -54,6 +56,10 @@ export class PanierComponent implements OnInit {
     if (selected.length !== 0) {
       this.lignesDeCommandeService.deleteLigneDeCommande(selected[0].idLigneCommande);
     }
+  }
+
+  onBuy() {
+    this.router.navigate(['panier/achat/' + this.panier.idCommande]);
   }
 
   onBack() {
